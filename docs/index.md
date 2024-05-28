@@ -17,16 +17,7 @@ aufbewahrt – mit all seinen Fotos, Gedanken, Erlebnissen und Erinnerungen. Daf
 legt der Nutzer ein Benutzerprofil an und schon kann er seine persönliche Übersicht
 über besuchte Länder und Kontinente erstellen. Jedem Nutzer wird seine eigene
 interaktive Weltkarte angezeigt, die es ermöglicht, besuchte Länder zu markieren und
-seinen prozentualen Wert der bereits gesehenen Welt zu tracken. Zu jeder Reise kann
-zusätzlich zu der Markierung auf der Weltkarte auch ein Eintrag mit Daten, einem
-Bericht über das erlebte und Bildern erstellt werden. Natürlich kann sich der Nutzer
-auch eine Bucketlist von seinen nächsten Wunsch-reiseorten erstellen, um auch bei
-zukünftigen Reisen den Überblick zu bewahren. Dazu gibt es viele zusätzliche
-Funktionen, die gegebenenfalls die Userexperience erweitern. Das könnten
-Ankreuzlisten der wichtigsten Sehenswürdigkeiten der Länder, die Möglichkeit, seine
-unterschiedlichen Reisen zu bewerten, gesehene Sehenswürdigkeiten als Sticker für
-sein „Erkundungsstickerbuch“ zu sammeln und spaßige Funfact-Quizze über die
-Länder sein.
+seinen prozentualen Wert der bereits gesehenen Welt zu tracken. 
 
 ## Team members
 
