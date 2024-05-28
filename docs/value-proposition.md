@@ -3,9 +3,6 @@ title: Value Proposition
 nav_order: 1
 ---
 
-{: .label }
-[TripTik]
-
 {: .no_toc }
 # Value proposition
 
