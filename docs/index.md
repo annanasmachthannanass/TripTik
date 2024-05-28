@@ -22,7 +22,7 @@ About
 Matr.-Nr.
 : 1234567
 
-### Rojin Aslan
+### Rojin Aylin Aslan
 
 About
 : Some info about Joe
