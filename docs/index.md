@@ -32,24 +32,15 @@ Länder sein.
 
 ### Eliana Kaping
 
-About
-: Some info about Jane
-
 Matr.-Nr.
 : 77211973055
 
 ### Rojin Aylin Aslan
 
-About
-: Some info about Joe
-
 Matr.-Nr.
 : 77211976117
 
 ### Johanna Engels
-
-About
-: Some info about Joe
 
 Matr.-Nr.
 : 77211974960
