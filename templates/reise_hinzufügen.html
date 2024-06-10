@@ -5,20 +5,37 @@
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 <body>
-    <h1>Reise hinzufügen</h1>
-    
-    <main>
+<div class="container">
 
-        <form action="/" method="post">
-             <button type="submit" style="color: blueviolet;">Home</button>
-        </form>
+    <div class="left-sidebar">
+        <div class="logo">
+            <img src="/static/logo.jpg" alt="TripTik Logo">
+        </div>
+        
+            <form action="/profil" method="post">
+                <button type="submit">Profil</button>
+            </form>
+            <form action="/reisen" method="post">
+              <button type="submit">Reisen</button>
+            </form>
+            <form action="/reise_hinzufügen" method="post">
+                <button id="last" type="submit">Reise Hinzufügen</button>
+            </form>
+        
+    </div>
 
-        <h2>Content Goes Here</h2>
-        <p>This is where you can add your content.</p>
-    </main>
-    
-    <footer>
-        <p>&copy; 2022 My Web Page. All rights reserved.</p>
-    </footer>
+    <div class="main-content">
+        <div class="top-content">
+            <header>
+                <h1>Reise hinzufügen</h1>
+            </header>
+        </div>
+        <div class="bottom-content">
+            <form action="/" method="post">
+                <button type="submit" style="color: blueviolet;">Home</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
