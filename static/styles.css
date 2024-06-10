@@ -1,0 +1,93 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #65af90;
+}
+
+h1 {
+    color: #0f4155;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    background-color: #0f4155;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+/* Style the header */
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Breite des linken Seitenbereichs */
+    background-color: #4d9781; /* Hintergrundfarbe des linken Bereichs */
+    padding: 10px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    width: 75%; /* Das Bild wird auf die volle Breite des .logo-Containers (300px) skaliert */
+    height: auto; /* Die Höhe wird proportional zur Breite angepasst */
+}
+
+.left-sidebar form {
+    width: 100%; /* Die Form wird auf die volle Breite des .left-sidebar-Containers (300px) skaliert */
+}
+.left-sidebar button {
+    width: 100%; /* Die Schaltfläche wird auf die volle Breite des .left-sidebar-Containers (300px) skaliert */
+    background-color: transparent; /* Transparenter Hintergrund */
+    margin: 0;
+    border-radius: 0%;
+    border-top: 2px solid;
+    border-color: #0a4931;
+}
+
+#last {
+    border-bottom: 2px solid;
+    border-color: #0a4931;
+}
+
+.main-content {
+    flex-grow: 1; /* Fülle den verbleibenden verfügbaren Platz im Container aus */
+    display: flex;
+    flex-direction: column; /* Hauptinhalt in einer Spalte anordnen */
+    background-color: #69adc9;
+}
+
+.top-content, .bottom-content {
+    flex-grow: 1; /* Fülle den verfügbaren Platz in der Hauptinhaltsspalte aus */
+    border: 1px solid #ccc; /* Beispielgrenze für den Hauptinhalt */
+    margin: 10px; /* Beispielabstand für den Hauptinhalt */
+}
+
+/* Style the footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
