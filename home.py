@@ -5,7 +5,7 @@ from flask import Flask, render_template, request
 # Ausnahme: bei DB oder Template Änderungen
 
 # falls es nicht funktioniert, kann es sein, dass die Umgebungsvariable FLASK_APP nicht gesetzt ist
-# dafür einfach FLASK_APP=TirpTik/home.py setzen
+# dafür einfach set FLASK_APP=TirpTik/home.py setzen
 
 app = Flask(__name__)
 

@@ -34,6 +34,8 @@ button {
 
 .container {
     display: flex;
+    height: 100vh; /* Höhe des Viewports */
+    width: 100vw; /* Breite des Viewports */
 }
 
 .left-sidebar {
@@ -82,6 +84,18 @@ button {
     flex-grow: 1; /* Fülle den verfügbaren Platz in der Hauptinhaltsspalte aus */
     border: 1px solid #ccc; /* Beispielgrenze für den Hauptinhalt */
     margin: 10px; /* Beispielabstand für den Hauptinhalt */
+}
+
+.top-content {
+    background-color: #28ac8b; /* Beispielhintergrundfarbe für den oberen Hauptinhalt */
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-content {
+    height: 100%;
 }
 
 /* Style the footer */
