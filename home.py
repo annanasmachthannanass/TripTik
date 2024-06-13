@@ -36,6 +36,14 @@ def reise_bearbeiten_clicked():
 def reise_hinzufügen_clicked():
     return render_template('reise_hinzufügen.html')
 
+# Error-Handler für 404-Fehler
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+    
