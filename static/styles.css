@@ -6,6 +6,7 @@
 }
 
 body {
+
     background-color: #D2DFDA;
     font-size: 15px;
     font-family: Roboto, sans-serif;
@@ -34,6 +35,7 @@ button {
     grid-column: 1;
     background-color: #8f9fb9; /* Hintergrundfarbe des linken Bereichs */
     padding: 10px;
+   
 }
 
 .logo {
@@ -138,11 +140,14 @@ button {
     height: 100%;
 }
 
+
 .europe-map img{
     height: auto;
     width: 100%;
     object-fit: cover;
 }
+
+
 
 /* Style the footer */
 .footer {

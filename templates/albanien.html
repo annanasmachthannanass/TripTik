@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Albanien Quiz</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    {% include 'sidebar.html' %}
+
+    <div class="image-box">
+       <div class="titel">
+            Albanien Quiz
+       </div>
+
+       {% include 'navigation.html' %}
+
+       <div class="bottom-content">
+            <form action="/albanien" method="POST">
+                <div class="quiz-question">
+                    <h3>Frage 1: Was ist die Hauptstadt von Albanien?</h3>
+                    <div class="quiz-options">
+                        <input type="radio" name="q1" value="a"> a) Tirana<br>
+                        <input type="radio" name="q1" value="b"> b) Pristina<br>
+                        <input type="radio" name="q1" value="c"> c) Skopje<br>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>Frage 2: Welches Meer grenzt im Westen an Albanien?</h3>
+                    <div class="quiz-options">
+                        <input type="radio" name="q2" value="a"> a) Adria<br>
+                        <input type="radio" name="q2" value="b"> b) Mittelmeer<br>
+                        <input type="radio" name="q2" value="c"> c) Ionisches Meer<br>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>Frage 3: Was ist das Nationalgericht von Albanien?</h3>
+                    <div class="quiz-options">
+                        <input type="radio" name="q3" value="a"> a) Tavë kosi<br>
+                        <input type="radio" name="q3" value="b"> b) Baklava<br>
+                        <input type="radio" name="q3" value="c"> c) Fërgesë<br>
+                    </div>
+                </div>
+                
+                <br>
+                <form action="/quizresults" method="post">
+                    <input type="submit" value="Submit">
+                </form>
+                
+            </form>
+        </div>
+        
+    </div>
+
+</body>
+</html>

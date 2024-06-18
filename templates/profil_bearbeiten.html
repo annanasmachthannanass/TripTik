@@ -5,43 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 <body>
-    <div class="left-sidebar">
-        <div class="logo">
-            <img src="/static/logo.png" alt="TripTik Logo">
-        </div>
-        
-        <div class="name"> Hanna </div>
-
-        <div class="sidebar-title">Bio:</div>
-        <div class="bio-content">I love to travel and explore new places! I love to travel and explore new places! I love to travel and explore new places!</div>
-        
-        <div class="sidebar-title">Reisen:</div>
-        <div class="reisen">
-            <form action="/reisen" method="post">
-                <button class="reise-button" type="submit">
-                    <img src="/static/logo.png">
-                    das ist eine reise
-                </button>
-            </form>
-            <form action="/reisen" method="post">
-                <button class="reise-button" type="submit">
-                    <img src="/static/logo.png">
-                    das ist eine reise
-                </button>
-            </form>
-            <form action="/reisen" method="post">
-                <button class="reise-button" type="submit">
-                    <img src="/static/logo.png">
-                    das ist eine reise
-                </button>
-            </form>
-        </div>
-
-        <form class="mehr" action = "/reisen" method="post">
-            <button class="mehr" type="submit">mehr anzeigen</button>
-        </form>
-        
-    </div>
+    {% include 'sidebar.html' %}
 
     <div class="image-box">
 
@@ -49,26 +13,7 @@
                 Profil Bearbeiten
         </div>
 
-        <div class="navigation">
-            <form action="/profil" method="post">
-                <button type="submit">Profil</button>
-            </form>
-            <form action="/reisen" method="post">
-              <button type="submit">Reisen</button>
-            </form>
-            <form action="/bucketlist" method="post">
-                <button type="submit">Bucketlist</button>
-            </form>
-            <form action="/quizzes" method="post">
-                <button type="submit">FunFact Quizzes</button>
-            </form>
-            <form action="/stickerbuch" method="post">
-                <button type="submit">Stickerbuch</button>
-            </form>
-            <form action="/freunde" method="post">
-                <button type="submit">Freunde</button>
-            </form>
-        </div>
+        {% include 'navigation.html' %}
 
         <div class="bottom-content">
             

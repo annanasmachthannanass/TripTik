@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FunFact-Quizzes</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+
+<body>
+    {% include 'sidebar.html' %}
+
+    <div class="image-box">
+       <div class="titel">
+            FunFact-Quizzes
+       </div>
+
+       {% include 'navigation.html' %}
+
+       <div class="bottom-content">
+            <div class="buttons">
+
+                 <form action="{{ url_for('albanien') }}" method="POST">
+                 
+                    <button type="submit">Albanien</button>
+                </form>
+                <form action="{{ url_for('deutschland') }}" method="POST">
+                    <button type="submit">Deutschland</button>
+                </form>
+                <form action="{{ url_for('finnland') }}" method="POST">
+                    <button type="submit">Finnland</button>
+                </form>
+                <form action="{{ url_for('frankreich') }}" method="POST">
+                    <button type="submit">Frankreich</button>
+                </form>
+                <form action="{{ url_for('grossbritannien') }}" method="POST">
+                    <button type="submit">Großbritannien</button>
+                </form>
+                <form action="{{ url_for('italien') }}" method="POST">
+                    <button type="submit">Italien</button>
+                </form>
+                <form action="{{ url_for('norwegen') }}" method="POST">
+                    <button type="submit">Norwegen</button>
+                </form>
+                <form action="{{ url_for('oesterreich') }}" method="POST">
+                    <button type="submit">Österreich</button>
+                </form>
+                <form action="{{ url_for('polen') }}" method="POST">
+                    <button type="submit">Polen</button>
+                </form>
+                <form action="{{ url_for('portugal') }}" method="POST">
+                    <button type="submit">Portugal</button>
+                </form>
+                <form action="{{ url_for('spanien') }}" method="POST">
+                    <button type="submit">Spanien</button>
+                </form>
+                <form action="{{ url_for('schweiz') }}" method="POST">
+                    <button type="submit">Schweiz</button>
+                </form>
+                <form action="{{ url_for('schweden') }}" method="POST">
+                    <button type="submit">Schweden</button>
+                </form>
+                
+
+            </div>
+            
+        </div>
+        
+    </div>
+
+</body>
+</html>
