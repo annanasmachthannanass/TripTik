@@ -41,7 +41,7 @@ button {
 }
 
 .logo img {
-    width: 75%;
+    width: 50%;
     height: auto; /* Die Höhe wird proportional zur Breite angepasst */
 }
 
