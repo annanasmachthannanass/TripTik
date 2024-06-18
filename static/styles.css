@@ -94,7 +94,7 @@ button {
 }
 
 .image-box {
-    background-image: url(background.jpg);
+    background-image: url(background.jpeg);
     opacity: 0.5;
     background-size: cover;
     grid-column: 2;
