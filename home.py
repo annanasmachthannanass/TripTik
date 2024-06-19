@@ -14,7 +14,12 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('home.html')
+    progress = 60
+    return render_template('home.html', progress=progress)
+@app.route('/reisen', methods=['GET','POST'])
+def reisen_index():
+    progress = 75
+    return render_template('reisen.html', progress=progress)
 def home_clicked():
     return render_template('home.html')
 
@@ -135,5 +140,3 @@ if __name__ == '__main__':
     app.run()  # Flask-Anwendung starten
 
 
-
-    

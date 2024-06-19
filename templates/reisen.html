@@ -1,24 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Reisen</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
+
 <body>
     {% include 'sidebar.html' %}
-       
+
+    {% include 'logo_button.html' %}
+
     <div class="image-box">
 
         <div class="titel">
-                Reisen
+            Reisen 
         </div>
 
         {% include 'navigation.html' %}
 
         <div class="bottom-content">
-            
+            <div class="reisen-content">
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+                <form action="/reisen" method="post">
+                    <button class="reisen-button" type="submit">
+                        <img src="{{ url_for('static', filename='logo.png') }}" class="reisen-button-img">
+                        das ist eine reise
+                    </button>
+                </form>
+            </div>
         </div>
-    
+        <div class="bottom-bar">
+            <button class="add-button">+</button>
+            <div class="progress-bar">
+                <div class="progress" style="width: {{ progress }}%;"></div>
+            </div>
+            <span class="progress-percent">{{ progress }}%</span>
+        </div>
     </div>
 </body>
+
 </html>
+
+{# export FLASK_APP=home.py #}
