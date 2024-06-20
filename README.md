@@ -10,3 +10,6 @@ Gruppenmitglieder:
 Eliana Kaping,
 Rojin Aylin Aslan,
 Johanna Engels
+
+Schritte zum ausführen der Applikation:
+Notwendige Abhängigkeiten über die requirements.txt installieren
