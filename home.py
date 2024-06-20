@@ -20,12 +20,19 @@ def home_clicked():
 
 @app.route('/profil', methods=['POST'])
 def profil_clicked():
-    # Hier können Sie die Logik einfügen, die ausgeführt werden soll, wenn der Button geklickt wird
+    
     return render_template('profil.html')
+
 
 @app.route('/profil_bearbeiten', methods=['GET', 'POST'])
 def profil_bearbeiten_clicked():
     return render_template('profil_bearbeiten.html')
+
+
+@app.route('/profilbilder', methods=['GET'])
+def profilbilder():
+  
+    return render_template('profilbilder.html')
 
 @app.route('/reisen', methods=['POST'])
 def reisen_clicked():
@@ -135,5 +142,3 @@ if __name__ == '__main__':
     app.run()  # Flask-Anwendung starten
 
 
-
-    
