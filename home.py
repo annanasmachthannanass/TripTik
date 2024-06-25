@@ -8,6 +8,17 @@ from flask import Flask, render_template, request
 # falls es nicht funktioniert, kann es sein, dass die Umgebungsvariable FLASK_APP nicht gesetzt ist
 # dafür einfach set FLASK_APP=TirpTik/home.py setzen
 
+# falls es bei rojin nicht funktioniert -> export FLASK_APP=home.py <- in dem Terminal eingeben
+
+# Mit SQL
+# db_con = db.get_db_con() # Datenbankverbindung holen
+# db_con.execute('SELECT * FROM users') # Beispiel für eine SQL-Abfrage
+# db_con.commit() # Transaktion bestätigen
+
+# Mit SQLAlchemy
+# zuerst muss das entsprechende Datenmodell erzeugt werden in db.py
+# todo = db.session.get(Todo, 2) # Beispiel für eine SQLAlchemy-Abfrage
+
 app = Flask(__name__)
 
 
@@ -138,5 +149,3 @@ def page_not_found(e):
 if __name__ == '__main__':
     app.config['DEBUG'] = True  # Debug-Modus aktivieren
     app.run()  # Flask-Anwendung starten
-
-
