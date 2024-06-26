@@ -10,8 +10,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-
-
 @app.route('/', methods=['GET','POST'])
 def index():
     return render_template('home.html')
@@ -35,7 +33,7 @@ def reisen_clicked():
 def reise_bearbeiten_clicked():
     return render_template('reise_bearbeiten.html')
 
-@app.route('/reise_hinzufügen', methods=['POST'])
+@app.route('/reise_hinzufügen', methods=['GET', 'POST'])
 def reise_hinzufügen_clicked():
     return render_template('reise_hinzufügen.html')
 

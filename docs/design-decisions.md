@@ -16,7 +16,7 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: Frontend Design Method
 
 ### Meta
 
@@ -24,19 +24,29 @@ Status
 : **Work in progress** - Decided - Obsolete
 
 Updated
-: DD-MMM-YYYY
+: 23.06.2024
 
 ### Problem statement
 
-[Describe the problem to be solved or the goal to be achieved. Include relevant context information.]
+Wir möchten, dass unsere Webseite ein bestimmtes Aussehen hat, um so auch die Funktionalitäten optimal zu gewährleisten. 
+Wir wollten so früh wie möglich beginnen, damit es am Ende keinen Zeitdruck gibt.
+
+Entscheidung getroffen von:
 
 ### Decision
 
-[Describe **which** design decision was taken for **what reason** and by **whom**.]
+Wir haben uns dafür entschieden, mit CSS zu arbeiten. 
+Aus früheren Semestern kennen wir die grundlegende Struktur und Möglichkeiten davon. Dies hat es uns ermöglicht, auch schon vor der Vorlesung zum Thema User-Interface mit dem Projekt zu beginnen. Zudem lernen wir dieses Semester in diesem und auch anderen Kursen viele verschiedene neue Technologien kennen und konzentrieren uns daher lieber auf andere, die notwendiger sind wie Python und Flask.
 
 ### Regarded options
 
-[Describe any possible design decision that will solve the problem. Assess these options, e.g., via a simple pro/con list.]
+Wir haben zwischen CSS und Bootstrap überlegt.
+
+| Criterion | CSS | Bootstrap |
+| --- | --- | --- |
+| **Know-how** | ✔️ Wir kennen die grundlegende Funktionsweise und Gestaltungsmöglichkeiten | ❌ Wir müssen uns mit der Implementierung, Verwendung und Gestaltung von vorne befassen |
+| **Aussehen anpassen** | ❌ Alles muss grundlegend von vorne aufgebaut werden | ❔ Good: Es gibt schon eine große Anzahl an Vorlagen und Klassen, die einfach verwendet werden können, Bad: Man muss alles ausprobieren und testen, was welche Änderungen bewirkt |
+| **Verwendung** | ✔️ Kann einfach verwendet werden, Datei muss nur in der html-Datei verlinkt sein -> kann so auch leicht gewechselt werden | ❌ Muss erst installiert und in das Projekt eingebunden werden | 
 
 ---
 
