@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
+import os
 
 
 # flask run --reload zum starten des Servers
@@ -10,7 +12,15 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+def get_db():
+    conn = sqlite3.connect('triptik_database.db')
+    return conn
 
+#@app.route('/', methods=['GET','POST'])
+#def index():
+#   return render_template('triptik_start.html')
+#def home_clicked():
+#   return render_template('triptik_start.html')
 
 @app.route('/', methods=['GET','POST'])
 def index():

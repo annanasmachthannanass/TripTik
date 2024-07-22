@@ -169,6 +169,15 @@ button {
     height: 100px;
 }
 
+.start-titel {
+    color: #ffffff;
+    font: 900 44px 'Playfair Display', serif;
+    text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+    height: 100px;
+}
+
 .nutzername-text {
     color: #ffffff;
     font: 900 40px 'Playfair Display', serif;
