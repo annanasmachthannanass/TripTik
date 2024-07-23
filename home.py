@@ -34,7 +34,6 @@ def get_db():
 
 app = Flask(__name__)
 
-
 @app.route('/', methods=['GET','POST'])
 def index():
     progress = 60

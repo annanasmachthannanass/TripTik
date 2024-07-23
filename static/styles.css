@@ -141,6 +141,7 @@ button {
     font: 400 16px 'Roboto', sans-serif;
     padding: 10px;
     padding-left: 20px;
+}
 
 .reisen-content {
     display: flex;
@@ -315,4 +316,3 @@ button {
     padding: 20px;
     text-align: center;
 }
-
