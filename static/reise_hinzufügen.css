@@ -1,0 +1,38 @@
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+button {
+    grid-column: span 2;
+}
+
+label, input, textarea {
+    font: 400 16px 'Roboto', sans-serif;
+}
+
+input, textarea {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+
+#bildVorschauGroß {
+    max-width: 300px;
+    max-height: 300px;
+    display: none;
+}
+
+.bildVorschauKlein {
+    max-width: 100px;
+    max-height: 100px;
+    display: inline-block;
+    margin: 5px;
+}
+
+img {
+    border-radius: 5px;
+}

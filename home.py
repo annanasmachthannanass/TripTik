@@ -10,7 +10,13 @@ import os
 # falls es nicht funktioniert, kann es sein, dass die Umgebungsvariable FLASK_APP nicht gesetzt ist
 # dafür einfach set FLASK_APP=TirpTik/home.py setzen
 
-app = Flask(__name__)
+# falls es bei rojin nicht funktioniert -> export FLASK_APP=home.py <- in dem Terminal eingeben
+
+# Mit SQL
+# db_con = db.get_db_con() # Datenbankverbindung holen
+# db_con.execute('SELECT * FROM users') # Beispiel für eine SQL-Abfrage
+# db_con.commit() # Transaktion bestätigen
+
 
 def get_db():
     conn = sqlite3.connect('triptik_database.db')
@@ -22,9 +28,21 @@ def get_db():
 #def home_clicked():
 #   return render_template('triptik_start.html')
 
+# Mit SQLAlchemy
+# zuerst muss das entsprechende Datenmodell erzeugt werden in db.py
+# todo = db.session.get(Todo, 2) # Beispiel für eine SQLAlchemy-Abfrage
+
+app = Flask(__name__)
+
+
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('home.html')
+    progress = 60
+    return render_template('home.html', progress=progress)
+@app.route('/reisen', methods=['GET','POST'])
+def reisen_index():
+    progress = 75
+    return render_template('reisen.html', progress=progress)
 def home_clicked():
     return render_template('home.html')
 
@@ -52,7 +70,7 @@ def reisen_clicked():
 def reise_bearbeiten_clicked():
     return render_template('reise_bearbeiten.html')
 
-@app.route('/reise_hinzufügen', methods=['POST'])
+@app.route('/reise_hinzufügen', methods=['GET', 'POST'])
 def reise_hinzufügen_clicked():
     return render_template('reise_hinzufügen.html')
 
@@ -150,5 +168,4 @@ def page_not_found(e):
 if __name__ == '__main__':
     app.config['DEBUG'] = True  # Debug-Modus aktivieren
     app.run()  # Flask-Anwendung starten
-
 
