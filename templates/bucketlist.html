@@ -4,9 +4,17 @@
     <title>Bucketlist</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
-
 <body>
     {% include 'sidebar.html' %}
+    <style>
+        .bucketlist-form {
+            margin-top: 40px;
+            margin-left: 300px; 
+        }
+        .add-item {
+            margin-top: 20px;
+        }
+    </style>
 
     <div class="image-box">
        <div class="titel">
@@ -16,11 +24,81 @@
        {% include 'navigation.html' %}
 
        <div class="bottom-content">
-           
-            
+            <div class="nutzername-text">
+                Ich will die Welt sehen und das muss ich noch erleben:
+            </div>
+            <form class="bucketlist-form" id="bucketlist-form">
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="great-wall" name="great-wall">
+                    <label for="great-wall">Die Chinesische Mauer besuchen</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="safari" name="safari">
+                    <label for="safari">Auf Safari in Afrika gehen</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="paris" name="paris">
+                    <label for="paris">Den Eiffelturm in Paris sehen</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="pyramids" name="pyramids">
+                    <label for="pyramids">Die Pyramiden in Ägypten besuchen</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="great-barrier-reef" name="great-barrier-reef">
+                    <label for="great-barrier-reef">Das Great Barrier Reef erkunden</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="aurora" name="aurora">
+                    <label for="aurora">Das Nordlicht sehen</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="machu-picchu" name="machu-picchu">
+                    <label for="machu-picchu">Machu Picchu in Peru besuchen</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="rome" name="rome">
+                    <label for="rome">Das Kolosseum in Rom besichtigen</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="tokyo" name="tokyo">
+                    <label for="tokyo">Tokio erkunden</label>
+                </div>
+                <div class="bucketlist-item">
+                    <input type="checkbox" id="niagara" name="niagara">
+                    <label for="niagara">Die Niagarafälle besuchen</label>
+                </div>
+            </form>
+            <div class="add-item">
+                <input type="text" id="new-item" placeholder="Neuen Bucketlist-Punkt hinzufügen">
+                <button type="button" onclick="addItem()">Hinzufügen</button>
+            </div>
         </div>
-        
     </div>
 
+   
+    <script>
+        function addItem() {
+            const newItemText = document.getElementById('new-item').value;
+            if (newItemText) {
+                const form = document.getElementById('bucketlist-form');
+                const newItem = document.createElement('div');
+                newItem.classList.add('bucketlist-item');
+                
+                const newCheckbox = document.createElement('input');
+                newCheckbox.type = 'checkbox';
+                newCheckbox.name = newItemText;
+                
+                const newLabel = document.createElement('label');
+                newLabel.textContent = newItemText;
+                
+                newItem.appendChild(newCheckbox);
+                newItem.appendChild(newLabel);
+                form.appendChild(newItem);
+                
+                document.getElementById('new-item').value = '';
+            }
+        }
+    </script>
 </body>
 </html>

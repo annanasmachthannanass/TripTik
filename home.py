@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
+import os
 
 
 # flask run --reload zum starten des Servers
@@ -15,11 +17,23 @@ from flask import Flask, render_template, request
 # db_con.execute('SELECT * FROM users') # Beispiel für eine SQL-Abfrage
 # db_con.commit() # Transaktion bestätigen
 
+
+def get_db():
+    conn = sqlite3.connect('triptik_database.db')
+    return conn
+
+#@app.route('/', methods=['GET','POST'])
+#def index():
+#   return render_template('triptik_start.html')
+#def home_clicked():
+#   return render_template('triptik_start.html')
+
 # Mit SQLAlchemy
 # zuerst muss das entsprechende Datenmodell erzeugt werden in db.py
 # todo = db.session.get(Todo, 2) # Beispiel für eine SQLAlchemy-Abfrage
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -34,12 +48,19 @@ def home_clicked():
 
 @app.route('/profil', methods=['POST'])
 def profil_clicked():
-    # Hier können Sie die Logik einfügen, die ausgeführt werden soll, wenn der Button geklickt wird
+    
     return render_template('profil.html')
+
 
 @app.route('/profil_bearbeiten', methods=['GET', 'POST'])
 def profil_bearbeiten_clicked():
     return render_template('profil_bearbeiten.html')
+
+
+@app.route('/profilbilder', methods=['GET'])
+def profilbilder():
+  
+    return render_template('profilbilder.html')
 
 @app.route('/reisen', methods=['POST'])
 def reisen_clicked():
@@ -147,3 +168,4 @@ def page_not_found(e):
 if __name__ == '__main__':
     app.config['DEBUG'] = True  # Debug-Modus aktivieren
     app.run()  # Flask-Anwendung starten
+

@@ -2,22 +2,141 @@
 <html>
 <head>
     <title>Profil</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .profil_profilbild {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .profil_profilbild img {
+            width: 200px; /* Breite des Profilbilds */
+            height: 200px; /* Höhe des Profilbilds */
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #000;
+        }
+
+        .profile-button {
+            
+            color: white; /* Textfarbe des Buttons */
+            border: none;
+            padding: 15px 30px; /* Innenabstand des Buttons */
+            font-size: 18px; /* Schriftgröße des Buttons */
+            border-radius: 10px; /* Abrundung des Buttons */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+      
+
+        .profile_bio-content {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .profile_bio-content textarea {
+            width: 100%; /* Vollständige Breite des Textbereichs */
+            height: 150px; /* Höhe des Textbereichs */
+            font-size: 16px; /* Schriftgröße des Textbereichs */
+            padding: 10px; /* Innenabstand des Textbereichs */
+            border: 1px solid #ccc; /* Rahmen um den Textbereich */
+            border-radius: 5px; /* Abrundung des Rahmens */
+            resize: vertical; /* Vertikales Vergrößern des Textbereichs erlauben */
+        }
+
+        .profile-edit-button {
+            background-color: #28a745;
+            color: white; /* Textfarbe des Buttons */
+            border: none;
+            padding: 10px 20px; /* Innenabstand des Buttons */
+            font-size: 16px; /* Schriftgröße des Buttons */
+            border-radius: 5px; /* Abrundung des Buttons */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .profile-edit-button:hover {
+            background-color: #218838;
+        }
+
+        .name {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .small {
+            font-size: 18px;
+        }
+
+        .bottom-content {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
    {% include 'sidebar.html' %}
     <div class="image-box">
-
         <div class="titel">
-                Profil
-        </div>
-
-       {% include 'navigation.html' %}
-
-        <div class="bottom-content">
             Profil
         </div>
-    
+
+        {% include 'navigation.html' %}
+
+        <div class="bottom-content">
+            <div class="profilbild">
+                <form action="/profilbilder" method="get">
+                    <button type="submit" class="profile-button">
+                        <img src="{{ url_for('static', filename='profilbild.png') }}" alt="Profilbild">
+                    </button>
+                </form>
+            </div>
+
+            <div class="name">
+                 Hanna
+            </div>
+
+            <div class="profile_bio-content">
+                        I love to travel and explore new places!
+                        I love to travel and explore new places! 
+                        I love to travel and explore new places!
+            </div>
+
+                <div class="reisen">
+                    <form action="/reisen" method="post">
+                        <button class="reise-button small" type="submit">
+                            <img src="{{ url_for('static', filename='logo.png') }}">
+                                das ist eine reise
+                        </button>
+                    </form>
+
+                    <form action="/reisen" method="post">
+                        <button class="reise-button small" type="submit">
+                            <img src="{{ url_for('static', filename='logo.png') }}">
+                                das ist eine reise
+                        </button>
+                    </form>
+
+                    <form action="/reisen" method="post">
+                        <button class="reise-button small" type="submit">
+                            <img src="{{ url_for('static', filename='logo.png') }}">
+                                das ist eine reise
+                        </button>
+                    </form>
+                </div>
+
+            <div>
+                <form action="/profil_bearbeiten" method="get">
+                     <button type="submit" class="profile-edit-button">Profil bearbeiten</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
+
+
+
 </html>
