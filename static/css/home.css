@@ -1,0 +1,12 @@
+.europe-map {
+    background-color: rgba(143, 159, 185, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.europe-map img{
+
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}

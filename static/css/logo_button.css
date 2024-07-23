@@ -1,0 +1,22 @@
+.logo {
+    text-align: center;
+}
+
+.logo_button {
+    width: 60px;
+    /* adjust as needed */
+    height: 60px;
+    /* display: inline-block; /* makes the buttons sit side by side */
+    margin: 30px;
+    /* provides some space between the buttons */
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    width: 50%;
+    height: auto;
+    /* Die Höhe wird proportional zur Breite angepasst */
+}

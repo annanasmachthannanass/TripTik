@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Profilbilder</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/profil.css">
     <style>
         .image-container {
             display: flex;
@@ -22,6 +23,8 @@
 <body>
     {% include 'sidebar.html' %}
 
+    {% include 'logo_button.html' %}
+
     <div class="image-box">
         <div class="titel">
             Profilbilder
@@ -30,9 +33,9 @@
         {% include 'navigation.html' %}
 
         <div class="bottom-content">
-         <div class="profil-text">
-            choose your Character
-        </div>
+            <div class="profil-text">
+                choose your Character
+            </div>
             <div class="image-container">
                 <img src="{{ url_for('static', filename='profile_pictures/eliana.PNG') }}" alt="Profilbild ">
                 <img src="{{ url_for('static', filename='profile_pictures/hanna.PNG') }}" alt="Profilbild ">

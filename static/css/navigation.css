@@ -1,0 +1,19 @@
+.navigation {
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.navigation form {
+    margin: 0;
+}
+
+.navigation button {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+}

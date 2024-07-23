@@ -1,0 +1,41 @@
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    /* Änderung hier */
+    align-items: center;
+    gap: 10px;
+    /* Fügt Platz zwischen den Elementen hinzu */
+    /* background-color: #f8f8f8; */
+    padding: 10px 0;
+}
+
+.add-button {
+    /* height: 40px;
+    width: auto; */
+    font-size: 24px;
+    margin: 20px;
+    border-radius: 50px;
+}
+
+.progress-bar {
+    width: 60%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #8f9fb9;
+    border-radius: 10px;
+}
+
+.progress-percent {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px;
+    color: #ddd;
+}

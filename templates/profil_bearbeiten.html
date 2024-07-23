@@ -2,63 +2,14 @@
 <html>
 <head>
     <title>Profil Bearbeiten</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
-
-    <style>
-        .profil_profilbild {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .profil_profilbild img {
-            width: 200px; /* Breite des Profilbilds */
-            height: 200px; /* Höhe des Profilbilds */
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #000;
-        }
-
-        
-
-        
-
-        .name {
-            text-align: center;
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        .bottom-content {
-            text-align: center;
-        }
-
-        .profile_bio-content {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .profile_bio-content textarea {
-            width: 100%; 
-            height: 150px; 
-            font-size: 16px; 
-            padding: 10px; 
-            border: 1px solid #ccc; 
-            border-radius: 5px; 
-            resize: vertical; 
-        }
-
-        .name input {
-            width: 300px; 
-            font-size: 20px; 
-            padding: 10px; 
-            border: 1px solid #ccc; 
-            border-radius: 5px; 
-            margin-top: 10px; 
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/profil_bearbeiten.css">
 </head>
+
 <body>
     {% include 'sidebar.html' %}
+
+    {% include 'logo_button.html' %}
 
     <div class="image-box">
         <div class="titel">
@@ -69,7 +20,7 @@
 
         <div class="bottom-content">
             <div class="profilbild">
-             <img src="{{ url_for('static', filename='profilbild.png') }}" alt="Profilbild">
+             <img src="{{ url_for('static', filename='images/profilbild.png') }}" alt="Profilbild">
             </div>
 
             <div class="nutzername-text">

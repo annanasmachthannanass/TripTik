@@ -1,0 +1,23 @@
+.reisen-content {
+    display: flex;
+    /* macht die Buttons nebeneinander */
+    justify-content: flex-start;
+    /* bietet Platz zwischen den Buttons */
+    flex-wrap: wrap;
+    /* erlaubt den Buttons, in die nächste Zeile zu wechseln, wenn der Platz nicht ausreicht */
+
+}
+
+.reisen-button {
+    width: 200px;
+    /* adjust as needed */
+    height: 200px;
+    /* display: inline-block; /* makes the buttons sit side by side */
+    margin: 15px;
+    /* provides some space between the buttons */
+}
+
+.reisen-button-img {
+    width: 100%;
+    height: auto;
+}
