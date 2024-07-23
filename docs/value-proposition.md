@@ -48,4 +48,4 @@ Insight
 
 ## Customer journey
 
-[Illustrate the customer journey, from the app's entry point to a completed task. You might want to show the customer journey as (schematic) screen flows.]
+![Ablaufdiagramm SmartSchedule](assets/images/Ablaufdiagramm.jpeg "Ablaufdiagramm")

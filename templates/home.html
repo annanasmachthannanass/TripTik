@@ -13,18 +13,25 @@
     <div class="image-box">
 
         <div class="titel">
-                Welcome to TripTik!
+            Welcome to TripTik!
         </div>
 
-       {% include 'navigation.html' %}
-       
+        {% include 'navigation.html' %}
+
         <div class="bottom-content">
             <div class="europe-map">
                 <img id="mapImage" src="/static/europegrey.png" alt="Map">
             </div>
         </div>
-    
+        <div class="bottom-bar">
+            <button class="add-button">+</button>
+            <div class="progress-bar">
+                <div class="progress" style="width: {{ progress }}%;"></div>
+            </div>
+            <span class="progress-percent">{{ progress }}%</span>
+        </div>
     </div>
 
 </body>
+
 </html>
