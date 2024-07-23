@@ -6,7 +6,6 @@
 }
 
 body {
-
     background-color: #D2DFDA;
     font-size: 15px;
     font-family: Roboto, sans-serif;
@@ -216,14 +215,12 @@ button {
     height: 100%;
 }
 
+.europe-map img{
 
-.europe-map img {
     height: auto;
     width: 100%;
     object-fit: cover;
 }
-
-
 
 /* Style the footer */
 .footer {
@@ -232,3 +229,4 @@ button {
     padding: 20px;
     text-align: center;
 }
+
