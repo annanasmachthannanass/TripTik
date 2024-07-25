@@ -11,6 +11,8 @@ import os
 # dafür einfach set FLASK_APP=TirpTik/home.py setzen
 
 # falls es bei rojin nicht funktioniert -> export FLASK_APP=home.py <- in dem Terminal eingeben
+# zum aktualisieren -> git checkout main <- und danach -> git pull origin main <-
+# flask run --reload
 
 # Mit SQL
 # db_con = db.get_db_con() # Datenbankverbindung holen

@@ -6,6 +6,10 @@
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
     <link rel="stylesheet" type="text/css" href="/static/css/home.css">
     <link rel="stylesheet" type="text/css" href="/static/css/progress.css">
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapbox Karte</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -21,11 +25,40 @@
 
         {% include 'navigation.html' %}
 
-        <div class="bottom-content">
-            <div class="europe-map">
-                <img id="mapImage" src="/static/images/europegrey.png" alt="Map">
-            </div>
-        </div>
+    <div id="map"></div>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoicm9qaW5hc2xhbjIyIiwiYSI6ImNsejFqY21leDM2b2IycXM2MDQ0NGV0NG8ifQ.2urA2afTUAdUbGKtCqw9sw'; // Token
+        const map = new mapboxgl.Map({
+            container: 'map', // ID des HTML-Elements
+            style: 'mapbox://styles/mapbox/streets-v11', 
+            center: [10.4515, 51.1657], // Koordinaten [Längengrad, Breitengrad]
+            zoom: 4 // Startzoom
+        });
+
+        map.on('load', function () {
+            map.addSource('countries', {
+                'type': 'geojson',
+                'data': '/static/geojson/laender_faerben.geojson' // Pfad zur GeoJSON-Datei -> da sind die Ländergrenzen drinne!
+            });
+
+            map.addLayer({
+                'id': 'countries-layer',
+                'type': 'fill',
+                'source': 'countries',
+                'paint': {
+                    'fill-color': [
+                        'match',
+                        ['get', 'name'], // Attribut, das den Ländernamen enthält
+                        'Germany', '#FF0000', // Farbe rot für die Färbung von Deutschland
+                        /* weitere Länder und Farben hier hinzufügen */
+                        '#ccc' // Standardfarbe für alle andere Länder
+                    ],
+                    'fill-opacity': 0.7
+                }
+            });
+        });
+    </script>
         <div class="bottom-bar">
             <button class="add-button">+</button>
             <div class="progress-bar">
