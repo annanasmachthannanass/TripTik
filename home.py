@@ -38,7 +38,12 @@ app = Flask(__name__)
 @app.route('/', methods=['GET','POST'])
 def index():
     progress = 60
-    return render_template('home.html', progress=progress)
+    return render_template('anmeldungs.html', progress=progress)
+
+#@app.route('/', methods=['GET','POST'])
+#def index():
+#    progress = 60
+#    return render_template('home.html', progress=progress)
 
 @app.route('/reisen', methods=['GET','POST'])
 def reisen_index():
