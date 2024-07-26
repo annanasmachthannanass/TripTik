@@ -35,44 +35,40 @@ def get_db():
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     progress = 60
     return render_template('anmeldungs.html', progress=progress)
 
-#@app.route('/', methods=['GET','POST'])
-#def index():
-#    progress = 60
-#    return render_template('home.html', progress=progress)
+@app.route('/home', methods=['GET', 'POST'])
+def home_page():
+    progress = 60
+    return render_template('home.html', progress=progress)
 
-@app.route('/reisen', methods=['GET','POST'])
-def reisen_index():
+@app.route('/reisen', methods=['GET', 'POST'])
+def reisen_page():
     progress = 75
     return render_template('reisen.html', progress=progress)
 
 @app.route('/profil', methods=['POST'])
-def profil_clicked():
+def profil_page():
     return render_template('profil.html')
 
 @app.route('/profil_bearbeiten', methods=['GET', 'POST'])
-def profil_bearbeiten_clicked():
+def profil_bearbeiten_page():
     return render_template('profil_bearbeiten.html')
 
 @app.route('/profilbilder', methods=['GET'])
-def profilbilder():
+def profilbilder_page():
     return render_template('profilbilder.html')
 
-@app.route('/reisen', methods=['POST'])
-def reisen_clicked():
-    return render_template('reisen.html')
-
 @app.route('/reise_bearbeiten', methods=['POST'])
-def reise_bearbeiten_clicked():
+def reise_bearbeiten_page():
     return render_template('reise_bearbeiten.html')
 
-@app.route('/reise_hinzufügen', methods=['GET', 'POST'])
-def reise_hinzufügen_clicked():
-    return render_template('reise_hinzufügen.html')
+@app.route('/reise_hinzufuegen', methods=['GET', 'POST'])
+def reise_hinzufuegen_page():
+    return render_template('reise_hinzufuegen.html')
 
 # @app.route('/bucketlist', methods=['GET', 'POST'])
 # def bucketlist_clicked():

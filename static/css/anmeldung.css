@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(/static/images/AnmeldungBG.JPEG);
+    background-image: url(/static/images/registrierungBG.JPEG);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,10 +11,10 @@ body {
 }
 .titel {
     color: #ffffff;
-    font: 900 44px 'Playfair Display', serif;
+    font: 900 60px 'Playfair Display', serif;
     text-align: center;
     padding: 10px;
-    padding-top: 20px;
+    padding-top: 60px;
     height: 100px;
 }
 
@@ -23,10 +23,13 @@ body {
     font: 900 44px 'Playfair Display', serif;
     text-align: center;
     padding: 10px;
-    padding-top: 20px;
+    padding-top: 180px;
     height: 100px;
 }
 .bottom-content {
+    position: absolute; /* Absolutes Positionieren */
+    bottom: 60px;; /* Am unteren Rand der Seite positionieren */
+    width: 100%; /* Breite auf 100% setzen */
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -40,6 +43,7 @@ body {
 
 label {
     display: block;
+    font-size: 20px;
     margin-bottom: 5px;
     font-weight: bold;
     color: #ffffff;
@@ -67,4 +71,18 @@ input[type="text"], input[type="password"] {
 .anmeldung-button:hover {
     background-color: #0d3040;
 }
+.registrierung-button {
+    background-color: #0f4155;
+    color: white; /* Textfarbe des Buttons */
+    border: none;
+    padding: 15px 30px; /* Innenabstand des Buttons */
+    font-size: 18px; /* Schriftgröße des Buttons */
+    border-radius: 5px; /* Abrundung des Buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
 
+.registrierung-button:hover {
+    background-color: #0d3040;
+}
