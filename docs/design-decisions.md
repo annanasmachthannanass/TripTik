@@ -31,7 +31,7 @@ Updated
 Wir möchten, dass unsere Webseite ein bestimmtes Aussehen hat, um so auch die Funktionalitäten optimal zu gewährleisten. 
 Wir wollten so früh wie möglich beginnen, damit es am Ende keinen Zeitdruck gibt.
 
-Entscheidung getroffen von:
+Entscheidung getroffen von: Eliana Kaping, Rojin Aylin Aslan, Johanna Engels
 
 ### Decision
 
@@ -64,7 +64,7 @@ Updated
 
 Wir möchten, dass beim Erstellen der Reise die ausgewählten Bilder direkt angezeigt werden, um das Nutzererlebnis zu verbessern indem der Nutzer sie nochmals kontrollieren kann.
 
-Entscheidung getroffen von:
+Entscheidung getroffen von: Eliana Kaping, Rojin Aylin Aslan, Johanna Engels
 
 ### Decision
 
@@ -92,9 +92,9 @@ Updated
 ### Problem statement
 
 Wir brauchen eine Datenbank, um die Nutzerprofile mit Username, Passwort und den Reisen zu speichern. 
-Dafür benötigen wir eine Lösung, die sich gut in unser PRojekt mit Python und Flask einbauen lässt.
+Dafür benötigen wir eine Lösung, die sich gut in unser Projekt mit Python und Flask einbauen lässt.
 
-Entscheidung getroffen von:
+Entscheidung getroffen von: Eliana Kaping, Rojin Aylin Aslan, Johanna Engels
 
 ### Decision
 
@@ -106,6 +106,37 @@ Dies ist bereits im Python Paket enthalten und benötigt keine externe Anbindung
 ### Regarded options
 
 !!!
+
+---
+## 04: Verwendung von Mapbox
+
+### Meta
+
+Status
+: Work in progress - **Decided** - Obsolete
+
+Updated
+: 26.07.2024
+
+### Problem statement
+
+Um eine Karte von Europa auf der Homepage unserer Anwendung anzeigen zu lassen, benötigen wir eine Plattform, welche uns eine API zur Verfügung stellt, die wir in unser Projekt einbinden können.
+
+Entscheidung getroffen von: Eliana Kaping, Rojin Aylin Aslan, Johanna Engels
+
+### Decision
+
+Unsere Entscheidung fiel auf Mapbox.
+Mapbox bietet ein kostenfreies Nutzungslimit an und bietet uns durch seine hohe Anpassbarkeit und Flexibilität bei der Gestaltung von Kartenstilen und -features die Möglichkeit, die Visualisierung so zu gestalten, wie es uns gefällt.
+
+### Regarded options
+
+| Criterion | Mapbox | Google Maps |
+| --- | --- | --- |
+| **Know-how** | ❔ Es gibt eine steile Lernkurve bei der Anpassung und Nutzung, aber eine hohe Dokumentation | ✔️ Viele Entwickler sind bereits vertraut mit Maps und es gibt umfangreiche Dokumentation und Tutorials |
+| **Aussehen anpassen** | ✔️ Hohe Anpassbarkeit: Kartendesigns können detailliert angepasst werden, einschließlich Farben und Stile etc. | ❌ Eingeschränkte Anpassungsfähigkeit im Vergleich zu Mapbox, bietet jedoch Werkzeuge für Anpassungen |
+| **Verwendung** | ✔️ Muss über ein API-Schlüssel in das Projekt integriert werden, wobei viele SDKs und Bibliotheken verfügbar sind | ✔️ Weit verbreitet, einfache Integration über API-Schlüssel und umfangreiche Unterstützung in vielen Frameworks |
+| **Kosten** | ✔️ Kann kostenlos genutzt werden (mit kostenlosem Kontingent), ideal für kleine bis mittelgroße Projekte | ❌ Kostenpflichtig nach einem begrenzten kostenlosen Kontingent, oft teurer für größere Projekte oder höhere Nutzung |  
 
 ---
 
