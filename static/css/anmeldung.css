@@ -86,3 +86,11 @@ input[type="text"], input[type="password"] {
 .registrierung-button:hover {
     background-color: #0d3040;
 }
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f44336; /* Default Red for error */
+    color: #fff;
+}

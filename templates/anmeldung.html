@@ -11,7 +11,7 @@
         </div>
 
         <div class="untertitel">
-            Registrierung
+            Anmeldung
         </div>
 
         <!-- Flash message section -->
@@ -28,7 +28,7 @@
         </div>
 
         <div class="bottom-content">
-            <form action="/register" method="post">
+            <form action="/login" method="post">
                 <div class="form-group">
                     <label for="username">Name:</label>
                     <input type="text" id="username" name="username" required>
@@ -37,10 +37,10 @@
                     <label for="password">Passwort:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" name="action" value="register" class="registrierung-button">Registrieren</button>
+                <button type="submit" name="action" value="login" class="anmeldung-button">Anmelden</button>
             </form>
-            <form action="/" method="post">
-                <button type="submit" name="action" value="login" class="anmeldung-button">Doch lieber Anmelden?</button>
+            <form action="/register-page" method="post">
+                <button type="submit" name="action" value="register" class="registrierung-button">Noch kein Konto? Registrieren</button>
             </form>
         </div>
     </div>

@@ -1,8 +1,3 @@
-from flask import Flask, render_template, request, redirect, url_for
-import sqlite3
-import os
-
-
 # flask run --reload zum starten des Servers
 # mit --reload wird der Server bei Änderungen neu gestartet
 # Ausnahme: bei DB oder Template Änderungen
@@ -14,17 +9,122 @@ import os
 # zum aktualisieren -> git checkout main <- und danach -> git pull origin main <-
 # flask run --reload
 
+from flask import Flask, flash, render_template, request, redirect, url_for
+import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
+import os
+
 app = Flask(__name__)
 
-DATABASE = 'triptik_database.db'
+app.secret_key = 'your_secret_key'
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE = os.path.join(BASE_DIR, 'triptik-database.db')
 
 
-#Routen für die verschiedenen Seiten
-@app.route('/', methods=['GET','POST'])
+#Datenbankverbindung erstellen
+
+def get_db():
+    try:
+        conn = sqlite3.connect(DATABASE)
+        conn.row_factory = sqlite3.Row
+        return conn
+    except sqlite3.Error as e:
+        print(f"Error connecting to database: {e}")
+        return None
+
+def check_db_connection():
+    try:
+        db = get_db()
+        if db is not None:
+            db.execute('SELECT 1 FROM users LIMIT 1')
+            print("Database connection successful")
+        else:
+            print("Failed to establish database connection")
+    except sqlite3.OperationalError as e:
+        print(f"Database connection error: {e}")
+        raise e
+
+
+#Registrierung und Anmeldung
+
+@app.route('/register', methods=['POST'])
+def register():
+    username = request.form['username']
+    password = request.form['password']
+    
+    hashed_password = generate_password_hash(password)
+
+    try:
+        db = get_db()
+        if db is not None:
+            db.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password))
+            db.commit()
+        else:
+            flash('Database connection error. Please try again later.')
+            return redirect(url_for('register_page'))
+    except sqlite3.IntegrityError:
+        flash('Username is already taken!')
+        return redirect(url_for('register_page'))
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('register_page'))
+    
+    flash('Registration successful! Please log in.')
+    return redirect(url_for('index'))
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
+    
+    try:
+        db = get_db()
+        cursor = db.execute('SELECT password FROM users WHERE username = ?', (username,))
+        row = cursor.fetchone()
+        if row and check_password_hash(row[0], password):
+            global user 
+            user = cursor.execute('SELECT id FROM users WHERE username = ?', (username,))
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid username or password.')
+            return redirect(url_for('index'))
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('index'))
+
+
+#Reise hinzufügen
+
+@app.route('/reise-speichern', methods=['POST'])
+def reise_speichern():
+    reise = request.form['reise']
+    stadt = request.form['stadt']
+    land = request.form['land']
+    startdatum = request.form['startdatum']
+    enddatum = request.form['enddatum']
+    bericht = request.form['bericht']
+
+    try:
+        db = get_db()
+        db.execute('INSERT INTO reisen (name, city, country, start_date, end_date, bereich, user_id) VALUES (?, ?, ?, ?, ?, ?)', (reise, stadt, land, startdatum, enddatum, bericht, user))
+        db.commit()
+        return redirect(url_for('reise'))
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('reise_hinzufuegen'))
+
+#Routen zu den einzelnen Seiten
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('anmeldungs.html')
+    return render_template('anmeldung.html')
 
-@app.route('/home', methods=['GET','POST'])
+@app.route('/register-page', methods=['GET', 'POST'])
+def register_page():
+    return render_template('registrierung.html')
+
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     progress = 60
     return render_template('home.html', progress=progress)
@@ -33,6 +133,10 @@ def home():
 def reisen_page():
     progress = 75
     return render_template('reisen.html', progress=progress)
+
+@app.route('/reise', methods=['GET', 'POST'])
+def reise():
+    return render_template('reise.html')
 
 @app.route('/profil', methods=['POST'])
 def profil_page():
@@ -54,98 +158,15 @@ def reise_bearbeiten_page():
 def reise_hinzufuegen_page():
     return render_template('reise_hinzufuegen.html')
 
-# @app.route('/bucketlist', methods=['GET', 'POST'])
-# def bucketlist_clicked():
-#     return render_template('bucketlist.html')
-
-# @app.route('/quizzes', methods=['GET','POST'])
-# def quizzes_clicked():
-#     return render_template('quizzes.html')
-
-# # Albanien Quiz-Seite
-# @app.route('/albanien', methods=['GET', 'POST'])
-# def albanien():
-    
-#    ## if request.method == 'GET':
-#     q1_answer = request.form.get('q1')
-#     q2_answer = request.form.get('q2')
-#     q3_answer = request.form.get('q3')
-
-#     score = 0
-#     if q1_answer == 'a':
-#         score += 1
-#     if q2_answer == 'c':
-#         score += 1
-#     if q3_answer == 'a':
-#         score += 1
-
-#     return render_template('quiz_seiten/albanien.html')
-#     ##return render_template('quiz_results.html', score=score)
-
-# @app.route('/quizresults', methods=['POST'])
-# def quiz_result():
-#     return render_template('quiz_results.html')
-
-# @app.route('/deutschland', methods=['POST'])
-# def deutschland():
-#     return render_template('quiz_seiten/deutschland.html')
-
-# @app.route('/finnland', methods=['POST'])
-# def finnland():
-#     return render_template('quiz_seiten/finnland.html')
-
-# @app.route('/frankreich', methods=['POST'])
-# def frankreich():
-#     return render_template('quiz_seiten/frankreich.html')
-
-# @app.route('/grossbritannien', methods=['POST'])
-# def grossbritannien():
-#     return render_template('quiz_seiten/grossbritannien.html')
-
-# @app.route('/italien', methods=['POST'])
-# def italien():
-#     return render_template('quiz_seiten/italien.html')
-
-# @app.route('/norwegen', methods=['POST'])
-# def norwegen():
-#     return render_template('quiz_seiten/norwegen.html')
-
-# @app.route('/oesterreich', methods=['POST'])
-# def oesterreich():
-#     return render_template('quiz_seiten/oesterreich.html')
-
-# @app.route('/polen', methods=['POST'])
-# def polen():
-#     return render_template('quiz_seiten/polen.html')
-
-# @app.route('/portugal', methods=['POST'])
-# def portugal():
-#     return render_template('quiz_seiten/portugal.html')
-
-# @app.route('/spanien', methods=['POST'])
-# def spanien():
-#     return render_template('quiz_seiten/spanien.html')
-
-# @app.route('/schweiz', methods=['POST'])
-# def schweiz():
-#     return render_template('quiz_seiten/schweiz.html')
-
-# @app.route('/schweden', methods=['POST'])
-# def schweden():
-#     return render_template('quiz_seiten/schweden.html')
-
-
-# @app.route('/stickerbuch', methods=['GET', 'POST'])
-# def stickerbuch():
-#     return render_template('stickerbuch.html')
-
 
 # Error-Handler für 404-Fehler
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.config['DEBUG'] = True  # Debug-Modus aktivieren
-    app.run()  # Flask-Anwendung starten
-
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Contents of the current directory: {os.listdir()}")
+    check_db_connection()
+    app.run(debug=True)
