@@ -14,36 +14,20 @@ import os
 # zum aktualisieren -> git checkout main <- und danach -> git pull origin main <-
 # flask run --reload
 
-# Mit SQL
-# db_con = db.get_db_con() # Datenbankverbindung holen
-# db_con.execute('SELECT * FROM users') # Beispiel für eine SQL-Abfrage
-# db_con.commit() # Transaktion bestätigen
-
-def get_db():
-    conn = sqlite3.connect('triptik_database.db')
-    return conn
-
-#@app.route('/', methods=['GET','POST'])
-#def index():
-#   return render_template('triptik_start.html')
-#def home_clicked():
-#   return render_template('triptik_start.html')
-
-# Mit SQLAlchemy
-# zuerst muss das entsprechende Datenmodell erzeugt werden in db.py
-# todo = db.session.get(Todo, 2) # Beispiel für eine SQLAlchemy-Abfrage
-
 app = Flask(__name__)
 
+DATABASE = 'triptik_database.db'
+
+
+#Routen für die verschiedenen Seiten
 @app.route('/', methods=['GET','POST'])
 def index():
-    progress = 60
-    return render_template('anmeldungs.html', progress=progress)
+    return render_template('anmeldungs.html')
 
-#@app.route('/', methods=['GET','POST'])
-#def index():
-#    progress = 60
-#    return render_template('home.html', progress=progress)
+@app.route('/home', methods=['GET','POST'])
+def home():
+    progress = 60
+    return render_template('home.html', progress=progress)
 
 @app.route('/reisen', methods=['GET','POST'])
 def reisen_index():

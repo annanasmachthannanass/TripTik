@@ -73,13 +73,7 @@
                 </form>
             </div>
         </div>
-        <div class="bottom-bar">
-            <button class="add-button">+</button>
-            <div class="progress-bar">
-                <div class="progress" style="width: {{ progress }}%;"></div>
-            </div>
-            <span class="progress-percent">{{ progress }}%</span>
-        </div>
+        {% include 'progress_bar.html' %}
     </div>
 </body>
 

@@ -1,44 +1,46 @@
 import sqlite3
 
-def create_connection(db_file):
-    """Erstellt eine Datenbankverbindung zu einer SQLite-Datenbank"""
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-        print(f"Verbunden mit SQLite-Version: {sqlite3.version}")
-    except sqlite3.Error as e:
-        print(e)
-    return conn
+DATABASE = 'triptik_database.db'
 
-def create_table(conn):
-    """Erstellt eine Tabelle in der SQLite-Datenbank"""
-    try:
-        sql_create_users_table = """ CREATE TABLE IF NOT EXISTS users (
-                                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                        name TEXT NOT NULL,
-                                        age INTEGER NOT NULL
-                                    ); """
-        c = conn.cursor()
-        c.execute(sql_create_users_table)
-        print("Tabelle 'users' wurde erfolgreich erstellt.")
-    except sqlite3.Error as e:
-        print(e)
-
-def main():
-    database = "my_database.db"
-
+def create_tables():
     # Verbindung zur Datenbank herstellen
-    conn = create_connection(database)
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
 
-    # Tabelle erstellen
-    if conn is not None:
-        create_table(conn)
-    else:
-        print("Fehler! Keine Verbindung zur Datenbank.")
+    # SQL-Befehle zum Erstellen der Tabellen
+    create_users_table = '''
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL,
+        reise_id INTEGER,
+        FOREIGN KEY (reise_id) REFERENCES reisen(id)
+    )
+    '''
 
-    # Verbindung schließen
-    if conn:
+    create_reisen_table = '''
+    CREATE TABLE IF NOT EXISTS reisen (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        country TEXT NOT NULL,
+        city TEXT NOT NULL,
+        start_date TEXT NOT NULL,
+        end_date TEXT NOT NULL,
+        user_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    )
+    '''
+
+    try:
+        # Tabellen erstellen
+        c.execute(create_users_table)
+        c.execute(create_reisen_table)
+        print("Tabellen wurden erfolgreich erstellt.")
+    except sqlite3.Error as e:
+        print(f"Fehler beim Erstellen der Tabellen: {e}")
+    finally:
+        # Verbindung schließen
+        conn.commit()
         conn.close()
 
 if __name__ == '__main__':
-    main()
+    create_tables()
