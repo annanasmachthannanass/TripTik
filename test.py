@@ -143,6 +143,19 @@ def drop_reisen_table():
         return "Tabelle 'reisen' wurde erfolgreich gelöscht."
     except sqlite3.Error as e:
         return f"Datenbankfehler: {e}"
+    
+@app.route('/add_bio_column')
+def add_bio_column():
+    db = get_db()
+    try:
+        db.execute('''
+            ALTER TABLE users
+            ADD COLUMN bio TEXT
+        ''')
+        db.commit()
+        return "Spalte 'bio' wurde erfolgreich zur Tabelle 'users' hinzugefügt."
+    except sqlite3.Error as e:
+        return f"Datenbankfehler: {e}"
 
 if __name__ == '__main__':
     print(f"Aktueller Arbeitsordner: {os.getcwd()}")
