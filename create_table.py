@@ -14,14 +14,14 @@ def create_tables():
             )
         ''')
         db.execute('''
-            CREATE TABLE reisen (
+            CREATE TABLE trips (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE,
                 city TEXT,
                 country TEXT,
-                start_date TEXT,
-                end_date TEXT,
-                bereich TEXT,
+                start_date DATE,
+                end_date DATE,
+                report TEXT,
                 images BLOB,
                 user_id INTEGER,
                 FOREIGN KEY(user_id) REFERENCES users(id)

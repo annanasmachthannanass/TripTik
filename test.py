@@ -109,25 +109,38 @@ def create_users_table():
     except sqlite3.Error as e:
         return f"Datenbankfehler: {e}"
     
-@app.route('/create_reisen_table')
-def create_reisen_table():
+@app.route('/create_trips_table')
+def create_trips_table():
     db = get_db()
     try:
         db.execute('''
-            CREATE TABLE reisen (
+            CREATE TABLE trips (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE,
                 city TEXT,
                 country TEXT,
-                start_date TEXT,
-                end_date TEXT,
-                bereich TEXT,
+                start_date DATE,
+                end_date DATE,
+                report TEXT,
                 images BLOB,
-                user_id INTEGER FOREIGN KEY REFERENCES users(id)
+                user_id INTEGER,
+                FOREIGN KEY(user_id) REFERENCES users(id)
             )
         ''')
         db.commit()
-        return "Tabelle 'users' wurde erfolgreich erstellt."
+        return "Tabelle 'trips' wurde erfolgreich erstellt."
+    except sqlite3.Error as e:
+        return f"Datenbankfehler: {e}"
+    
+@app.route('/drop_reisen_table')
+def drop_reisen_table():
+    db = get_db()
+    try:
+        db.execute('''
+            DROP TABLE reisen
+        ''')
+        db.commit()
+        return "Tabelle 'reisen' wurde erfolgreich gelöscht."
     except sqlite3.Error as e:
         return f"Datenbankfehler: {e}"
 
