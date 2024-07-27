@@ -20,7 +20,7 @@
        {% include 'navigation.html' %}
 
         <div class="bottom-content" style="background-color: rgba(156, 186, 192, 0.9);">
-            <form action="/reise-speichern" method="post">
+            <form action="/reise-speichern" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="reise">Reise:</label>
                     <input type="text" id="reise" name="reise" required><br><br>
@@ -29,9 +29,9 @@
                     <label for="land">Land:</label>
                     <input type="text" id="land" name="land"><br><br>
                     <label for="startdatum">Startdatum:</label>
-                    <input type="date" id="startdatum" name="datum"><br><br>
+                    <input type="date" id="startdatum" name="startdatum"><br><br>
                     <label for="enddatum">Enddatum:</label>
-                    <input type="date" id="enddatum" name="datum"><br><br>
+                    <input type="date" id="enddatum" name="enddatum"><br><br>
                     <label for="bericht">Bericht:</label> <br>
                     <textarea id="bericht" name="bericht" rows="15" cols="60"></textarea><br><br>
                 </div>

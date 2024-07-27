@@ -9,7 +9,7 @@
 # zum aktualisieren -> git checkout main <- und danach -> git pull origin main <-
 # flask run --reload
 
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, session, url_for
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -83,8 +83,9 @@ def login():
         cursor = db.execute('SELECT password FROM users WHERE username = ?', (username,))
         row = cursor.fetchone()
         if row and check_password_hash(row[0], password):
-            global user 
-            user = cursor.execute('SELECT id FROM users WHERE username = ?', (username,))
+            user_row = db.execute('SELECT id FROM users WHERE username = ?', (username,)).fetchone()
+            if user_row:
+                session['user_id'] = user_row['id']
             return redirect(url_for('home'))
         else:
             flash('Invalid username or password.')
@@ -94,7 +95,7 @@ def login():
         return redirect(url_for('index'))
 
 
-#Reise hinzufügen
+#Reise speichern
 
 @app.route('/reise-speichern', methods=['POST'])
 def reise_speichern():
@@ -105,14 +106,19 @@ def reise_speichern():
     enddatum = request.form['enddatum']
     bericht = request.form['bericht']
 
+    user = session.get('user_id')
+    if not user:
+        flash('Please log in to save your trip.')
+        return redirect(url_for('login'))
+    
     try:
         db = get_db()
-        db.execute('INSERT INTO reisen (name, city, country, start_date, end_date, bereich, user_id) VALUES (?, ?, ?, ?, ?, ?)', (reise, stadt, land, startdatum, enddatum, bericht, user))
+        db.execute('INSERT INTO trips (name, city, country, start_date, end_date, report, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)', (reise, stadt, land, startdatum, enddatum, bericht, user))
         db.commit()
-        return redirect(url_for('reise'))
+        return redirect(url_for('reise_page'))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
-        return redirect(url_for('reise_hinzufuegen'))
+        return redirect(url_for('reise_hinzufuegen_page'))
 
 #Routen zu den einzelnen Seiten
 
@@ -135,7 +141,7 @@ def reisen_page():
     return render_template('reisen.html', progress=progress)
 
 @app.route('/reise', methods=['GET', 'POST'])
-def reise():
+def reise_page():
     return render_template('reise.html')
 
 @app.route('/profil', methods=['POST'])
