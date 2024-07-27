@@ -12,6 +12,19 @@
     padding: 10px 0;
 }
 
+.transparent-bar {
+    position: absolute; 
+    top: 10px;
+    left: 10px;
+    right: 100px;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 0; 
+    height: calc(100% - 20px); 
+    width: 72%; 
+    border-radius: 20px; 
+}
+
 .add-button {
     /* height: 40px;
     width: auto; */
@@ -23,13 +36,13 @@
 .progress-bar {
     width: 60%;
     height: 20px;
-    background-color: #ddd;
+    background-color: #8f9fb9;
     border-radius: 10px;
 }
 
 .progress {
     height: 100%;
-    background-color: #8f9fb9;
+    background-color: #0f4155;
     border-radius: 10px;
 }
 
@@ -37,5 +50,10 @@
     font-size: 18px;
     font-weight: bold;
     margin: 20px;
-    color: #ddd;
+    color: #ffffff;
+}
+
+.add-button, .progress-bar, .progress-percent {
+    position: relative; 
+    z-index: 1; 
 }

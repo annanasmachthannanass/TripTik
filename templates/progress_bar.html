@@ -1,9 +1,11 @@
 <div class="bottom-bar">
+    <div class="transparent-bar"></div>
+    
     <form action="/reise_hinzufuegen" method="post">
         <button class="add-button" type="submit"> + </button>
     </form>
     <div class="progress-bar">
         <div class="progress" style="width: {{ progress }}%;"></div>
     </div>
-    <span class="progress-percent">{{ progress }}%</span>
+    <span class="progress-percent">{{ progress|round(1) }}%</span>
 </div>

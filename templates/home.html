@@ -35,6 +35,24 @@
                 zoom: 3 // Startzoom
             });
 
+            var countryList = {{ country_list|tojson }};
+            var colors = [
+                '#FF0000', // rot
+                '#00FF00', // grün
+                '#0000FF', // blau
+                '#FFFF00', // gelb
+                '#FF00FF', // pink
+                '#00FFFF', // türkis
+                '#FFA500', // orange
+                '#800080', // lila
+                '#008000', // dunkelgrün
+                '#800000', // dunkelrot
+                '#000080', // dunkelblau
+                '#808000', // oliv
+                '#008080', // dunkeltürkis
+                '#FFC0CB', // rosa
+            ]
+
             map.on('load', function () {
                 map.addSource('countries', {
                     'type': 'geojson',
@@ -42,20 +60,28 @@
                     'data': 'static/geojson/world-administrative-boundaries.geojson'
                 });
 
+                var colorMapping = ['match', ['get', 'name']];
+                countryList.forEach(function (country, index) {
+                    var color = index % colors.length;
+                    colorMapping.push(country.country, colors[color]);
+                });
+                colorMapping.push('#ccc');
+
                 map.addLayer({
                     'id': 'countries-layer',
                     'type': 'fill',
                     'source': 'countries',
                     'paint': {
-                        'fill-color': [
+                        'fill-color': colorMapping,
+/*                       'fill-color': [
                             'match',
                             ['get', 'name'], // Attribut, das den Ländernamen enthält
                             'Germany', '#FF0000', // Farbe rot für die Färbung von Deutschland
                             'France', '#00FF00', // Farbe grün für die Färbung von Frankreich
                             'Poland', '#0000FF', // Farbe blau für die Färbung von Polen
-                            /* weitere Länder und Farben hier hinzufügen */
+                            /* weitere Länder und Farben hier hinzufügen 
                             '#ccc' // Standardfarbe für alle andere Länder
-                        ],
+                        ],*/
                         'fill-opacity': 0.7
                     }
                 });
