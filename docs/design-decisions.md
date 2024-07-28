@@ -21,7 +21,7 @@ nav_order: 3
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: Work in progress - **Decided** - Obsolete
 
 Updated
 : 23.06.2024
@@ -55,7 +55,7 @@ Wir haben zwischen CSS und Bootstrap überlegt.
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: Work in progress - **Decided** - Obsolete
 
 Updated
 : 23.06.2024
@@ -84,7 +84,7 @@ Es gibt verschiedene Möglichkeiten, um unser Problem umzusetzen. Da es sich dab
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: Work in progress - **Decided** - Obsolete
 
 Updated
 : 23.06.2024
