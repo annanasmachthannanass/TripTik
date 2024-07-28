@@ -4,9 +4,6 @@ parent: Team Evaluation
 nav_order: 3
 ---
 
-{: .label }
-[Jane Dane]
-
 {: .no_toc }
 # Peer review
 
@@ -17,7 +14,7 @@ nav_order: 3
 {: toc }
 </details>
 
-## [team member] - review 1
+## Eliana Kaping - review 1
 
 ### My observation (Wahrnehmung)
 
@@ -30,3 +27,37 @@ nav_order: 3
 ### Tip for the future (Wunsch)
 
 [What should be changed or strengthened for the point of view of the reviewer?]
+
+---
+
+## Rojin Aylin Aslan - review 2
+
+### My observation (Wahrnehmung)
+
+Während des Projekts konnte ich beobachten, dass die Zusammenarbeit in unserer Gruppe sehr harmonisch und effektiv war. Wir konnten gut kommunizieren und unsere individuellen Stärken einbringen, was zu einer insgesamt positiven Teamdynamik führte.
+
+### Effect on me (Wirkung)
+
+Die positive Erfahrung in der Gruppenarbeit hat meine Motivation und Zufriedenheit sehr gesteigert. Es war schön zu sehen, wie gut wir als Team zusammenarbeiten und gemeinsam Lösungen finden konnten. Etwas frustrierend war allerdings die späte Erkenntnis, dass unsere Zeit nicht ausreichte, um alle gewünschten Zusatzfunktionen zu implementieren.
+
+### Tip for the future (Wunsch)
+
+Für zukünftige Projekte würde ich mir wünschen, dass wir von Anfang an einen strukturierteren Zeitplan aufstellen. Regelmäßige Treffen und eine klare Aufgabenverteilung könnten uns helfen, die Arbeit gleichmäßiger zu verteilen und sicherzustellen, dass auch zusätzliche Funktionen rechtzeitig integriert werden können. Diese Verbesserungen würden uns nicht nur helfen, unsere Ziele besser zu erreichen, sondern auch den Stress am Ende des Projekts reduzieren.
+
+---
+
+## Johanna Engels - review 3
+
+### My observation (Wahrnehmung)
+
+[A specific observation, regarding know-how, effectiveness, team work or from another relevant area]
+
+### Effect on me (Wirkung)
+
+[What positive or negative effect did this observation have on the reviewer?]
+
+### Tip for the future (Wunsch)
+
+[What should be changed or strengthened for the point of view of the reviewer?]
+
+---

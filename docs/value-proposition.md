@@ -30,10 +30,10 @@ User
 : Arman, 26 Jahre, begeisterter Reisender, der alle 195 Länder erkunden möchte. Er ist als Freelance-Fotograf fast dauerhaft auf Reisen.
 
 Need
-: Er möchte seine Reisen lebendig erhalten, um sie später mit seiner Familie zu teilen. Über öffentliche Reisen möchte er seine Fotos mit seinen Followern und potentiellen neuen Kunden oder Auftraggebern teilen.
+: Er möchte seine Reisen lebendig erhalten, um sie später seiner Familie zu präsentieren. Zudem hat er so die Möglichkeit, all seine vergangenen Reisen und Abenteuer strukturiert dargestellt zu haben.
 
 Insight
-: Er möchte in einer Anwendung auf einen Blick eine Übersicht über seine Reisen haben, seine Erinnerungen organisieren, sehen, wie nah er seinem Ziel, alle Länder zu bereisen, ist, und seine Fotos mit der Welt teilen.
+: Er möchte in einer Anwendung auf einen Blick eine Übersicht über seine Reisen haben, seine Erinnerungen organisieren und sehen, wie nah er seinem Ziel, alle Länder zu bereisen, ist.
 
 ### Persona – Maria
 
@@ -48,4 +48,4 @@ Insight
 
 ## Customer journey
 
-![Ablaufdiagramm SmartSchedule](assets/images/Ablaufdiagramm.jpeg "Ablaufdiagramm")
+![Ablaufdiagramm SmartSchedule](assets/images/Ablaufdiagramm.jpg "Ablaufdiagramm")
