@@ -9,8 +9,10 @@
 # zum aktualisieren -> git checkout main <- und danach -> git pull origin main <-
 # flask run --reload
 
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, json, render_template, request, redirect, session, url_for
 import sqlite3
+from textblob import TextBlob
+from translate import Translator
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
@@ -20,7 +22,7 @@ app.secret_key = 'your_secret_key'
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, 'triptik-database.db')
-
+jsonfile = os.path.join(BASE_DIR, 'static', 'geojson', 'world-administrative-boundaries.geojson')
 
 #Datenbankverbindung erstellen
 
@@ -83,8 +85,9 @@ def login():
         cursor = db.execute('SELECT password FROM users WHERE username = ?', (username,))
         row = cursor.fetchone()
         if row and check_password_hash(row[0], password):
-            global user 
-            user = cursor.execute('SELECT id FROM users WHERE username = ?', (username,))
+            user_row = db.execute('SELECT id FROM users WHERE username = ?', (username,)).fetchone()
+            if user_row:
+                session['user_id'] = user_row['id']
             return redirect(url_for('home'))
         else:
             flash('Invalid username or password.')
@@ -94,7 +97,7 @@ def login():
         return redirect(url_for('index'))
 
 
-#Reise hinzufügen
+#Reise speichern
 
 @app.route('/reise-speichern', methods=['POST'])
 def reise_speichern():
@@ -105,14 +108,99 @@ def reise_speichern():
     enddatum = request.form['enddatum']
     bericht = request.form['bericht']
 
+    user = session.get('user_id')
+    if not user:
+        flash('Please log in to save your trip.')
+        return redirect(url_for('login'))
+    
     try:
         db = get_db()
-        db.execute('INSERT INTO reisen (name, city, country, start_date, end_date, bereich, user_id) VALUES (?, ?, ?, ?, ?, ?)', (reise, stadt, land, startdatum, enddatum, bericht, user))
+        db.execute('INSERT INTO trips (name, city, country, start_date, end_date, report, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)', (reise, stadt, land, startdatum, enddatum, bericht, user))
         db.commit()
-        return redirect(url_for('reise'))
+        trip_row = db.execute('SELECT id FROM trips WHERE name = ?', (reise,)).fetchone()
+        db.commit()
+        trip_id=trip_row['id']
+        return redirect(url_for('reise_page', id=trip_id))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
-        return redirect(url_for('reise_hinzufuegen'))
+        return redirect(url_for('reise_hinzufuegen_page'))
+    
+
+#Reise anzeigen
+
+def get_trip(trip_id):
+    try:
+        db = get_db()
+        trip = db.execute('SELECT * FROM trips WHERE id = ?', (trip_id,)).fetchone()
+        reise = trip['name']
+        stadt = trip['city']
+        land = trip['country']
+        startdatum = trip['start_date']
+        enddatum = trip['end_date']
+        bericht = trip['report']
+        return reise, stadt, land, startdatum, enddatum, bericht
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return None
+
+
+#Liste der Reisen vom Benutzer
+
+def get_trip_list(user_id):
+    try:
+        db = get_db()
+        trips = db.execute('SELECT * FROM trips WHERE user_id = ?', (user_id,)).fetchall()
+        # trips enthält eine Liste von Zeilen, wobei jede Zeile ein Trip ist (sqlite3.Row-Objekte)
+        return trips
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return None
+    
+#Liste der IDs und Namen der Reisen
+def get_trip_id_name_list():
+    trips = get_trip_list(session.get('user_id'))
+    if trips is not None:
+        return [{'id': trip['id'], 'name': trip['name']} for trip in trips]
+    
+#Liste der Länder der Reisen
+def get_trip_country_list():
+    trips = get_trip_list(session.get('user_id'))
+    if trips is not None:
+        countries = list({trip['country']: {'country': trip['country']} for trip in trips}.values())
+        return countries
+
+#Liste der Länder in Englisch für Vergleich mit der geojson-Datei
+def get_trip_country_list_english():
+    trips = get_trip_country_list()
+    translator = Translator(to_lang='en', from_lang='de')
+    uebersetzungen = []
+    for trip in trips:
+        translated = translator.translate(trip['country'])
+        uebersetzungen.append({'country': translated})
+    return uebersetzungen
+
+
+#Prozent der bereisten Ländern berechnen
+
+#Anzahl der Länder in der geojson-Datei zählen
+def get_country_count():
+    with open(jsonfile) as file:
+        data = json.load(file)
+    countries = set()
+    for feature in data['features']:
+        country = feature['properties']['name']
+        if country:
+            countries.add(country)
+    return len(countries)
+
+#Prozentberechnung
+def get_progress():
+    countries = get_trip_country_list()
+    count = len(countries)
+    num_countries = get_country_count()
+    progress = count/num_countries*100
+    return progress
+
 
 #Routen zu den einzelnen Seiten
 
@@ -126,17 +214,34 @@ def register_page():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    progress = 60
-    return render_template('home.html', progress=progress)
+    country_list=get_trip_country_list_english()
+    progress=get_progress()
+    return render_template('home.html', country_list=country_list, progress=progress)
 
 @app.route('/reisen', methods=['GET', 'POST'])
 def reisen_page():
-    progress = 75
-    return render_template('reisen.html', progress=progress)
+    progress=get_progress()
+    return render_template('reisen.html', progress=progress, trips=get_trip_id_name_list())
 
 @app.route('/reise', methods=['GET', 'POST'])
-def reise():
-    return render_template('reise.html')
+def reise_page():
+    if request.method == 'GET':
+        trip_id = request.args.get('id')
+    elif request.method == 'POST':
+        trip_id = request.form.get('trip_id')
+
+    if not trip_id:
+        flash("Trip ID is missing")
+        return render_template('reise.html')
+    
+    trip_details = get_trip(trip_id)
+    if trip_details is None:
+        flash("Trip not found")
+        return render_template('reise.html')
+    
+    reise, stadt, land, startdatum, enddatum, bericht = trip_details
+    
+    return render_template('reise.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht)
 
 @app.route('/profil', methods=['POST'])
 def profil_page():
@@ -158,6 +263,26 @@ def reise_bearbeiten_page():
 def reise_hinzufuegen_page():
     return render_template('reise_hinzufuegen.html')
 
+# Route zur sidebar... checke nichts mehr
+
+#@app.route('/sidebar')
+#def sidebar():
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Please log in to view your profile.')
+        return redirect(url_for('login'))
+    
+    try:
+        db = get_db()
+        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        if user:
+            return render_template('sidebar.html', name=user['username'], bio_content=user['bio'])
+        else:
+            flash('User not found.')
+            return redirect(url_for('home'))
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('home'))
 
 # Error-Handler für 404-Fehler
 

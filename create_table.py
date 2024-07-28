@@ -1,7 +1,12 @@
 import sqlite3
+import os 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, 'triptik-database.db')
+
+def get_db():
+    conn = sqlite3.connect(DATABASE)
+    return conn
 
 def create_tables():
     db = get_db()
@@ -10,18 +15,19 @@ def create_tables():
             CREATE TABLE users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL
+                password TEXT NOT NULL,
+                bio TEXT
             )
         ''')
         db.execute('''
-            CREATE TABLE reisen (
+            CREATE TABLE trips (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE,
                 city TEXT,
                 country TEXT,
-                start_date TEXT,
-                end_date TEXT,
-                bereich TEXT,
+                start_date DATE,
+                end_date DATE,
+                report TEXT,
                 images BLOB,
                 user_id INTEGER,
                 FOREIGN KEY(user_id) REFERENCES users(id)

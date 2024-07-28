@@ -12,14 +12,28 @@
 
     <div class="image-box">
        <div class="titel">
-            Reise
+            {{reise}}
        </div>
 
        {% include 'navigation.html' %}
 
-       <div class="bottom-content">
-           
+        <div class="bottom-content" style="background-color: rgba(156, 186, 192, 0.9); display: grid; grid-template-columns: 1fr 1fr;">
+            <div> 
+                <p>Reise: {{reise}}</p>
+                <p>Stadt: {{stadt}}</p>
+                <p>Land: {{land}}</p>
+                <p>Startdatum: {{startdatum}}</p>
+                <p>Enddatum: {{enddatum}}</p>
+                <p>Bericht: {{bericht}}</p>
+            </div>
             
+            <div>
+                Bilder
+            </div>
+
+            <form action="/reise_bearbeiten" method="post">
+                <button type="submit">Diese Reise bearbeiten</button>
+            </form>
         </div>
         
     </div>

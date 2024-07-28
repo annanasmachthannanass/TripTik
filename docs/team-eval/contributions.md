@@ -4,9 +4,6 @@ parent: Team Evaluation
 nav_order: 4
 ---
 
-{: .label }
-[Jane Dane]
-
 {: .no_toc }
 # Summary of individual contributions
 
@@ -17,14 +14,21 @@ nav_order: 4
 {: toc }
 </details>
 
-## [Jane Dane]
+## Eliana Kaping
 
 Contributions
 : Lorem ipsum dolor
 : Consetetur sadipscing elitr
 : ...
 
-## [Joe Doe]
+## Rojin Aylin Aslan
+
+Contributions
+: Diam nonumy eirmod
+: Tempor invidunt ut labore
+: ...
+
+## Johanna Engels
 
 Contributions
 : Diam nonumy eirmod
