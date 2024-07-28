@@ -19,7 +19,7 @@
 
        {% include 'navigation.html' %}
 
-        <div class="bottom-content" style="background-color: rgba(156, 186, 192, 0.9);">
+        <div class="bottom-content">
             <form action="/reise-speichern" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="reise">Reise:</label>
@@ -27,7 +27,11 @@
                     <label for="stadt">Stadt:</label>
                     <input type="text" id="stadt" name="stadt"><br><br>
                     <label for="land">Land:</label>
-                    <input type="text" id="land" name="land"><br><br>
+                    <input list="countries" id="land" name="land">
+                    <datalist id="countries">
+                        <!-- Optionen werden durch JavaScript hinzugefügt -->
+                    </datalist>
+                    <p>Bitte nur ein Land aus der Liste auswählen, um es auf der Karte anzuzeigen</p><br>
                     <label for="startdatum">Startdatum:</label>
                     <input type="date" id="startdatum" name="startdatum"><br><br>
                     <label for="enddatum">Enddatum:</label>
@@ -37,7 +41,7 @@
                 </div>
                 
                 <div>
-                    <label for="bild">Bild:</label>
+                    <label for="bild">Bilder:</label>
                     <input type="file" id="bild" name="bild" accept="image/*" multiple><br><br>
                     <img id="bildVorschauGroß" src="#" alt="Bild Vorschau Groß">
                     <div id="bildVorschauContainer"></div>
@@ -50,6 +54,21 @@
     </div>
 
     <script>
+    // von ChatGPT erstellt
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('static/json/countries_de_to_en.json')
+                .then(response => response.json())
+                .then(data => {
+                    const dataList = document.getElementById('countries');
+                    Object.keys(data).forEach(germanName => {
+                        const option = document.createElement('option');
+                        option.value = germanName;
+                        dataList.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error loading country data:', error));
+        });
+
         document.getElementById('bild').addEventListener('change', function(event) {
             var bildDateien = event.target.files;
             var bildVorschauContainer = document.getElementById('bildVorschauContainer');

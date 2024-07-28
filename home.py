@@ -9,6 +9,7 @@
 # zum aktualisieren -> git checkout main <- und danach -> git pull origin main <-
 # flask run --reload
 
+import base64
 from flask import Flask, flash, json, render_template, request, redirect, session, url_for
 import sqlite3
 from textblob import TextBlob
@@ -23,6 +24,10 @@ app.secret_key = 'your_secret_key'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, 'triptik-database.db')
 jsonfile = os.path.join(BASE_DIR, 'static', 'geojson', 'world-administrative-boundaries.geojson')
+
+file_path = os.path.join(BASE_DIR, 'static', 'json', 'countries_de_to_en.json')
+with open(file_path, 'r', encoding='utf-8') as file:
+    country_translations = json.load(file)
 
 #Datenbankverbindung erstellen
 
@@ -108,6 +113,11 @@ def reise_speichern():
     enddatum = request.form['enddatum']
     bericht = request.form['bericht']
 
+    files = request.files.getlist('bild')
+
+    if not files:
+        flash('Please upload at least one image.')
+
     user = session.get('user_id')
     if not user:
         flash('Please log in to save your trip.')
@@ -119,14 +129,48 @@ def reise_speichern():
         db.commit()
         trip_row = db.execute('SELECT id FROM trips WHERE name = ?', (reise,)).fetchone()
         db.commit()
+        for file in files:
+            if file.filename !='' :
+                file_blob = file.read()
+                db.execute('INSERT INTO images (trip_id, image) VALUES (?, ?)', (trip_row['id'], file_blob))
+                db.commit()
+                
         trip_id=trip_row['id']
-        return redirect(url_for('reise_page', id=trip_id))
+        return redirect(url_for('reise_page', trip_id=trip_id))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return redirect(url_for('reise_hinzufuegen_page'))
     
 
-#Reise anzeigen
+#Reise ändern
+
+@app.route('/reise-aendern', methods=['GET', 'POST'])
+def reise_aendern():
+    trip_id = request.form.get('trip_id')
+
+    reise = request.form['reise']
+    stadt = request.form['stadt']
+    land = request.form['land']
+    startdatum = request.form['startdatum']
+    enddatum = request.form['enddatum']
+    bericht = request.form['bericht']
+    
+    try:
+        db = get_db()
+        db.execute('''
+            UPDATE trips 
+                set name = ?, city = ?, country = ?, start_date = ?, end_date = ?, report = ?
+                WHERE id = ?
+            ''', 
+            (reise, stadt, land, startdatum, enddatum, bericht, trip_id))
+        db.commit()
+        return redirect(url_for('reise_page', trip_id=trip_id))
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('reise_hinzufuegen_page'))
+    
+
+#Reise-Inhalte aus der Datenbank abrufen
 
 def get_trip(trip_id):
     try:
@@ -139,6 +183,18 @@ def get_trip(trip_id):
         enddatum = trip['end_date']
         bericht = trip['report']
         return reise, stadt, land, startdatum, enddatum, bericht
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return None
+
+#Liste der Bilder einer Reise
+def get_trip_images(trip_id):
+    try:
+        db = get_db()
+        image_blob_list = db.execute('SELECT image FROM images WHERE trip_id = ?', (trip_id,)).fetchall()
+        # image_blob_list enthält eine Liste von Zeilen, wobei jede Zeile ein Bild ist (sqlite3.Row-Objekte)
+        images = [base64.b64encode(image['image']).decode('utf-8') for image in image_blob_list]
+        return images
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return None
@@ -156,12 +212,23 @@ def get_trip_list(user_id):
         flash(f"Database error: {e}")
         return None
     
-#Liste der IDs und Namen der Reisen
+#Liste der IDs und Namen und erstes Bild der Reisen
 def get_trip_id_name_list():
     trips = get_trip_list(session.get('user_id'))
+    trip_id_name_image_list = []
+    for trip in trips:
+        trip_id=trip['id']
+        trip_name=trip['name']
+        trip_images = get_trip_images(trip_id)
+        first_image = None
+        if trip_images:
+            first_image = f"data:image/jpeg;base64,{trip_images[0]}"  
+        else:
+            first_image = url_for('static', filename='images/logo.png')
+        trip_id_name_image_list.append({'id': trip_id, 'name': trip_name, 'image': first_image})
     if trips is not None:
-        return [{'id': trip['id'], 'name': trip['name']} for trip in trips]
-    
+        return trip_id_name_image_list
+ 
 #Liste der Länder der Reisen
 def get_trip_country_list():
     trips = get_trip_list(session.get('user_id'))
@@ -171,12 +238,13 @@ def get_trip_country_list():
 
 #Liste der Länder in Englisch für Vergleich mit der geojson-Datei
 def get_trip_country_list_english():
-    trips = get_trip_country_list()
-    translator = Translator(to_lang='en', from_lang='de')
+    trips = get_trip_country_list() 
     uebersetzungen = []
     for trip in trips:
-        translated = translator.translate(trip['country'])
-        uebersetzungen.append({'country': translated})
+        german_country = trip['country']
+        # Übersetzung aus der JSON-Datei verwenden
+        translated_country = country_translations.get(german_country, german_country)  # Fallback auf den deutschen Namen, falls keine Übersetzung vorhanden ist
+        uebersetzungen.append({'country': translated_country})
     return uebersetzungen
 
 
@@ -226,6 +294,28 @@ def reisen_page():
 @app.route('/reise', methods=['GET', 'POST'])
 def reise_page():
     if request.method == 'GET':
+        trip_id = request.args.get('trip_id')
+    elif request.method == 'POST':
+        trip_id = request.form.get('trip_id')
+
+    if not trip_id:
+        flash("Trip ID is missing")
+        return render_template('reise.html')
+    
+    trip_details = get_trip(trip_id)
+    if trip_details is None:
+        flash("Trip not found")
+        return render_template('reise.html')
+    
+    reise, stadt, land, startdatum, enddatum, bericht = trip_details
+
+    trip_bilder=get_trip_images(trip_id)
+    
+    return render_template('reise.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_bilder=trip_bilder, trip_id=trip_id)
+
+@app.route('/reise_bearbeiten', methods=['GET', 'POST'])
+def reise_bearbeiten_page():
+    if request.method == 'GET':
         trip_id = request.args.get('id')
     elif request.method == 'POST':
         trip_id = request.form.get('trip_id')
@@ -241,7 +331,11 @@ def reise_page():
     
     reise, stadt, land, startdatum, enddatum, bericht = trip_details
     
-    return render_template('reise.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht)
+    return render_template('reise_bearbeiten.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_id=trip_id)
+
+@app.route('/reise_hinzufuegen', methods=['GET', 'POST'])
+def reise_hinzufuegen_page():
+    return render_template('reise_hinzufuegen.html')
 
 @app.route('/profil', methods=['POST'])
 def profil_page():
@@ -255,13 +349,6 @@ def profil_bearbeiten_page():
 def profilbilder_page():
     return render_template('profilbilder.html')
 
-@app.route('/reise_bearbeiten', methods=['POST'])
-def reise_bearbeiten_page():
-    return render_template('reise_bearbeiten.html')
-
-@app.route('/reise_hinzufuegen', methods=['GET', 'POST'])
-def reise_hinzufuegen_page():
-    return render_template('reise_hinzufuegen.html')
 
 # Route zur sidebar... checke nichts mehr
 
@@ -283,6 +370,7 @@ def reise_hinzufuegen_page():
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return redirect(url_for('home'))
+
 
 # Error-Handler für 404-Fehler
 

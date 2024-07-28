@@ -3,6 +3,7 @@
 <head>
     <title>Reise Bearbeiten</title>
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/reise_hinzufügen.css">
 </head>
 <body>
    {% include 'sidebar.html' %}
@@ -18,20 +19,24 @@
        {% include 'navigation.html' %}
 
         <div class="bottom-content">
-            <form action="/reise-speichern" method="post" enctype="multipart/form-data">
+            <form action="/reise-aendern" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="reise">Reise:</label>
-                    <input type="text" id="reise" name="reise" required><br><br>
+                    <input type="text" id="reise" name="reise" required value="{{reise}}"><br><br>
                     <label for="stadt">Stadt:</label>
-                    <input type="text" id="stadt" name="stadt"><br><br>
+                    <input type="text" id="stadt" name="stadt" value="{{stadt}}"><br><br>
                     <label for="land">Land:</label>
-                    <input type="text" id="land" name="land"><br><br>
+                    <input list="countries" id="land" name="land" value="{{land}}">
+                    <datalist id="countries">
+                        <!-- Optionen werden durch JavaScript hinzugefügt -->
+                    </datalist>
+                    <p>Bitte nur ein Land aus der Liste auswählen, um es auf der Karte anzuzeigen</p><br>
                     <label for="startdatum">Startdatum:</label>
-                    <input type="date" id="startdatum" name="startdatum"><br><br>
+                    <input type="date" id="startdatum" name="startdatum" value="{{startdatum}}"><br><br>
                     <label for="enddatum">Enddatum:</label>
-                    <input type="date" id="enddatum" name="enddatum"><br><br>
+                    <input type="date" id="enddatum" name="enddatum" value="{{enddatum}}"><br><br>
                     <label for="bericht">Bericht:</label> <br>
-                    <textarea id="bericht" name="bericht" rows="15" cols="60"></textarea><br><br>
+                    <textarea id="bericht" name="bericht" rows="15" cols="60">{{bericht}}</textarea><br><br>
                 </div>
                 
                 <div>
@@ -41,9 +46,27 @@
                     <div id="bildVorschauContainer"></div>
                 </div>
                 
+                <input type="hidden" name="trip_id" value="{{ trip_id }}">
                 <button type="submit">Hinzufügen</button>
         </div>
     
     </div>
+
+    <script>
+    // von ChatGPT erstellt
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('static/json/countries_de_to_en.json')
+                .then(response => response.json())
+                .then(data => {
+                    const dataList = document.getElementById('countries');
+                    Object.keys(data).forEach(germanName => {
+                        const option = document.createElement('option');
+                        option.value = germanName;
+                        dataList.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error loading country data:', error));
+        });
+    </script>
 </body>
 </html>

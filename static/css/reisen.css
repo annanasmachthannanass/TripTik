@@ -1,3 +1,7 @@
+.bottom-content{
+    padding-bottom: 100px;
+}
+
 .reisen-content {
     display: flex;
     /* macht die Buttons nebeneinander */
@@ -20,4 +24,5 @@
 .reisen-button-img {
     width: 100%;
     height: auto;
+    max-height: 150px;
 }

@@ -27,7 +27,7 @@
                     <form action="/reise" method="post">
                         <input type="hidden" name="trip_id" value="{{ trip.id }}">
                         <button class="reisen-button" type="submit">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
+                            <img src="{{ trip.image }}" class="reisen-button-img">
                             {{ trip.name }}
                         </button>
                     </form>

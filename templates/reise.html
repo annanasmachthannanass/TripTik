@@ -3,6 +3,7 @@
 <head>
     <title>Reise</title>
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/reise.css">
 </head>
 
 <body>
@@ -29,9 +30,19 @@
             
             <div>
                 Bilder
+                <div class="bilder">
+                    {% if trip_bilder %}
+                        {% for bild in trip_bilder %}
+                            <img src="data:image/jpeg;base64,{{ bild }}" alt="Bild" style="max-width: 300px; max-heigth: 300px;">
+                        {% endfor %}
+                    {% else %}
+                        <p>Keine Bilder vorhanden</p>
+                    {% endif %}
+                </div>
             </div>
 
             <form action="/reise_bearbeiten" method="post">
+                <input type="hidden" name="trip_id" value="{{ trip_id }}">
                 <button type="submit">Diese Reise bearbeiten</button>
             </form>
         </div>
