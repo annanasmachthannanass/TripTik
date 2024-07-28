@@ -21,7 +21,7 @@ nav_order: 3
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: Work in progress - **Decided** - Obsolete
 
 Updated
 : 23.06.2024
@@ -55,7 +55,7 @@ Wir haben zwischen CSS und Bootstrap überlegt.
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: Work in progress - **Decided** - Obsolete
 
 Updated
 : 23.06.2024
@@ -84,7 +84,7 @@ Es gibt verschiedene Möglichkeiten, um unser Problem umzusetzen. Da es sich dab
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: Work in progress - **Decided** - Obsolete
 
 Updated
 : 23.06.2024
@@ -137,56 +137,5 @@ Mapbox bietet ein kostenfreies Nutzungslimit an und bietet uns durch seine hohe 
 | **Aussehen anpassen** | ✔️ Hohe Anpassbarkeit: Kartendesigns können detailliert angepasst werden, einschließlich Farben und Stile etc. | ❌ Eingeschränkte Anpassungsfähigkeit im Vergleich zu Mapbox, bietet jedoch Werkzeuge für Anpassungen |
 | **Verwendung** | ✔️ Muss über ein API-Schlüssel in das Projekt integriert werden, wobei viele SDKs und Bibliotheken verfügbar sind | ✔️ Weit verbreitet, einfache Integration über API-Schlüssel und umfangreiche Unterstützung in vielen Frameworks |
 | **Kosten** | ✔️ Kann kostenlos genutzt werden (mit kostenlosem Kontingent), ideal für kleine bis mittelgroße Projekte | ❌ Kostenpflichtig nach einem begrenzten kostenlosen Kontingent, oft teurer für größere Projekte oder höhere Nutzung |  
-
----
-
-## [Example, delete this section] 01: How to access the database - SQL or SQLAlchemy 
-
-### Meta
-
-Status
-: Work in progress - **Decided** - Obsolete
-
-Updated
-: 30-Jun-2024
-
-### Problem statement
-
-Should we perform database CRUD (create, read, update, delete) operations by writing plain SQL or by using SQLAlchemy as object-relational mapper?
-
-Our web application is written in Python with Flask and connects to an SQLite database. To complete the current project, this setup is sufficient.
-
-We intend to scale up the application later on, since we see substantial business value in it.
-
-
-
-Therefore, we will likely:
-Therefore, we will likely:
-Therefore, we will likely:
-
-+ Change the database schema multiple times along the way, and
-+ Switch to a more capable database system at some point.
-
-### Decision
-
-We stick with plain SQL.
-
-Our team still has to come to grips with various technologies new to us, like Python and CSS. Adding another element to our stack will slow us down at the moment.
-
-Also, it is likely we will completely re-write the app after MVP validation. This will create the opportunity to revise tech choices in roughly 4-6 months from now.
-*Decision was taken by:* github.com/joe, github.com/jane, github.com/maxi
-
-### Regarded options
-
-We regarded two alternative options:
-
-+ Plain SQL
-+ SQLAlchemy
-
-| Criterion | Plain SQL | SQLAlchemy |
-| --- | --- | --- |
-| **Know-how** | ✔️ We know how to write SQL | ❌ We must learn ORM concept & SQLAlchemy |
-| **Change DB schema** | ❌ SQL scattered across code | ❔ Good: classes, bad: need Alembic on top |
-| **Switch DB engine** | ❌ Different SQL dialect | ✔️ Abstracts away DB engine |
 
 ---
