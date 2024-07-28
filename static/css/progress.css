@@ -23,13 +23,13 @@
 .progress-bar {
     width: 60%;
     height: 20px;
-    background-color: #ddd;
+    background-color: #8f9fb9;
     border-radius: 10px;
 }
 
 .progress {
     height: 100%;
-    background-color: #8f9fb9;
+    background-color: #0f4155;
     border-radius: 10px;
 }
 
@@ -37,5 +37,5 @@
     font-size: 18px;
     font-weight: bold;
     margin: 20px;
-    color: #ddd;
+    color: #0f4155;
 }

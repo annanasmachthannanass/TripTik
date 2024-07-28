@@ -23,54 +23,16 @@
 
         <div class="bottom-content">
             <div class="reisen-content">
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
-                <form action="/reisen" method="post">
-                    <button class="reisen-button" type="submit">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
-                        das ist eine reise
-                    </button>
-                </form>
+                {% for trip in trips %}
+                    <form action="/reise" method="post">
+                        <input type="hidden" name="trip_id" value="{{ trip.id }}">
+                        <button class="reisen-button" type="submit">
+                            <img src="{{ url_for('static', filename='images/logo.png') }}" class="reisen-button-img">
+                            {{ trip.name }}
+                        </button>
+                    </form>
+                {% endfor %}
+
             </div>
         </div>
         {% include 'progress_bar.html' %}

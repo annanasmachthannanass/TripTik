@@ -51,7 +51,12 @@
 }
 
 .reisen form {
-    grid-auto-columns: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+button {
+    grid-column: span 2;
 }
 
 .reisen-button {

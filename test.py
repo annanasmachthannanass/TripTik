@@ -33,52 +33,6 @@ def check_db_connection():
 def index():
     return render_template('anmeldung.html')
 
-@app.route('/home', methods=['GET', 'POST'])
-def home():
-    progress = 60
-    return render_template('home.html', progress=progress)
-
-@app.route('/register', methods=['POST'])
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    
-    if not username or not password:
-        flash('Username and password are required!')
-        return redirect(url_for('index'))
-
-    hashed_password = generate_password_hash(password)
-
-    try:
-        db = get_db()
-        if db is not None:
-            db.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password))
-            db.commit()
-        else:
-            flash('Database connection error. Please try again later.')
-            return redirect(url_for('index'))
-    except sqlite3.IntegrityError:
-        flash('Username is already taken!')
-        return redirect(url_for('index'))
-    except sqlite3.Error as e:
-        flash(f"Database error: {e}")
-        return redirect(url_for('index'))
-    
-    flash('Registration successful! Please log in.')
-    return redirect(url_for('index'))
-
-@app.route('/check_db')
-def check_db():
-    db = get_db()
-    try:
-        result = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users'").fetchone()
-        if result:
-            return "Die Tabelle 'users' existiert in der Datenbank."
-        else:
-            return "Die Tabelle 'users' existiert nicht in der Datenbank."
-    except sqlite3.Error as e:
-        return f"Datenbankfehler: {e}"
-
 @app.route('/create_users_table')
 def create_users_table():
     db = get_db()
@@ -154,6 +108,23 @@ def add_bio_column():
         ''')
         db.commit()
         return "Spalte 'bio' wurde erfolgreich zur Tabelle 'users' hinzugefügt."
+    except sqlite3.Error as e:
+        return f"Datenbankfehler: {e}"
+    
+@app.route('/add_images_table')
+def add_images_table():
+    db = get_db()
+    try:
+        db.execute('''
+            CREATE TABLE images (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                image BLOB,
+                trip_id INTEGER,
+                FOREIGN KEY(trip_id) REFERENCES trips(id)
+            )
+        ''')
+        db.commit()
+        return "Tabelle 'images' wurde erfolgreich erstellt."
     except sqlite3.Error as e:
         return f"Datenbankfehler: {e}"
 
