@@ -23,7 +23,7 @@ body {
     font: 900 44px 'Playfair Display', serif;
     text-align: center;
     padding: 10px;
-    padding-top: 180px;
+    padding-top: 160px;
     height: 100px;
 }
 .bottom-content {
@@ -66,6 +66,8 @@ input[type="text"], input[type="password"] {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    text-align: center;
+    width: 330px;
 }
 
 .anmeldung-button:hover {
@@ -81,6 +83,8 @@ input[type="text"], input[type="password"] {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    width: 330px;
+    
 }
 
 .registrierung-button:hover {
