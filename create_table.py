@@ -1,7 +1,12 @@
 import sqlite3
+import os 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, 'triptik-database.db')
+
+def get_db():
+    conn = sqlite3.connect(DATABASE)
+    return conn
 
 def create_tables():
     db = get_db()

@@ -263,6 +263,26 @@ def reise_bearbeiten_page():
 def reise_hinzufuegen_page():
     return render_template('reise_hinzufuegen.html')
 
+# Route zur sidebar... checke nichts mehr
+
+#@app.route('/sidebar')
+#def sidebar():
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Please log in to view your profile.')
+        return redirect(url_for('login'))
+    
+    try:
+        db = get_db()
+        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        if user:
+            return render_template('sidebar.html', name=user['username'], bio_content=user['bio'])
+        else:
+            flash('User not found.')
+            return redirect(url_for('home'))
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('home'))
 
 # Error-Handler für 404-Fehler
 
