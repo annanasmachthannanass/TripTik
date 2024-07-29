@@ -3,9 +3,6 @@ title: Design Decisions
 nav_order: 3
 ---
 
-{: .label }
-[Jane Dane]
-
 {: .no_toc }
 # Design decisions
 
@@ -101,11 +98,13 @@ Entscheidung getroffen von: Eliana Kaping, Rojin Aylin Aslan, Johanna Engels
 Wir haben uns dafür entschieden, eine SQLite Datenbank zu verwenden. 
 Dies ist bereits im Python Paket enthalten und benötigt keine externe Anbindung. Wir kennen bereits den Oracle-Dialekt von SQL, sind also schon mit den Grundbegriffen und Funktonalitäten bekannt. Zudem ist die Datenbank so leichtgewichtig und kann einfach in unser Projekt mit eingebaut werden. 
 
-!!!
-
 ### Regarded options
 
-!!!
+| Criterion | SQLite | Firebase |
+| --- | --- | --- |
+| **Know-how** | ✔️ Wir sind Vertraut mit SQL und der Nutzung von SQLite, da es im Python-Paket enthalten ist und mit Oracle SQL vergleichbar ist. | ❌ Mangelndes Wissen über NoSQL-Datenbanken und Firebase-spezifische APIs. Erfordert zusätzliche Einarbeitung! |
+| **Installation und Integration** | ✔️ Einfache Integration, da SQLite bereits in Python enthalten ist und keine zusätzliche Installation benötigt wird. | ❌ Erfordert Installation und Einrichtung von Firebase SDKs sowie die Konfiguration eines Firebase-Projekts. |
+| **Datensicherheit und -sicherung** | ❔ Sicherung und Wiederherstellung müssen manuell verwaltet werden. Sicherheit hängt von der Implementierung ab. | ✔️ Eingebaute Sicherheitsregeln, automatisierte Backups und Datenwiederherstellungsmöglichkeiten. | 
 
 ---
 ## 04: Verwendung von Mapbox
