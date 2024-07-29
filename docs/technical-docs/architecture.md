@@ -7,20 +7,6 @@ nav_order: 1
 {: .no_toc }
 # Architecture
 
-{: .attention }
-> This page describes how the application is structured and how important parts of the app work. It should give a new-joiner sufficient technical knowledge for contributing to the codebase.
-> 
-> See [this blog post](https://matklad.github.io/2021/02/06/ARCHITECTURE.md.html) for an explanation of the concept and these examples:
->
-> + <https://github.com/rust-lang/rust-analyzer/blob/master/docs/dev/architecture.md>
-> + <https://github.com/Uriopass/Egregoria/blob/master/ARCHITECTURE.md>
-> + <https://github.com/davish/obsidian-full-calendar/blob/main/src/README.md>
-> 
-> For structural and behavioral illustration, you might want to leverage [Mermaid](../ui-components.md), e.g., by charting common [C4](https://c4model.com/) or [UML](https://www.omg.org/spec/UML) diagrams.
-> 
->
-> You may delete this `attention` box.
-
 <details open markdown="block">
 {: .text-delta }
 <summary>Table of contents</summary>
@@ -68,6 +54,7 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 + **Datenverarbeitung:** Der Server ist für die Verarbeitung der Benutzereingaben zuständig. Er validiert die Daten, wendet die Geschäftslogik an und aktualisiert die Datenbank entsprechend.
 + **Datenbank:** Als Datenbanksystem verwenden wir [SQLite](https://annanasmachthannanass.github.io/TripTik/design-decisions.html#03-datenbankl%C3%B6sung), da sich diese leichtgewichtige, relationale Datenbank ideal für die Anforderungen unserer Anwendung eignet, insbesondere für die Speicherung und Verwaltung von Reisedaten und Benutzerinformationen.
 + **Templating und Rendering:** Mit Jinja generiert der Server dynamische HTML-Seiten, die dann an den Client gesendet werden. Dies ermöglicht uns eine nahtlose Integration der Backend-Logik mit der Präsentationsschicht und stellt sicher, dass die Benutzer stets aktuelle und relevante Informationen sehen.
+---
 
 ## Codemap
 
@@ -122,7 +109,7 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 + Der `geojson`-Ordner enthält GeoJSON-Dateien, die geografische Daten in einem JSON-basierten Format speichern. GeoJSON ist ein offenes Standardformat, das für die Darstellung von geografischen Merkmalen und deren Eigenschaften verwendet wird. Es wird häufig in Webanwendungen verwendet, um Karten und geografische Informationen darzustellen.
 
 + Eine typische GeoJSON-Datei enthält eine Sammlung von geografischen Merkmalen, die als `FeatureCollection` bezeichnet wird. In unserem Fall enthält die Datei Koordinaten für die Grenzen der einzelnen Länder, um die bereisten Länder der Nutzer farbig darzustellen.
-
+---
 
 ## Cross-cutting concerns
 
@@ -148,7 +135,7 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 + **Modularität**: Jeder Funktionalitätsbereich, wie beispielsweise die Registrierung, Anmeldung oder Reiseverwaltung, ist in separaten Funktionen und Routen gekapselt, um die Wartbarkeit zu verbessern.
 + **Datenbankabstraktion**: Zudem sind alle Datenbankzugriffe in separaten Funktionen gekapselt (`get_trip`, `get_trip_images`, `get_trip_list`), um die Wiederverwendbarkeit und Testbarkeit zu erhöhen.
 
-### Routen und Templates
+### [Routen](https://annanasmachthannanass.github.io/TripTik/technical-docs/reference.html) und Templates
 
 > Mithilfe von Flask-Routen haben wir die Möglichkeit verschiedene Seiten und Funktionen bereitzustellen. Einige der genutzten Routen sind dabei folgende:
 
