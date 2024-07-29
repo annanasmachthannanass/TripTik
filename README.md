@@ -7,9 +7,9 @@ TripTik ist eine Reisetracker App
 Link zur Dokumentation: https://annanasmachthannanass.github.io/TripTik/
 
 Gruppenmitglieder:
-Eliana Kaping,
-Rojin Aylin Aslan,
-Johanna Engels
+Eliana Kaping (el231204),
+Rojin Aylin Aslan (rrayas22),
+Johanna Engels (annanasmachthannanass)
 
 Schritte zum ausführen der Applikation:
 Notwendige Abhängigkeiten über die requirements.txt installieren
