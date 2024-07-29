@@ -26,37 +26,37 @@
             </div>
 
             <div class="name">
-                 Hanna
+                 {{ name }}
             </div>
 
-            <div class="profile_bio-content">
-                        I love to travel and explore new places!
-                        I love to travel and explore new places! 
-                        I love to travel and explore new places!
-            </div>
-
-                <div class="reisen">
-                    <form action="/reisen" method="post">
-                        <button class="reise-button small" type="submit">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}">
-                                das ist eine reise
-                        </button>
-                    </form>
-
-                    <form action="/reisen" method="post">
-                        <button class="reise-button small" type="submit">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}">
-                                das ist eine reise
-                        </button>
-                    </form>
-
-                    <form action="/reisen" method="post">
-                        <button class="reise-button small" type="submit">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}">
-                                das ist eine reise
-                        </button>
-                    </form>
+           <div class="bio">
+                <div class="bio-content">
+                    {{ bio }}
                 </div>
+           </div>
+
+            <div class="reisen">
+                <form action="/reisen" method="post">
+                    <button class="reise-button small" type="submit">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}">
+                        das ist eine reise
+                    </button>
+                </form>
+
+                <form action="/reisen" method="post">
+                    <button class="reise-button small" type="submit">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}">
+                        das ist eine reise
+                    </button>
+                </form>
+
+                <form action="/reisen" method="post">
+                    <button class="reise-button small" type="submit">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}">
+                        das ist eine reise
+                    </button>
+                </form>
+            </div>
 
             <div>
                 <form action="/profil_bearbeiten" method="get">
@@ -66,7 +66,4 @@
         </div>
     </div>
 </body>
-
-
-
 </html>
