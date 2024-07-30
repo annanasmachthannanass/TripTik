@@ -12,24 +12,15 @@
     
     <div class="sidebar-title">Reisen:</div>
     <div class="reisen">
-        <form action="/reisen" method="post">
-            <button class="reise-button" type="submit">
-                <img src="/static/images/logo.png">
-                das ist eine reise
-            </button>
-        </form>
-        <form action="/reisen" method="post">
-            <button class="reise-button" type="submit">
-                <img src="/static/images/logo.png">
-                das ist eine reise
-            </button>
-        </form>
-        <form action="/reisen" method="post">
-            <button class="reise-button" type="submit">
-                <img src="/static/images/logo.png">
-                das ist eine reise
-            </button>
-        </form>
+        {% for trip in trips %}
+            <form action="/reise" method="post">
+                <input type="hidden" name="trip_id" value="{{ trip.id }}">
+                <button class="reise-button" type="submit">
+                    <img src="{{ trip.image }}" alt="{{ trip.name }}">
+                    {{ trip.name }}
+                </button>
+            </form>
+        {% endfor %}
         <form action="/reise_hinzufuegen" method="post">
             <button class="reise-button" type="submit">
                 <div class="titel"> + </div>
