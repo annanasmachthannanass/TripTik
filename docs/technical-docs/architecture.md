@@ -14,7 +14,7 @@ nav_order: 1
 {: toc }
 </details>
 
-## Overview 11:50 Uhr
+## Overview 11:55 Uhr
 
 TripTik ist ein umfassendes Reise-Tool, das entwickelt wurde, um Nutzern dabei zu helfen, ihre Reiseerfahrungen auf unterhaltsame und interaktive Weise zu dokumentieren und zu verwalten.
 
@@ -73,7 +73,7 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 + Die Flask-Anwendung wird im ersten Schritt mit app = Flask(__name__) initialisiert. Zudem wird eine secret_key wird gesetzt, der für die Sitzungsverwaltung und den CSRF-Schutz verwendet wird.
 + Zudem definiert die Datei Pfade für die Datenbank und andere Ressourcen, wie beispielsweise GeoJSON- und JSON-Dateien, die innerhalb der Anwendung verwendet werden.
 
-![Flask](..assets/images/home_py_Flask_Konfiguration.png "Flask-Anwendung und Konfiguration")
+![Flask](../assets/images/home_py_Flask_Konfiguration.png "Flask-Anwendung und Konfiguration")
 
 **Datenbankverwaltung**
 + Die get_db() Funktion wird definiert, um eine Verbindung zur SQLite-Datenbank herzustellen. Zudem prüft check_db_connection() die die Datenbankverbindung.
