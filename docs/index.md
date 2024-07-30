@@ -45,5 +45,7 @@ Die oben genannten Teammitglieder erklären an Eides statt:
 
 > Um schließlich die verschiedenen Länder einzufärben, benötigten wir die Koordinaten der Ländergrenzen. Unter dem folgenden Link fanden wir die Datei: "world-administrative-boundaries.geojson" von https://public.opendatasoft.com/explore/dataset/world-administrative-boundaries/export/, die bereits alle Ländergrenzen, die wir benötigen, enthält.
 
+> Zudem erklären wir, dass im Rahmen dieser Projektarbeit das Sprachmodell ChatGPT von OpenAI als unterstützendes Werkzeug genutzt wurde. Die inhaltliche Verantwortung für die vorliegende Dokumentation liegt vollständig bei uns. Alle von ChatGPT generierten Inhalte wurden sorgfältig überprüft und angepasst, um den akademischen Standards und den spezifischen Anforderungen des Projekts gerecht zu werden.
+
 {: .fs-2 }
 Last build: {{ site.time | date: '%d %b %Y, %R%:z' }}

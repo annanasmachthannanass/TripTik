@@ -20,7 +20,6 @@ Viele Menschen haben nach ihren Reisen das Problem, dass hinterher der normale A
 ## Our solution
 
 Unsere App bietet die Möglichkeit, übersichtlich alle besuchten Orte auf einen Blick auf einer Landkarte zu sehen. Dazu gibt es einen Progress-Bar, der einem zeigt, wie viel Prozent von den unterstützen Ländern man schon bereist hat. Um Länder auf der Landkarte hinzuzufügen, erstellt man einen Reisebericht. Dieser kann kurz und knapp oder ganz ausführlich sein, mit der Möglichkeit, Bilder und Text hinzuzufügen.
-Damit der Spaß nicht zu kurz kommt, bekommt man für bereiste Länder einen Sticker, der dann der Stickersammlung hinzugefügt wird. Außerdem gibt es kleine FunFact-Quizzes zu verschiedenen Orten und Ländern, die man sowohl während der Reise als auch davor oder danach machen kann.
 
 ## Target user
 
