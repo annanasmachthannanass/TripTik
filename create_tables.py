@@ -100,6 +100,20 @@ def drop_reisen_table():
         except sqlite3.Error as e:
             return f"Datenbankfehler: {e}"
 
+@app.route('/add_profile_picture_column')
+def add_profile_picture_column():
+    with db_lock:
+        db = get_db()
+        try:
+            db.execute('''
+                ALTER TABLE users
+                ADD COLUMN profile_picture TEXT
+            ''')
+            db.commit()
+            return "Spalte 'profile_picture' wurde erfolgreich zur Tabelle 'users' hinzugefügt."
+        except sqlite3.Error as e:
+            return f"Datenbankfehler: {e}"
+
 @app.route('/add_bio_column')
 def add_bio_column():
     with db_lock:

@@ -290,6 +290,10 @@ def get_trip_country_list_english():
         uebersetzungen.append({'country': translated_country})
     return uebersetzungen
 
+def get_user_profile_picture(user_id):
+    db = get_db()
+    user = db.execute('SELECT profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
+    return user['profile_picture'] if user else None
 
 #Prozent der bereisten Ländern berechnen
 
@@ -328,19 +332,21 @@ def home():
     user_id = get_user_id()
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
+    profile_picture = get_user_profile_picture(user_id)  
     country_list = get_trip_country_list_english()
     progress = get_progress()
     trips =get_trip_id_name_list()
-    return render_template('home.html', name=name, bio=bio, country_list=country_list, progress=progress,trips=trips)
+    return render_template('home.html', name=name, bio=bio, profile_picture=profile_picture, country_list=country_list, progress=progress,trips=trips)
 
 @app.route('/reisen', methods=['GET', 'POST'])
 def reisen_page():
     user_id = get_user_id()
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
+    profile_picture = get_user_profile_picture(user_id)
     progress=get_progress()
     trips=get_trip_id_name_list()
-    return render_template('reisen.html', name=name, bio=bio, progress=progress, trips=trips)
+    return render_template('reisen.html', name=name, bio=bio, profile_picture=profile_picture, progress=progress, trips=trips)
 
 @app.route('/reise', methods=['GET', 'POST'])
 def reise_page():
@@ -359,9 +365,10 @@ def reise_page():
     reise, stadt, land, startdatum, enddatum, bericht = trip_details
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
+    profile_picture = get_user_profile_picture(user_id)
     trips = get_trip_id_name_list()
     trip_bilder=get_trip_images(trip_id)
-    return render_template('reise.html', name=name, bio=bio, reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_bilder=trip_bilder, trip_id=trip_id, trips=trips)
+    return render_template('reise.html', name=name, bio=bio, reise=reise, profile_picture=profile_picture, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_bilder=trip_bilder, trip_id=trip_id, trips=trips)
 
 @app.route('/reise_bearbeiten', methods=['GET', 'POST'])
 def reise_bearbeiten_page():
@@ -377,25 +384,28 @@ def reise_bearbeiten_page():
     reise, stadt, land, startdatum, enddatum, bericht = trip_details
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
+    profile_picture = get_user_profile_picture(user_id)
     trips = get_trip_id_name_list()
     trip_bilder=get_trip_images(trip_id)
-    return render_template('reise_bearbeiten.html', name=name, bio=bio, trips=trips, reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_id=trip_id, trip_bilder=trip_bilder)
+    return render_template('reise_bearbeiten.html', name=name, bio=bio, profile_picture=profile_picture, trips=trips, reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_id=trip_id, trip_bilder=trip_bilder)
 
 @app.route('/reise_hinzufuegen', methods=['GET', 'POST'])
 def reise_hinzufuegen_page():
     user_id = get_user_id()
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
+    profile_picture = get_user_profile_picture(user_id)
     trips = get_trip_id_name_list()
-    return render_template('reise_hinzufuegen.html', name=name, bio=bio, trips=trips)
+    return render_template('reise_hinzufuegen.html', name=name, bio=bio, trips=trips, profile_picture=profile_picture)
 
 @app.route('/profil', methods=['GET','POST'])
 def profil_page():
     user_id = get_user_id()
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
+    profile_picture = get_user_profile_picture(user_id)
     trips=get_trip_id_name_list()
-    return render_template('profil.html', name=name, bio=bio, trips=trips)
+    return render_template('profil.html', name=name, bio=bio, profile_picture=profile_picture, trips=trips)
 
 @app.route('/profil_bearbeiten', methods=['GET', 'POST'])
 def profil_bearbeiten_page():
@@ -414,8 +424,9 @@ def profil_bearbeiten_page():
             return redirect(url_for('profil_page'))
         name=get_user_name(user_id)
         bio=get_user_bio(user_id)
+        profile_picture = get_user_profile_picture(user_id)
         trips=get_trip_id_name_list()
-        return render_template('profil_bearbeiten.html', name=name, bio=bio, trips=trips)
+        return render_template('profil_bearbeiten.html', name=name, bio=bio, profile_picture=profile_picture, trips=trips)
     except sqlite3.IntegrityError as e:
         if "UNIQUE constraint failed" in str(e):
             flash("Fehler: Der Benutzername muss einzigartig sein. Bitte wählen Sie einen anderen Benutzernamen.")
@@ -435,9 +446,31 @@ def profilbilder_page():
     user_id = get_user_id()
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
+    profile_picture=get_user_profile_picture(user_id)
     trips=get_trip_id_name_list()
-    return render_template('profilbilder.html', name=name, bio=bio, trips=trips)
+    return render_template('profilbilder.html', name=name, bio=bio, profile_picture=profile_picture, trips=trips)
 
+@app.route('/set_profile_picture', methods=['POST'])
+def set_profile_picture():
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Please log in to update your profile picture.')
+        return redirect(url_for('index'))
+    
+    new_profile_picture = request.form.get('profile_picture')
+    if not new_profile_picture:
+        flash('No profile picture selected.')
+        return redirect(url_for('profilbilder_page'))
+
+    try:
+        db = get_db()
+        db.execute('UPDATE users SET profile_picture = ? WHERE id = ?', (new_profile_picture, user_id))
+        db.commit()
+        flash('Profile picture updated successfully.')
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+    
+    return redirect(url_for('profilbilder_page'))
 
 # Error-Handler für 404-Fehler
 
