@@ -99,7 +99,7 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 
 + Der Ordner `templates` enthält sämtliche HTML-Templates, die in der Anwendung verwendet werden. Diese Templates werden mit Jinja, einem Template-Engine für Python, gerendert. Jinja ermöglicht uns, dynamische Inhalte in HTML-Dateien einzufügen, indem es Platzhalter und Kontrollstrukturen wie Schleifen und Bedingungen verwendet.
 
-![HTML](assets/images/anmeldung.html.png "anmeldung.html")
+![HTML](assets/images/anmeldung.html.jpg "anmeldung.html")
 
 + Jedes Template repräsentiert dabei eine spezifische Seite oder einen Teil der Benutzeroberfläche von TripTik. Beispielsweise kann bei unserer Anwendung zwischen Templates für die Startseite, die Detailansicht einer Reise, das Bearbeiten einer Reise und das Hinzufügen einer neuen Reise unterschieden werden.
 
@@ -114,7 +114,7 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 **CSS-Dateien**
 + Diese Dateien enthalten die Stylesheets, die das Aussehen und Layout der HTML-Seiten definieren. Sie sorgen für ein konsistentes Design und ermöglichen es, das Erscheinungsbild der Anwendung zentral zu verwalten.
 
-![CSS](assets/images/anmeldung.css.png "anmeldung.css")
+![CSS](assets/images/anmeldung.css.jpg "anmeldung.css")
 
 **JavaScript-Dateien** 
 + Die JavaScript-Dateien enthalten clientseitige Skripte, die die Interaktivität und Funktionalität der Anwendung verbessern. Sie können für Formvalidierung, AJAX-Anfragen, Animationen und vieles mehr verwendet werden.
