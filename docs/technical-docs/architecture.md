@@ -107,7 +107,6 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 
 **JSON-Dateien**
 + Der `geojson`-Ordner enthält GeoJSON-Dateien, die geografische Daten in einem JSON-basierten Format speichern. GeoJSON ist ein offenes Standardformat, das für die Darstellung von geografischen Merkmalen und deren Eigenschaften verwendet wird. Es wird häufig in Webanwendungen verwendet, um Karten und geografische Informationen darzustellen.
-
 + Eine typische GeoJSON-Datei enthält eine Sammlung von geografischen Merkmalen, die als `FeatureCollection` bezeichnet wird. In unserem Fall enthält die Datei Koordinaten für die Grenzen der einzelnen Länder, um die bereisten Länder der Nutzer farbig darzustellen.
 ---
 
