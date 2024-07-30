@@ -25,7 +25,7 @@ nav_order: 3
 
 ![users](../assets/images/users.png "users-Tabelle")
 
-—
+---
 
 ## Startbildschirm anzeigen
 
@@ -37,7 +37,7 @@ nav_order: 3
 
 ![users](../assets/images/users.png "users-Tabelle")
 
-—
+---
 
 ## Reisen Anzeigen, Bearbeiten und Hinzufügen
 
@@ -73,7 +73,7 @@ nav_order: 3
 
 ![users](../assets/images/users.png "users-Tabelle")
 
-—
+---
 
 ## Profil Anzeigen und Bearbeiten
 
