@@ -2,7 +2,7 @@
 
 <div class="left-sidebar">
     <div class="profilbild">
-        <img src="/static/images/profilbild.png" alt="TripTik Logo">
+       <img src="{{ url_for('static', filename=profile_picture) }}" alt="Profilbild">
     </div>
     
     <div class="name">{{name}}</div>

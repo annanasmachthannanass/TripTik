@@ -9,6 +9,10 @@
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
+            flex-wrap: wrap; /* Falls notwendig, um mehrere Zeilen zu erlauben */
+        }
+        .image-container form {
+            margin: 10px; /* Abstände zwischen den Bildern */
         }
         .image-container img {
             width: 150px;
@@ -16,13 +20,13 @@
             object-fit: cover;
             border-radius: 50%;
             border: 2px solid #000;
+            cursor: pointer; /* Zeigt an, dass die Bilder anklickbar sind */
         }
     </style>
 </head>
 
 <body>
     {% include 'sidebar.html' %}
-
     {% include 'logo_button.html' %}
 
     <div class="image-box">
@@ -34,28 +38,62 @@
 
         <div class="bottom-content">
             <div class="profil-text">
-                choose your Character
+                Choose your Character
             </div>
             <div class="image-container">
-                <img src="{{ url_for('static', filename='profile_pictures/eliana.PNG') }}" alt="Profilbild ">
-                <img src="{{ url_for('static', filename='profile_pictures/hanna.PNG') }}" alt="Profilbild ">
-                <img src="{{ url_for('static', filename='profile_pictures/rojin.PNG') }}" alt="Profilbild ">
-                <img src="{{ url_for('static', filename='profile_pictures/Profilbild.png') }}" alt="Profilbild standard">
-            </div>
-              <div class="image-container">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild1.PNG') }}" alt="Profilbild 1">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild2.PNG') }}" alt="Profilbild 2">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild3.PNG') }}" alt="Profilbild 3">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild4.png') }}" alt="Profilbild standard">
-            </div>
-              <div class="image-container">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild5.PNG') }}" alt="Profilbild 1">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild6.PNG') }}" alt="Profilbild 2">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild7.PNG') }}" alt="Profilbild 3">
-                <img src="{{ url_for('static', filename='profile_pictures/profilbild8.PNG') }}" alt="Profilbild standard">
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/eliana.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/eliana.PNG') }}" alt="Profilbild "></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/hanna.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/hanna.PNG') }}" alt="Profilbild "></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/rojin.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/rojin.PNG') }}" alt="Profilbild "></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/Profilbild.png">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/Profilbild.png') }}" alt="Profilbild standard"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild1.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild1.PNG') }}" alt="Profilbild 1"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild2.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild2.PNG') }}" alt="Profilbild 2"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild3.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild3.PNG') }}" alt="Profilbild 3"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild4.png">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild4.png') }}" alt="Profilbild standard"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild5.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild5.PNG') }}" alt="Profilbild 1"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild6.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild6.PNG') }}" alt="Profilbild 2"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild7.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild7.PNG') }}" alt="Profilbild 3"></button>
+                </form>
+                <form action="{{ url_for('set_profile_picture') }}" method="post">
+                    <input type="hidden" name="profile_picture" value="profile_pictures/profilbild8.PNG">
+                    <button type="submit"><img src="{{ url_for('static', filename='profile_pictures/profilbild8.PNG') }}" alt="Profilbild standard"></button>
+                </form>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
 
     <div class="flash">
                     {% with messages = get_flashed_messages() %}
@@ -79,5 +117,6 @@
         }
     </script>
 
+>>>>>>> c7efcbe192d13fc4860e83366c64a3563e2e394c
 </body>
 </html>

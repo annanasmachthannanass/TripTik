@@ -90,6 +90,38 @@
     margin-top: 20px;
 }
 
+<<<<<<< HEAD
+.reisen-content {
+    display: flex;
+    /* macht die Buttons nebeneinander */
+    justify-content: flex-start;
+    /* bietet Platz zwischen den Buttons */
+    flex-wrap: wrap;
+    /* erlaubt den Buttons, in die nächste Zeile zu wechseln, wenn der Platz nicht ausreicht */
+
+}
+
+.reisen-button {
+    width: 80px;
+    /* adjust as needed */
+    height: 80px;
+    /* display: inline-block; /* makes the buttons sit side by side */
+    margin: 15px;
+    /* provides some space between the buttons */
+}
+
+.reisen-button-img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+}
+
+.profile-edit-button:hover {
+    background-color: #218838;
+}
+
+=======
+>>>>>>> c7efcbe192d13fc4860e83366c64a3563e2e394c
 .name {
     text-align: center;
     font-size: 24px;
@@ -102,4 +134,5 @@
 
 .bottom-content {
     text-align: center;
+    padding: 100px;
 }
