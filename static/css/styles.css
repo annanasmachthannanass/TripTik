@@ -55,5 +55,11 @@ button:hover {
     padding: 10px;
 }
 
-
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #e9b6b3; /* Default Red for error */
+    color: #000000;
+}
 

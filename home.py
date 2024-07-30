@@ -104,7 +104,14 @@ def login():
 
 #User-Infos abrufen
 
-def get_user(user_id):
+def get_user_id():
+    user = session.get('user_id')
+    if not user:
+        flash('Please log in to have access.')
+        return redirect(url_for('index'))
+    return user
+
+def get_user_info(user_id):
     try:
         db = get_db()
         user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
@@ -113,14 +120,14 @@ def get_user(user_id):
         flash(f"Database error: {e}")
 
 def get_user_name(user_id):
-    user = get_user(user_id)
+    user = get_user_info(user_id)
     if user:
         return user['username']
     else:
         return None
     
 def get_user_bio(user_id):
-    user = get_user(user_id)
+    user = get_user_info(user_id)
     if user:
         return user['bio']
     else:
@@ -131,26 +138,19 @@ def get_user_bio(user_id):
 
 @app.route('/reise-speichern', methods=['POST'])
 def reise_speichern():
+    user_id = get_user_id()
     reise = request.form['reise']
     stadt = request.form['stadt']
     land = request.form['land']
     startdatum = request.form['startdatum']
     enddatum = request.form['enddatum']
     bericht = request.form['bericht']
-
     files = request.files.getlist('bild')
-
     if not files:
         flash('Please upload at least one image.')
-
-    user = session.get('user_id')
-    if not user:
-        flash('Please log in to save your trip.')
-        return redirect(url_for('login'))
-    
     try:
         db = get_db()
-        db.execute('INSERT INTO trips (name, city, country, start_date, end_date, report, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)', (reise, stadt, land, startdatum, enddatum, bericht, user))
+        db.execute('INSERT INTO trips (name, city, country, start_date, end_date, report, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)', (reise, stadt, land, startdatum, enddatum, bericht, user_id))
         db.commit()
         trip_row = db.execute('SELECT id FROM trips WHERE name = ?', (reise,)).fetchone()
         db.commit()
@@ -158,10 +158,19 @@ def reise_speichern():
             if file.filename !='' :
                 file_blob = file.read()
                 db.execute('INSERT INTO images (trip_id, image) VALUES (?, ?)', (trip_row['id'], file_blob))
-                db.commit()
-                
+                db.commit()     
         trip_id=trip_row['id']
         return redirect(url_for('reise_page', trip_id=trip_id))
+    except sqlite3.IntegrityError as e:
+        if "UNIQUE constraint failed" in str(e):
+            flash("Fehler: Der Name der Reise muss einzigartig sein. Bitte ändern Sie den Namen der Reise.")
+            name=get_user_name(user_id)
+            bio=get_user_bio(user_id)
+            trips=get_trip_id_name_list()
+            return render_template('reise_hinzufuegen.html', name=name, bio=bio, trips=trips, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht)
+        else:
+            flash(f"Datenbankfehler: {e}")
+            return redirect(url_for('reise_hinzufuegen_page'))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return redirect(url_for('reise_hinzufuegen_page'))
@@ -171,15 +180,14 @@ def reise_speichern():
 
 @app.route('/reise-aendern', methods=['GET', 'POST'])
 def reise_aendern():
+    user_id = get_user_id()
     trip_id = request.form.get('trip_id')
-
     reise = request.form['reise']
     stadt = request.form['stadt']
     land = request.form['land']
     startdatum = request.form['startdatum']
     enddatum = request.form['enddatum']
     bericht = request.form['bericht']
-    
     try:
         db = get_db()
         db.execute('''
@@ -190,9 +198,19 @@ def reise_aendern():
             (reise, stadt, land, startdatum, enddatum, bericht, trip_id))
         db.commit()
         return redirect(url_for('reise_page', trip_id=trip_id))
+    except sqlite3.IntegrityError as e:
+        if "UNIQUE constraint failed" in str(e):
+            flash("Fehler: Der Name der Reise muss einzigartig sein. Bitte ändern Sie den Namen der Reise.")
+            name=get_user_name(user_id)
+            bio=get_user_bio(user_id)
+            trips=get_trip_id_name_list()
+            return render_template('reise_bearbeiten.html', name=name, bio=bio, trips=trips, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht)
+        else:
+            flash(f"Datenbankfehler: {e}")
+            return redirect(url_for('reise_bearbeiten_page'))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
-        return redirect(url_for('reise_hinzufuegen_page'))
+        return redirect(url_for('reise_bearbeiten_page'))
     
 
 #Reise-Inhalte aus der Datenbank abrufen
@@ -239,7 +257,7 @@ def get_trip_list(user_id):
     
 #Liste der IDs und Namen und erstes Bild der Reisen
 def get_trip_id_name_list():
-    trips = get_trip_list(session.get('user_id'))
+    trips = get_trip_list(get_user_id())
     trip_id_name_image_list = []
     for trip in trips:
         trip_id=trip['id']
@@ -256,7 +274,7 @@ def get_trip_id_name_list():
  
 #Liste der Länder der Reisen
 def get_trip_country_list():
-    trips = get_trip_list(session.get('user_id'))
+    trips = get_trip_list(get_user_id())
     if trips is not None:
         countries = list({trip['country']: {'country': trip['country']} for trip in trips}.values())
         return countries
@@ -307,10 +325,7 @@ def register_page():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    user_id=session.get('user_id')
-    if not user_id:
-        flash('Please log in to view your profile.')
-        return redirect(url_for('index'))
+    user_id = get_user_id()
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
     country_list = get_trip_country_list_english()
@@ -320,49 +335,37 @@ def home():
 
 @app.route('/reisen', methods=['GET', 'POST'])
 def reisen_page():
-    user_id=session.get('user_id')
-    if not user_id:
-        flash('Please log in to view your profile.')
-        return redirect(url_for('index'))
-    
+    user_id = get_user_id()
     name=get_user_name(user_id)
     bio=get_user_bio(user_id)
     progress=get_progress()
     trips=get_trip_id_name_list()
-    return render_template('reisen.html', name=name, bio=name, progress=progress, trips=trips)
+    return render_template('reisen.html', name=name, bio=bio, progress=progress, trips=trips)
 
 @app.route('/reise', methods=['GET', 'POST'])
 def reise_page():
-    user_id=session.get('user_id')
-    if not user_id: 
-        flash('Please log in to view your profile.')
-        return redirect(url_for('index'))
-    try:
-        db = get_db()
-        if request.method == 'GET':
-            trip_id = request.args.get('trip_id')
-        elif request.method == 'POST':
-            trip_id = request.form.get('trip_id')
-        if not trip_id:
-            flash("Trip ID is missing")
-            return render_template('reise.html')
-        trip_details = get_trip(trip_id)
-        if trip_details is None:
-            flash("Trip not found")
-            return render_template('reise.html')
-        reise, stadt, land, startdatum, enddatum, bericht = trip_details
-        name=get_user_name(user_id)
-        bio=get_user_bio(user_id)
-        trips = get_trip_id_name_list()
-        trip_bilder=get_trip_images(trip_id)
-        return render_template('reise.html', name=name, bio=bio, reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_bilder=trip_bilder, trip_id=trip_id, trips=trips)
-    except sqlite3.Error as e:
-        flash(f"Database error: {e}")
-        return redirect(url_for('home'))
+    user_id = get_user_id()
+    if request.method == 'GET':
+        trip_id = request.args.get('trip_id')
+    elif request.method == 'POST':
+        trip_id = request.form.get('trip_id')
+    if not trip_id:
+        flash("Trip ID is missing")
+        return render_template('reise.html')
+    trip_details = get_trip(trip_id)
+    if trip_details is None:
+        flash("Trip not found")
+        return render_template('reise.html')
+    reise, stadt, land, startdatum, enddatum, bericht = trip_details
+    name=get_user_name(user_id)
+    bio=get_user_bio(user_id)
+    trips = get_trip_id_name_list()
+    trip_bilder=get_trip_images(trip_id)
+    return render_template('reise.html', name=name, bio=bio, reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_bilder=trip_bilder, trip_id=trip_id, trips=trips)
 
 @app.route('/reise_bearbeiten', methods=['GET', 'POST'])
 def reise_bearbeiten_page():
-    user_id=session.get('user_id')
+    user_id = get_user_id()
     trip_id = request.form.get('trip_id')
     if not trip_id:
         flash("Trip ID is missing")
@@ -380,138 +383,60 @@ def reise_bearbeiten_page():
 
 @app.route('/reise_hinzufuegen', methods=['GET', 'POST'])
 def reise_hinzufuegen_page():
-    user_id=session.get('user_id')
-    if not user_id:
-        flash('Please log in to view your profile.')
-        return redirect(url_for('index'))
-    try:
-        db = get_db()
-
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
-        if not user:
-            flash('User not found.')
-            return redirect(url_for('home'))
-        
-        trips = get_trip_id_name_list()
-
-        return render_template('reise_hinzufuegen.html', name=user['username'], bio=user['bio'], trips=trips)
-
-    except sqlite3.Error as e:
-        flash(f"Database error: {e}")
-        return redirect(url_for('home'))
+    user_id = get_user_id()
+    name=get_user_name(user_id)
+    bio=get_user_bio(user_id)
+    trips = get_trip_id_name_list()
+    return render_template('reise_hinzufuegen.html', name=name, bio=bio, trips=trips)
 
 @app.route('/profil', methods=['GET','POST'])
 def profil_page():
-    user_id=session.get('user_id')
-    print(f"User ID from session: {user_id}")
-
-    if not user_id:
-        flash('Please log in to view your profile.')
-        return redirect(url_for('index'))
- 
-    db=get_db()
-    try:
-        if db is not None:
-            user =db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
-            if user:
-                print(f"User found in the db: {user['username']}")
-                trips=get_trip_id_name_list()
-                return render_template('profil.html', name=user['username'], bio=user['bio'], trips=trips)
-            else:
-                print(f'User not found in the db.')
-                flash('User not found.')
-                return redirect(url_for('home'))
-        else:
-            flash('Database connection error. Please try again later.')
-    except sqlite3.Error as e:
-        flash(f"Database error: {e}")
-        return redirect(url_for('home'))
-    finally:
-        db.close()
+    user_id = get_user_id()
+    name=get_user_name(user_id)
+    bio=get_user_bio(user_id)
+    trips=get_trip_id_name_list()
+    return render_template('profil.html', name=name, bio=bio, trips=trips)
 
 @app.route('/profil_bearbeiten', methods=['GET', 'POST'])
 def profil_bearbeiten_page():
-    user_id = session.get('user_id')
-    print(f"User ID from session: {user_id}")
-
-    if not user_id:
-        flash('Please log in to view your profile.')
-        return redirect(url_for('index'))
-
-    db = get_db()
-   # if db is None:
-    #    flash('Database connection error. Please try again later.')
-     #   return redirect(url_for('profil_page'))
+    user_id = get_user_id()
     try:
+        db = get_db()
         if request.method == 'POST':
             neuer_name = request.form.get('nickname','')
             neue_bio = request.form.get('bio','')
-
-            # Validierung des neuen Namens
             if not neuer_name:
                 flash('Der Benutzername darf nicht leer sein.')
                 return redirect(url_for('profil_bearbeiten_page'))
-    
-
             db.execute('UPDATE users SET username = ?, bio = ? WHERE id = ?', (neuer_name, neue_bio, user_id))
             db.commit()
             flash('Profil erfolgreich aktualisiert!')
             return redirect(url_for('profil_page'))
-            
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
-        if user:
+        name=get_user_name(user_id)
+        bio=get_user_bio(user_id)
+        trips=get_trip_id_name_list()
+        return render_template('profil_bearbeiten.html', name=name, bio=bio, trips=trips)
+    except sqlite3.IntegrityError as e:
+        if "UNIQUE constraint failed" in str(e):
+            flash("Fehler: Der Benutzername muss einzigartig sein. Bitte wählen Sie einen anderen Benutzernamen.")
+            name=get_user_name(user_id)
+            bio=get_user_bio(user_id)
             trips=get_trip_id_name_list()
-            return render_template('profil_bearbeiten.html', name=user['username'], bio=user['bio'], trips=trips)
+            return render_template('profil_bearbeiten.html', name=name, bio=bio, trips=trips)
         else:
-            flash('Benutzer nicht gefunden.')
-            return redirect(url_for('home'))
+            flash(f"Datenbankfehler: {e}")
+            return redirect(url_for('profil_bearbeiten_page'))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
-        return redirect(url_for('home'))
+        return render_template('profil_bearbeiten.html')
 
 @app.route('/profilbilder', methods=['GET'])
 def profilbilder_page():
-    user_id = session.get('user_id')
-    if not user_id:
-        flash('Please log in to view your profile.')
-        return redirect(url_for('index'))
-    
-    try:
-        db = get_db()
-
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
-        if not user:
-            flash('User not found.')
-            return redirect(url_for('home'))
-        
-        trips=get_trip_id_name_list()
-
-        return render_template('profilbilder.html', name=user['username'], bio=user['bio'], trips=trips)
-    except sqlite3.Error as e:
-        flash(f"Database error: {e}")
-        return redirect(url_for('home'))
-
-
-# Route zur sidebar... checke nichts mehr
-
-#@app.route('/sidebar')
-#def sidebar():
-    user_id = session.get('user_id')
-    if not user_id:
-        flash('Please log in to view your profile.')
-        return redirect(url_for('login'))
-    
-    try:
-        db = get_db()
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
-        if user:
-            return render_template('sidebar.html', name=user['username'], bio_content=user['bio'])
-        else:
-            flash('User not found.')
-            return redirect(url_for('home'))
-    except sqlite3.Error as e:
-        flash(f"Database error: {e}")
-        return redirect(url_for('home'))
+    user_id = get_user_id()
+    name=get_user_name(user_id)
+    bio=get_user_bio(user_id)
+    trips=get_trip_id_name_list()
+    return render_template('profilbilder.html', name=name, bio=bio, trips=trips)
 
 
 # Error-Handler für 404-Fehler

@@ -36,7 +36,7 @@
                     <label for="enddatum">Enddatum:</label>
                     <input type="date" id="enddatum" name="enddatum" value="{{enddatum}}"><br><br>
                     <label for="bericht">Bericht:</label> <br>
-                    <textarea id="bericht" name="bericht" rows="15" cols="60">{{bericht}}</textarea><br><br>
+                    <textarea id="bericht" name="bericht" rows="10" cols="60">{{bericht}}</textarea><br><br>
                 </div>
                 
                 <div>
@@ -44,6 +44,18 @@
                     <input type="file" id="bild" name="bild" accept="image/*" multiple><br><br>
                     <img id="bildVorschauGroß" src="#" alt="Bild Vorschau Groß">
                     <div id="bildVorschauContainer"></div>
+                </div>
+                
+                <div class="flash">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="flash-message">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                 </div>
                 
                 <input type="hidden" name="trip_id" value="{{ trip_id }}">

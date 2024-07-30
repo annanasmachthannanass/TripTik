@@ -56,6 +56,19 @@
             </div>
         </div>
     </div>
+
+    <div class="flash">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="flash-message">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                
      <script>
         function selectProfilePicture(src) {
             // Speichern Sie das ausgewählte Profilbild in localStorage oder senden Sie es an den Server

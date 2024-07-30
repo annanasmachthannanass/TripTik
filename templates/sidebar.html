@@ -5,7 +5,7 @@
         <img src="/static/images/profilbild.png" alt="TripTik Logo">
     </div>
     
-    <div class="name">{{name}}</div> <!-- neu aber funktioniert iwie nicht , jetzt schon lg hanna-->
+    <div class="name">{{name}}</div>
 
     <div class="sidebar-title">Bio:</div>
     <div class="bio-content">{{bio}}</div> 
@@ -13,14 +13,17 @@
     <div class="sidebar-title">Reisen:</div>
     <div class="reisen">
         {% for trip in trips %}
-            <form action="/reise" method="post">
-                <input type="hidden" name="trip_id" value="{{ trip.id }}">
-                <button class="reise-button" type="submit">
-                    <img src="{{ trip.image }}" alt="{{ trip.name }}">
-                    {{ trip.name }}
-                </button>
-            </form>
+            {% if loop.index <= 3 %}
+                <form action="/reise" method="post">
+                    <input type="hidden" name="trip_id" value="{{ trip.id }}">
+                    <button class="reise-button" type="submit">
+                        <img src="{{ trip.image }}" alt="{{ trip.name }}">
+                        {{ trip.name }}
+                    </button>
+                </form>
+            {% endif %}
         {% endfor %}
+
         <form action="/reise_hinzufuegen" method="post">
             <button class="reise-button" type="submit">
                 <div class="titel"> + </div>

@@ -95,6 +95,6 @@ input[type="text"], input[type="password"] {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: #f44336; /* Default Red for error */
-    color: #fff;
+    background-color: #e9b6b3; /* Default Red for error */
+    color: #000000;
 }
