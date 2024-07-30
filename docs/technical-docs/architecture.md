@@ -73,18 +73,18 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 + Die Flask-Anwendung wird im ersten Schritt mit app = Flask(__name__) initialisiert. Zudem wird eine secret_key wird gesetzt, der für die Sitzungsverwaltung und den CSRF-Schutz verwendet wird.
 + Zudem definiert die Datei Pfade für die Datenbank und andere Ressourcen, wie beispielsweise GeoJSON- und JSON-Dateien, die innerhalb der Anwendung verwendet werden.
 
-![Flask](assets/images/home.py_Flask_Konfiguration.png "Flask-Anwendung und Konfiguration")
+![Flask](assets/images/technical-docs/home.py_Flask_Konfiguration.png "Flask-Anwendung und Konfiguration")
 
 **Datenbankverwaltung**
 + Die get_db() Funktion wird definiert, um eine Verbindung zur SQLite-Datenbank herzustellen. Zudem prüft check_db_connection() die die Datenbankverbindung.
 
-![DB](assets/images/home.py_DB "Datenbankverwaltung")
+![DB](assets/images/technical-docs/home.py_DB "Datenbankverwaltung")
 
 **Benutzerverwaltung**
 + Weiterhin gibt es Endpunkte (/register und /login), die Benutzereingaben entgegennehmen und in der Datenbank speichern. Hier werden auch das Passwort-Hashing und Sitzungsmanagement implementiert.
 + Die Datei verwendet außerdem generate_password_hash und check_password_hash, um Benutzerdaten zu schützen.
 
-![Benutzerverwaltung](assets/images/home.py_/register.png "Benutzerverwaltung")
+![Benutzerverwaltung](assets/images/technical-docs/home.py_register.png "Benutzerverwaltung")
 
 **Reiseverwaltung**
 + Funktionen wie reise_speichern und reise_aendern verwalten das Speichern und Aktualisieren von Reiseinformationen in der Datenbank. Diese Funktionen verarbeiten zudem Bilder, die von Benutzern hochgeladen wurden.
@@ -93,13 +93,13 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 **Routen**
 + Weiterhin sind die Routen in der Flask-Anwendung enthalten. Diese definieren, wie verschiedene HTTP-Anfragen behandelt werden und welche Vorlagen bzw. Templates gerendert werden. Hier ist eine Beschreibung der einzelnen [Routen](https://annanasmachthannanass.github.io/TripTik/technical-docs/reference.html).
 
-![route](assets/images/home.py_route "route")
+![route](assets/images/technical-docs/home.py_route.png "route")
 
 #### templates
 
 + Der Ordner `templates` enthält sämtliche HTML-Templates, die in der Anwendung verwendet werden. Diese Templates werden mit Jinja, einem Template-Engine für Python, gerendert. Jinja ermöglicht uns, dynamische Inhalte in HTML-Dateien einzufügen, indem es Platzhalter und Kontrollstrukturen wie Schleifen und Bedingungen verwendet.
 
-![HTML](assets/images/anmeldung.html.jpg "anmeldung.html")
+![HTML](assets/images/technical-docs/anmeldung.html.png "anmeldung.html")
 
 + Jedes Template repräsentiert dabei eine spezifische Seite oder einen Teil der Benutzeroberfläche von TripTik. Beispielsweise kann bei unserer Anwendung zwischen Templates für die Startseite, die Detailansicht einer Reise, das Bearbeiten einer Reise und das Hinzufügen einer neuen Reise unterschieden werden.
 
@@ -109,12 +109,12 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 
 + Der `static`-Ordner enthält alle statischen Dateien der Anwendung. Diese Dateien werden direkt vom Webserver an den Client ausgeliefert und ändern sich nicht dynamisch. Zu den statischen Dateien gehören:
 
-![JSON](assets/images/static_ordner.png "static-Ordner")
+![JSON](assets/images/technical-docs/static_ordner.png "static-Ordner")
 
 **CSS-Dateien**
 + Diese Dateien enthalten die Stylesheets, die das Aussehen und Layout der HTML-Seiten definieren. Sie sorgen für ein konsistentes Design und ermöglichen es, das Erscheinungsbild der Anwendung zentral zu verwalten.
 
-![CSS](assets/images/anmeldung.css.jpg "anmeldung.css")
+![CSS](assets/images/technical-docs/anmeldung.css.png "anmeldung.css")
 
 **JavaScript-Dateien** 
 + Die JavaScript-Dateien enthalten clientseitige Skripte, die die Interaktivität und Funktionalität der Anwendung verbessern. Sie können für Formvalidierung, AJAX-Anfragen, Animationen und vieles mehr verwendet werden.
