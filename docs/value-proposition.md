@@ -48,4 +48,4 @@ Insight
 
 ## Customer journey
 
-![Ablaufdiagramm SmartSchedule](assets/images/Ablaufdiagramm.jpg "Ablaufdiagramm")
+![Ablaufdiagramm TripTik](assets/images/Ablaufdiagramm.jpg "Ablaufdiagramm")
