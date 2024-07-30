@@ -18,9 +18,8 @@
 
        {% include 'navigation.html' %}
 
-        <div class="bottom-content" style="background-color: rgba(156, 186, 192, 0.9); display: grid; grid-template-columns: 1fr 1fr;">
+        <div class="bottom-content">
             <div> 
-                <p>Reise: {{reise}}</p>
                 <p>Stadt: {{stadt}}</p>
                 <p>Land: {{land}}</p>
                 <p>Startdatum: {{startdatum}}</p>
@@ -28,23 +27,33 @@
                 <p>Bericht: {{bericht}}</p>
             </div>
             
-            <div>
-                Bilder
-                <div class="bilder">
-                    {% if trip_bilder %}
-                        {% for bild in trip_bilder %}
-                            <img src="data:image/jpeg;base64,{{ bild }}" alt="Bild" style="max-width: 300px; max-heigth: 300px;">
-                        {% endfor %}
-                    {% else %}
-                        <p>Keine Bilder vorhanden</p>
-                    {% endif %}
-                </div>
+            <div class="bilder">
+                {% if trip_bilder %}
+                    {% for bild in trip_bilder %}
+                        <img src="data:image/jpeg;base64,{{ bild }}" alt="Bild" style="max-width: 300px; max-heigth: 300px;">
+                    {% endfor %}
+                {% else %}
+                    <p>Keine Bilder vorhanden</p>
+                {% endif %}
             </div>
 
             <form action="/reise_bearbeiten" method="post">
                 <input type="hidden" name="trip_id" value="{{ trip_id }}">
-                <button type="submit">Diese Reise bearbeiten</button>
+                <button type="submit" id="submit">Diese Reise bearbeiten</button>
             </form>
+
+            <div class="flash">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="flash-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+
         </div>
         
     </div>

@@ -37,6 +37,18 @@
                     <textarea name="bio" placeholder="bio">{{bio}}!</textarea>
                  </div>
 
+                <div class="flash">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="flash-message">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                
                 <div>
                     <button type="submit" class="profile-edit-button">Speichern</button>
                     

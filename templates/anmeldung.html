@@ -14,19 +14,6 @@
             Anmeldung
         </div>
 
-        <!-- Flash message section -->
-        <div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="flash-message">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </div>
-
         <div class="bottom-content">
             <form action="/login" method="post">
                 <div class="form-group">
@@ -42,6 +29,18 @@
             <form action="/register-page" method="post">
                 <button type="submit" name="action" value="register" class="registrierung-button">Noch kein Konto? Registrieren</button>
             </form>
+        </div>
+
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="flash-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         </div>
     </div>
 </body>

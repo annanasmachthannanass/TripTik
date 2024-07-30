@@ -39,3 +39,7 @@ input, textarea {
 img {
     border-radius: 5px;
 }
+
+.flash{
+    grid-column: span 2;
+}
