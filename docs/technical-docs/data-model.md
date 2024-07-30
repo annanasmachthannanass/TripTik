@@ -66,8 +66,4 @@ TripTiks Datenbank besteht aus mehreren Entitäten, die die Geschäftslogik und 
 
 ## Entity-Relationship-Diagramm (ERD)
 
-<<<<<<< HEAD
 ![ERD](../assets/images/ERD_TripTik.jpg "Entity-Relationship-Diagramm")
-=======
-![ERD](../assets/images/ERD_TripTik.jpg "Entity-Relationship-Diagramm")
->>>>>>> 9eed149af79c9da49068140b15415899608c4b98
