@@ -26,37 +26,26 @@
             </div>
 
             <div class="name">
-                 Hanna
+                 {{ name }}
             </div>
 
-            <div class="profile_bio-content">
-                        I love to travel and explore new places!
-                        I love to travel and explore new places! 
-                        I love to travel and explore new places!
-            </div>
-
-                <div class="reisen">
-                    <form action="/reisen" method="post">
-                        <button class="reise-button small" type="submit">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}">
-                                das ist eine reise
-                        </button>
-                    </form>
-
-                    <form action="/reisen" method="post">
-                        <button class="reise-button small" type="submit">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}">
-                                das ist eine reise
-                        </button>
-                    </form>
-
-                    <form action="/reisen" method="post">
-                        <button class="reise-button small" type="submit">
-                            <img src="{{ url_for('static', filename='images/logo.png') }}">
-                                das ist eine reise
-                        </button>
-                    </form>
+           <div class="bio">
+                <div class="bio-content">
+                    {{ bio }}
                 </div>
+           </div>
+
+            <div class="reisen">
+                {% for trip in trips %}
+                    <form action="/reise" method="post">
+                        <input type="hidden" name="trip_id" value="{{ trip.id }}">
+                        <button class="reise-button small" type="submit">
+                            <img src="{{ trip.image }}" class="reise-button-img">
+                            {{ trip.name }}
+                        </button>
+                    </form>
+                {% endfor %}
+            </div>
 
             <div>
                 <form action="/profil_bearbeiten" method="get">
@@ -66,7 +55,4 @@
         </div>
     </div>
 </body>
-
-
-
 </html>

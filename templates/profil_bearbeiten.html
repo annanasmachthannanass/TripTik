@@ -24,25 +24,24 @@
             </div>
 
             <div class="nutzername-text">
-            Anananasmachthannanas
+             {{ name }}
             </div>
 
+            <form action="{{ url_for ('profil_bearbeiten_page') }}"method="post">
+               
+                <div class="name">
+                    <input type="text" name="nickname" value="{{name}}" placeholder="Neuer Nutzername">
+                </div>
 
-            <div class="name">
-                <input type="text" value="Spitzname">
-            </div>
+                <div class="profile_bio-content">
+                    <textarea name="bio" placeholder="bio">{{bio}}!</textarea>
+                 </div>
 
-            <div class="profile_bio-content">
-                <textarea placeholder="Bio">I love to travel and explore new places!
-                        I love to travel and explore new places! 
-                        I love to travel and explore new places!</textarea>
-            </div>
-
-            <div>
-                <form action="/profil" method="post">
+                <div>
                     <button type="submit" class="profile-edit-button">Speichern</button>
-                </form>
-            </div>
+                    
+                </div>
+            </form>
             
         </div>
     </div>
