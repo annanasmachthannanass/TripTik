@@ -1,4 +1,6 @@
-
+.bottom-content {
+    background-color: rgba(156, 186, 192, 0.9);
+}
 
 .profil_profilbild img {
     width: 100%;
@@ -86,10 +88,6 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
-}
-
-.profile-edit-button:hover {
-    background-color: #218838;
 }
 
 .name {

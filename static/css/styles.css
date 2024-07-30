@@ -30,6 +30,10 @@ button {
     margin: 10px;
 }
 
+button:hover {
+    background-color: #448c9e;
+}
+
 .image-box {
     background-image: url(/static/images/background.jpeg);
     background-size: cover;
