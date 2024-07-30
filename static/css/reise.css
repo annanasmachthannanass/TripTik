@@ -1,0 +1,22 @@
+.bottom-content{
+    background-color: rgba(156, 186, 192, 0.9);
+    font: 400 16px 'Roboto', sans-serif;
+}
+
+p {
+    padding-bottom: 10px;
+}
+
+.bilder{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 10px;
+}
+
+img {
+    border-radius: 5px;
+}
+
+#submit{
+    width: 100%;
+}

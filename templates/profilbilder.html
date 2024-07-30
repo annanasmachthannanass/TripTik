@@ -92,5 +92,31 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <div class="flash">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="flash-message">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                
+     <script>
+        function selectProfilePicture(src) {
+            // Speichern Sie das ausgewählte Profilbild in localStorage oder senden Sie es an den Server
+            // In diesem Beispiel speichern wir es im localStorage
+            localStorage.setItem('selectedProfilePicture', src);
+            // Weiterleitung zur Profilseite
+            window.location.href = '/profil'; // Passe die URL entsprechend an
+        }
+    </script>
+
+>>>>>>> c7efcbe192d13fc4860e83366c64a3563e2e394c
 </body>
 </html>

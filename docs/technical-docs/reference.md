@@ -7,76 +7,96 @@ nav_order: 3
 {: .no_toc }
 # Reference documentation
 
-{: .attention }
-> This page collects internal functions, routes with their functions, and APIs (if any).
-> 
-> See [Uber](https://developer.uber.com/docs/drivers/references/api) or [PayPal](https://developer.paypal.com/api/rest/) for exemplary high-quality API reference documentation.
->
-> You may delete this `attention` box.
+## Anmelden und Registrieren
 
-<details open markdown="block">
-{: .text-delta }
-<summary>Table of contents</summary>
-+ ToC
-{: toc }
-</details>
-
-## [Section / module]
-
-### `function_definition()`
-
-**Route:** `/route/`
-
-**Methods:** `POST` `GET` `PATCH` `PUT` `DELETE`
-
-**Purpose:** [Short explanation of what the function does and why]
-
+### `index()`
+**Route:** `/`
+**Methods:** `GET`, `POST`
+**Purpose:** Zeigt die Anmeldeseite an.
 **Sample output:**
 
-[Show an image, string output, or similar illustration -- or write NONE if function generates no output]
+![users](../assets/images/users.png "users-Tabelle")
 
----
+ ### `register_page()`
+**Route:** `/register-page`
+**Methods:** `GET`, `POST`
+**Purpose:** Zeigt die Registrierungsseite an.
+**Sample output:** 
 
-## [Example, delete this section] Show to-do lists
+![users](../assets/images/users.png "users-Tabelle")
 
-### `get_lists()`
+—
 
-**Route:** `/lists/`
+## Startbildschirm anzeigen
 
-**Methods:** `GET`
+### `home()`
+**Route:** `/home`
+**Methods:** `GET`, `POST`
+**Purpose:** Zeigt die Startseite des Benutzers an, sowie Benutzerinformationen, Fortschritt und Reisen.
+**Sample output:** 
 
-**Purpose:** Show all to-do lists.
+![users](../assets/images/users.png "users-Tabelle")
 
-**Sample output:**
+—
 
-![get_lists() sample](../assets/images/fswd-intro_00.png)
+## Reisen Anzeigen, Bearbeiten und Hinzufügen
 
----
+### `reisen_page()`
+**Route:** `/reisen`
+**Methods:** `GET`, `POST`
+**Purpose:** Zeigt die Seite mit den allen Reisen des Benutzers an.
+**Sample output:** 
 
-### `get_list_todos(list_id)`
+![users](../assets/images/users.png "users-Tabelle")
 
-**Route:** `/lists/<int:list_id>`
+### `reise_page()`
+**Route:** `/reise`
+**Methods:** `GET`, `POST`
+**Purpose:** Zeigt die Details einer bestimmten Reise an. Wenn keine `trip_id` angegeben ist, wird eine Fehlermeldung angezeigt.
+**Sample output:** 
 
-**Methods:** `GET`
+![users](../assets/images/users.png "users-Tabelle")
 
-**Purpose:** Retrieve all to-do items of to-do list with ID `list_id` from database and present to user.
+### `reise_bearbeiten_page()`
+**Route:** `/reise_bearbeiten`
+**Methods:** `GET`, `POST`
+**Purpose:** Ermöglicht das Bearbeiten einer bestimmten Reise. Wenn keine `trip_id` angegeben ist, wird eine Fehlermeldung angezeigt.
+**Sample output:** 
 
-**Sample output:**
+![users](../assets/images/users.png "users-Tabelle")
 
-![get_list_todos() sample](../assets/images/fswd-intro_02.png)
+### `reise_hinzufuegen_page()`
+**Route:** `/reise_hinzufuegen`
+**Methods:** `GET`, `POST`
+**Purpose:** Zeigt die Seite zum Hinzufügen einer neuen Reise an.
+**Sample output:** 
 
----
+![users](../assets/images/users.png "users-Tabelle")
 
-## [Example, delete this section] Insert sample data
+—
 
-### `run_insert_sample()`
+## Profil Anzeigen und Bearbeiten
 
-**Route:** `/insert/sample`
+### `profil_page()`
+**Route:** `/profil`
+**Methods:** `GET`, `POST`
+**Purpose:** Zeigt die Profilseite des Benutzers an.
+**Sample output:** 
 
-**Methods:** `GET`
+![users](../assets/images/users.png "users-Tabelle")
 
-**Purpose:** Flush the database and insert sample data set
+### `profil_bearbeiten_page()`
+**Route:** `/profil_bearbeiten`
+**Methods:** `GET`, `POST`
+**Purpose:** Ermöglicht das Bearbeiten des Profils. Bei Fehlern wird eine entsprechende Fehlermeldung angezeigt.
+**Sample output:** 
 
-**Sample output:**
+![users](../assets/images/users.png "users-Tabelle")
 
-Browser shows: `Database flushed and populated with some sample data.`
+### `profilbilder_page()`
+**Route:** `/profilbilder`
+**Methods:** `GET`
+**Purpose:** Zeigt die Profilbilderseite des Benutzers an.
+**Sample output:** 
+
+![users](../assets/images/users.png "users-Tabelle")

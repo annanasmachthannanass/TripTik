@@ -30,6 +30,10 @@ button {
     margin: 10px;
 }
 
+button:hover {
+    background-color: #448c9e;
+}
+
 .image-box {
     background-image: url(/static/images/background.jpeg);
     background-size: cover;
@@ -51,5 +55,11 @@ button {
     padding: 10px;
 }
 
-
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #e9b6b3; /* Default Red for error */
+    color: #000000;
+}
 

@@ -37,26 +37,25 @@
 
             var countryList = {{ country_list|tojson }};
             var colors = [
-                '#FF0000', // rot
-                '#00FF00', // grün
-                '#0000FF', // blau
-                '#FFFF00', // gelb
-                '#FF00FF', // pink
-                '#00FFFF', // türkis
-                '#FFA500', // orange
-                '#800080', // lila
-                '#008000', // dunkelgrün
-                '#800000', // dunkelrot
-                '#000080', // dunkelblau
-                '#808000', // oliv
-                '#008080', // dunkeltürkis
-                '#FFC0CB', // rosa
+                '#ED5555', // Pastellrot
+                '#B7DE68', // Pastellgrün
+                '#87CEFA', // Pastellblau
+                '#F0E68C', // Pastellgelb
+                '#FF69B4', // Pastellpink
+                '#FFC0CB', // Pastellrosa
+                '#A1EDEB', // Pastelltürkis
+                '#FFA07A', // Pastellorange
+                '#DDA0DD', // Pastelllila
+                '#6F9C14', // Pastelldunkelgrün
+                '#CD5C5C', // Pastelldunkelrot
+                '#4682B4', // Pastelldunkelblau
+                '#FFD700', // Pastelldunkelgelb
+                '#0BBFBF', // Pastelldunkeltürkis
             ]
 
             map.on('load', function () {
                 map.addSource('countries', {
                     'type': 'geojson',
-                    //'data': '/static/geojson/laender_faerben.geojson' // Pfad zur GeoJSON-Datei -> da sind die Ländergrenzen drinne!
                     'data': 'static/geojson/world-administrative-boundaries.geojson'
                 });
 
@@ -73,20 +72,23 @@
                     'source': 'countries',
                     'paint': {
                         'fill-color': colorMapping,
-/*                       'fill-color': [
-                            'match',
-                            ['get', 'name'], // Attribut, das den Ländernamen enthält
-                            'Germany', '#FF0000', // Farbe rot für die Färbung von Deutschland
-                            'France', '#00FF00', // Farbe grün für die Färbung von Frankreich
-                            'Poland', '#0000FF', // Farbe blau für die Färbung von Polen
-                            /* weitere Länder und Farben hier hinzufügen 
-                            '#ccc' // Standardfarbe für alle andere Länder
-                        ],*/
                         'fill-opacity': 0.7
                     }
                 });
             });
         </script>
+
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="flash-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
 
         {% include 'progress_bar.html' %}
 
