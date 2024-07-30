@@ -14,8 +14,6 @@ nav_order: 2
 {: toc }
 </details>
 
-[Visualize and describe the data model(s) of your application. This description should match the actual implementation.]
-
 ## Overview
 
 TripTiks Datenbank besteht aus mehreren Entitäten, die die Geschäftslogik und die Anwendungsanforderungen widerspiegeln. Das gewählte Modell stellt  dabei sicher, dass die Integrität der Daten bewahrt bleibt, indem Fremdschlüssel verwendet werden, um die Verbindungen zwischen den Entitäten zu verwalten. Die relevanten Tabellen sind dabei folgende:
