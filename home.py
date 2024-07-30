@@ -290,13 +290,13 @@ def home():
         return redirect(url_for('index'))
     try:
         db = get_db()
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         if user:
             country_list = get_trip_country_list_english()
             progress = get_progress()
             trips =get_trip_id_name_list()
 
-            return render_template('home.html', name=user['username'], bio=user['bio'], country_list=country_list, progress=progress,trips=trips)
+            return render_template('home.html', name=user['username'], bio=user['bio'], profile_picture= user['profile_picture'], country_list=country_list, progress=progress,trips=trips)
             print(f"User found in the db: {user['username']}")
         else:
             print(f'User not found in the db.')
@@ -320,12 +320,12 @@ def reisen_page():
     try:
         db=get_db()
 
-        user=db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user=db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         if user:
             print(f"User found in the db: {user['username']}")
             progress=get_progress()
             trips=get_trip_id_name_list()
-            return render_template('reisen.html', name=user['username'], bio=user['bio'], progress=progress, trips=get_trip_id_name_list())
+            return render_template('reisen.html', name=user['username'], bio=user['bio'], profile_picture=user['profile_picture'], progress=progress, trips=get_trip_id_name_list())
         else:
             print(f'User not found in the db.')
             flash('User not found.')
@@ -342,6 +342,7 @@ def reise_page():
         return redirect(url_for('index'))
     try:
         db = get_db()
+
         if request.method == 'GET':
             trip_id = request.args.get('trip_id')
         elif request.method == 'POST':
@@ -360,14 +361,14 @@ def reise_page():
 
         trip_bilder=get_trip_images(trip_id)
 
-        user=db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         if not user:
             flash('User not found.')
             return redirect(url_for('home'))
         
         trips = get_trip_id_name_list()
     
-        return render_template('reise.html', name=user['username'], bio=user['bio'], reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_bilder=trip_bilder, trip_id=trip_id, trips=trips)
+        return render_template('reise.html', name=user['username'], bio=user['bio'], profile_picture=user['profile_picture'], reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_bilder=trip_bilder, trip_id=trip_id, trips=trips)
     
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
@@ -398,13 +399,13 @@ def reise_bearbeiten_page():
     
         reise, stadt, land, startdatum, enddatum, bericht = trip_details
 
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         if not user:
             flash('User not found.')
             return redirect(url_for('home'))
         trips= get_trip_id_name_list()
 
-        return render_template('reise_bearbeiten.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_id=trip_id, name=user ['username'], bio=user['bio'], trips=trips)
+        return render_template('reise_bearbeiten.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_id=trip_id, name=user ['username'], bio=user['bio'], profile_picture=user['profile_picture'], trips=trips)
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return redirect(url_for('home'))
@@ -418,14 +419,14 @@ def reise_hinzufuegen_page():
     try:
         db = get_db()
 
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         if not user:
             flash('User not found.')
             return redirect(url_for('home'))
         
         trips = get_trip_id_name_list()
 
-        return render_template('reise_hinzufuegen.html', name=user['username'], bio=user['bio'], trips=trips)
+        return render_template('reise_hinzufuegen.html', name=user['username'], bio=user['bio'], profile_picture=user['profile_picture'], trips=trips)
 
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
@@ -433,27 +434,28 @@ def reise_hinzufuegen_page():
 
 @app.route('/profil', methods=['GET','POST'])
 def profil_page():
-    user_id=session.get('user_id')
+    user_id = session.get('user_id')
     print(f"User ID from session: {user_id}")
 
     if not user_id:
         flash('Please log in to view your profile.')
         return redirect(url_for('index'))
- 
-    db=get_db()
+    
+    db = get_db()
+    if db is None:
+        flash('Database connection error. Please try again later.')
+        return redirect(url_for('home'))
+
     try:
-        if db is not None:
-            user =db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
-            if user:
-                print(f"User found in the db: {user['username']}")
-                trips=get_trip_id_name_list()
-                return render_template('profil.html', name=user['username'], bio=user['bio'], trips=trips)
-            else:
-                print(f'User not found in the db.')
-                flash('User not found.')
-                return redirect(url_for('home'))
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
+        if user:
+            print(f"User found in the db: {user['username']}")
+            trips = get_trip_id_name_list()
+            return render_template('profil.html', name=user['username'], bio=user['bio'], profile_picture=user['profile_picture'], trips=trips)
         else:
-            flash('Database connection error. Please try again later.')
+            print('User not found in the db.')
+            flash('User not found.')
+            return redirect(url_for('home'))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return redirect(url_for('home'))
@@ -490,10 +492,10 @@ def profil_bearbeiten_page():
             return redirect(url_for('profil_page'))
             
     
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         if user:
             trips=get_trip_id_name_list()
-            return render_template('profil_bearbeiten.html', name=user['username'], bio=user['bio'], trips=trips)
+            return render_template('profil_bearbeiten.html', name=user['username'], bio=user['bio'], profile_picture=user['profile_picture'], trips=trips)
         else:
             flash('Benutzer nicht gefunden.')
             return redirect(url_for('home'))
@@ -511,18 +513,39 @@ def profilbilder_page():
     try:
         db = get_db()
 
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         if not user:
             flash('User not found.')
             return redirect(url_for('home'))
         
         trips=get_trip_id_name_list()
 
-        return render_template('profilbilder.html', name=user['username'], bio=user['bio'], trips=trips)
+        return render_template('profilbilder.html', name=user['username'], bio=user['bio'], profile_picture=user['profile_picture'], trips=trips)
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return redirect(url_for('home'))
 
+@app.route('/set_profile_picture', methods=['POST'])
+def set_profile_picture():
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Please log in to update your profile picture.')
+        return redirect(url_for('index'))
+    
+    new_profile_picture = request.form.get('profile_picture')
+    if not new_profile_picture:
+        flash('No profile picture selected.')
+        return redirect(url_for('profilbilder_page'))
+
+    try:
+        db = get_db()
+        db.execute('UPDATE users SET profile_picture = ? WHERE id = ?', (new_profile_picture, user_id))
+        db.commit()
+        flash('Profile picture updated successfully.')
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+    
+    return redirect(url_for('profilbilder_page'))
 
 # Route zur sidebar... checke nichts mehr
 

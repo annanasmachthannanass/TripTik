@@ -19,8 +19,12 @@
         {% include 'navigation.html' %}
 
         <div class="bottom-content">
-            <div class="profilbild">
-             <img src="{{ url_for('static', filename='images/profilbild.png') }}" alt="Profilbild">
+             <div class="profilbild">
+                <form action="/profilbilder" method="get">
+                    <button type="submit" class="profile-button">
+                        <img src="{{ url_for('static', filename='images/profilbild.png') }}" alt="Profilbild">
+                    </button>
+                </form>
             </div>
 
             <div class="nutzername-text">

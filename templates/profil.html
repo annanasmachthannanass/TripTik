@@ -18,12 +18,9 @@
 
         <div class="bottom-content">
             <div class="profilbild">
-                <form action="/profilbilder" method="get">
-                    <button type="submit" class="profile-button">
-                        <img src="{{ url_for('static', filename='images/profilbild.png') }}" alt="Profilbild">
-                    </button>
-                </form>
+             <img src="{{ url_for('static', filename=profile_picture) }}" alt="Profilbild">
             </div>
+           
 
             <div class="name">
                  {{ name }}
