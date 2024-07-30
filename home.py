@@ -375,10 +375,17 @@ def reise_page():
 
 @app.route('/reise_bearbeiten', methods=['GET', 'POST'])
 def reise_bearbeiten_page():
-    if request.method == 'GET':
-        trip_id = request.args.get('id')
-    elif request.method == 'POST':
-        trip_id = request.form.get('trip_id')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Please log in to view your profile.')
+        return redirect(url_for('index'))
+    try:
+        db = get_db()
+
+        if request.method == 'GET':
+            trip_id = request.args.get('id')
+        elif request.method == 'POST':
+            trip_id = request.form.get('trip_id')
 
         if not trip_id:
             flash("Trip ID is missing")
@@ -390,12 +397,39 @@ def reise_bearbeiten_page():
             return render_template('reise.html')
     
         reise, stadt, land, startdatum, enddatum, bericht = trip_details
-    
-    return render_template('reise_bearbeiten.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_id=trip_id)
 
+        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        if not user:
+            flash('User not found.')
+            return redirect(url_for('home'))
+        trips= get_trip_id_name_list()
+
+        return render_template('reise_bearbeiten.html', reise=reise, stadt=stadt, land=land, startdatum=startdatum, enddatum=enddatum, bericht=bericht, trip_id=trip_id, name=user ['username'], bio=user['bio'], trips=trips)
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('home'))
+    
 @app.route('/reise_hinzufuegen', methods=['GET', 'POST'])
 def reise_hinzufuegen_page():
-    return render_template('reise_hinzufuegen.html')
+    user_id=session.get('user_id')
+    if not user_id:
+        flash('Please log in to view your profile.')
+        return redirect(url_for('index'))
+    try:
+        db = get_db()
+
+        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        if not user:
+            flash('User not found.')
+            return redirect(url_for('home'))
+        
+        trips = get_trip_id_name_list()
+
+        return render_template('reise_hinzufuegen.html', name=user['username'], bio=user['bio'], trips=trips)
+
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('home'))
 
 @app.route('/profil', methods=['GET','POST'])
 def profil_page():
@@ -469,7 +503,25 @@ def profil_bearbeiten_page():
 
 @app.route('/profilbilder', methods=['GET'])
 def profilbilder_page():
-    return render_template('profilbilder.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Please log in to view your profile.')
+        return redirect(url_for('index'))
+    
+    try:
+        db = get_db()
+
+        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        if not user:
+            flash('User not found.')
+            return redirect(url_for('home'))
+        
+        trips=get_trip_id_name_list()
+
+        return render_template('profilbilder.html', name=user['username'], bio=user['bio'], trips=trips)
+    except sqlite3.Error as e:
+        flash(f"Database error: {e}")
+        return redirect(url_for('home'))
 
 
 # Route zur sidebar... checke nichts mehr
