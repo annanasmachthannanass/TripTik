@@ -14,7 +14,7 @@ nav_order: 1
 {: toc }
 </details>
 
-## Overview 11:55 Uhr
+## Overview
 
 TripTik ist ein umfassendes Reise-Tool, das entwickelt wurde, um Nutzern dabei zu helfen, ihre Reiseerfahrungen auf unterhaltsame und interaktive Weise zu dokumentieren und zu verwalten.
 
@@ -78,13 +78,13 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 **Datenbankverwaltung**
 + Die get_db() Funktion wird definiert, um eine Verbindung zur SQLite-Datenbank herzustellen. Zudem prüft check_db_connection() die die Datenbankverbindung.
 
-![DB](assets/images/home_py_DB.png "Datenbankverwaltung")
+![DB](../assets/images/home_py_DB.png "Datenbankverwaltung")
 
 **Benutzerverwaltung**
 + Weiterhin gibt es Endpunkte (/register und /login), die Benutzereingaben entgegennehmen und in der Datenbank speichern. Hier werden auch das Passwort-Hashing und Sitzungsmanagement implementiert.
 + Die Datei verwendet außerdem generate_password_hash und check_password_hash, um Benutzerdaten zu schützen.
 
-![Benutzerverwaltung](assets/images/home_py_register.png "Benutzerverwaltung")
+![Benutzerverwaltung](../assets/images/home_py_register.png "Benutzerverwaltung")
 
 **Reiseverwaltung**
 + Funktionen wie reise_speichern und reise_aendern verwalten das Speichern und Aktualisieren von Reiseinformationen in der Datenbank. Diese Funktionen verarbeiten zudem Bilder, die von Benutzern hochgeladen wurden.
@@ -93,13 +93,13 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 **Routen**
 + Weiterhin sind die Routen in der Flask-Anwendung enthalten. Diese definieren, wie verschiedene HTTP-Anfragen behandelt werden und welche Vorlagen bzw. Templates gerendert werden. Hier ist eine Beschreibung der einzelnen [Routen](https://annanasmachthannanass.github.io/TripTik/technical-docs/reference.html).
 
-![route](assets/images/home_py_route.png "route")
+![route](../assets/images/home_py_route.png "route")
 
 #### templates
 
 + Der Ordner `templates` enthält sämtliche HTML-Templates, die in der Anwendung verwendet werden. Diese Templates werden mit Jinja, einem Template-Engine für Python, gerendert. Jinja ermöglicht uns, dynamische Inhalte in HTML-Dateien einzufügen, indem es Platzhalter und Kontrollstrukturen wie Schleifen und Bedingungen verwendet.
 
-![HTML](assets/images/anmeldung_html.png "anmeldung.html")
+![HTML](../assets/images/anmeldung_html.png "anmeldung.html")
 
 + Jedes Template repräsentiert dabei eine spezifische Seite oder einen Teil der Benutzeroberfläche von TripTik. Beispielsweise kann bei unserer Anwendung zwischen Templates für die Startseite, die Detailansicht einer Reise, das Bearbeiten einer Reise und das Hinzufügen einer neuen Reise unterschieden werden.
 
@@ -109,12 +109,12 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 
 + Der `static`-Ordner enthält alle statischen Dateien der Anwendung. Diese Dateien werden direkt vom Webserver an den Client ausgeliefert und ändern sich nicht dynamisch. Zu den statischen Dateien gehören:
 
-![JSON](assets/images/static_ordner.png "static-Ordner")
+![JSON](../assets/images/static_ordner.png "static-Ordner")
 
 **CSS-Dateien**
 + Diese Dateien enthalten die Stylesheets, die das Aussehen und Layout der HTML-Seiten definieren. Sie sorgen für ein konsistentes Design und ermöglichen es, das Erscheinungsbild der Anwendung zentral zu verwalten.
 
-![CSS](assets/images/anmeldung_css.png "anmeldung.css")
+![CSS](../assets/images/anmeldung_css.png "anmeldung.css")
 
 **JavaScript-Dateien** 
 + Die JavaScript-Dateien enthalten clientseitige Skripte, die die Interaktivität und Funktionalität der Anwendung verbessern. Sie können für Formvalidierung, AJAX-Anfragen, Animationen und vieles mehr verwendet werden.
