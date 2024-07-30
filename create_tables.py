@@ -145,6 +145,25 @@ def add_images_table():
             return "Tabelle 'images' wurde erfolgreich erstellt."
         except sqlite3.Error as e:
             return f"Datenbankfehler: {e}"
+        
+@app.route('/create_bucketlist_table')
+def create_bucketlist_table():
+    with db_lock:
+        db = get_db()
+        try:
+            db.execute('''
+                CREATE TABLE bucketlist_items (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER,
+                    description TEXT NOT NULL,
+                    checked BOOLEAN DEFAULT FALSE,
+                    FOREIGN KEY(user_id) REFERENCES users(id)
+                )
+            ''')
+            db.commit()
+            return "Tabelle 'bucketlist_items' wurde erfolgreich erstellt."
+        except sqlite3.Error as e:
+            return f"Datenbankfehler: {e}"
 
 if __name__ == '__main__':
     print(f"Aktueller Arbeitsordner: {os.getcwd()}")

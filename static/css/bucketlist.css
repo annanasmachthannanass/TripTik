@@ -1,0 +1,95 @@
+/* Container für den gesamten Inhalt unterhalb des Headers */
+.bottom-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form für die Bucketlist-Items */
+.bucketlist-form,
+.bucketlist-update-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Jedes einzelne Bucketlist-Item */
+.bucketlist-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    width: 100%;
+}
+
+/* Die Checkbox für die Bucketlist-Items */
+.bucketlist-item input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+/* Die Beschriftung für die Bucketlist-Items */
+.bucketlist-item label {
+    font-size: 18px;
+    color: #fbfbfb;
+    cursor: pointer;
+}
+
+/* Abschnitt für das Hinzufügen neuer Bucketlist-Items */
+.bucketlist-form input[type="text"] {
+    width: calc(100% - 120px); /* Für das Textfeld und den Button zusammen */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    box-sizing: border-box; /* Stellen sicher, dass Padding in der Breite enthalten ist */
+}
+
+.bucketlist-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center; /* Zentriert den Button */
+}
+
+.bucketlist-form button:hover {
+    background-color: #555;
+}
+
+.bucketlist-update-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center; /* Zentriert den Button */
+}
+
+.bucketlist-update-form button:hover {
+    background-color: #555;
+}
+
+.zwischen-text {
+    color: #ffffff;
+    font: 900 20px 'Playfair Display', serif;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}

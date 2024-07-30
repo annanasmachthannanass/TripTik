@@ -28,7 +28,7 @@
 
            <div class="bio">
                 <div class="bio-content">
-                    {{ bio }}
+                   Deine aktuelle Bio: {{ bio }}
                 </div>
            </div>
 
@@ -36,8 +36,8 @@
                 {% for trip in trips %}
                     <form action="/reise" method="post">
                         <input type="hidden" name="trip_id" value="{{ trip.id }}">
-                        <button class="reise-button small" type="submit">
-                            <img src="{{ trip.image }}" class="reise-button-img">
+                        <button class="reisen-button small" type="submit">
+                            <img src="{{ trip.image }}" class="reisen-button-img">
                             {{ trip.name }}
                         </button>
                     </form>

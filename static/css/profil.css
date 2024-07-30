@@ -1,5 +1,6 @@
 .bottom-content {
     background-color: rgba(156, 186, 192, 0.9);
+    align-items: center;
 }
 
 .profil_profilbild img {
@@ -36,6 +37,7 @@
     font: 400 16px 'Roboto', sans-serif;
     padding: 10px;
     padding-left: 20px;
+    text-align: center;
 }
 
 .profil_profilbild {
@@ -66,6 +68,7 @@
 .profile_bio-content {
     width: 100%;
     margin-top: 20px;
+    text-align: center;
 }
 
 .profile_bio-content textarea {
@@ -88,40 +91,9 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    text-align: center;
 }
 
-<<<<<<< HEAD
-.reisen-content {
-    display: flex;
-    /* macht die Buttons nebeneinander */
-    justify-content: flex-start;
-    /* bietet Platz zwischen den Buttons */
-    flex-wrap: wrap;
-    /* erlaubt den Buttons, in die nächste Zeile zu wechseln, wenn der Platz nicht ausreicht */
-
-}
-
-.reisen-button {
-    width: 80px;
-    /* adjust as needed */
-    height: 80px;
-    /* display: inline-block; /* makes the buttons sit side by side */
-    margin: 15px;
-    /* provides some space between the buttons */
-}
-
-.reisen-button-img {
-    width: 100%;
-    height: auto;
-    max-height: 150px;
-}
-
-.profile-edit-button:hover {
-    background-color: #218838;
-}
-
-=======
->>>>>>> c7efcbe192d13fc4860e83366c64a3563e2e394c
 .name {
     text-align: center;
     font-size: 24px;
@@ -132,7 +104,22 @@
     font-size: 18px;
 }
 
-.bottom-content {
-    text-align: center;
-    padding: 100px;
+.reise-button.small {
+    width: 100px;
+    /* adjust as needed */
+    height: 100px;
+    /* display: inline-block; /* makes the buttons sit side by side */
+    margin: 7,5px;
+    /* provides some space between the buttons */
 }
+
+
+
+.reisen-button-img {
+    width: 50%;
+    height: auto;
+    max-height: 150px;
+}
+
+
+

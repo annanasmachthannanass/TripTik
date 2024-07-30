@@ -22,7 +22,8 @@
              <div class="profilbild">
                 <form action="/profilbilder" method="get">
                     <button type="submit" class="profile-button">
-                        <img src="{{ url_for('static', filename='images/profilbild.png') }}" alt="Profilbild">
+                        <img src="{{ url_for('static', filename=profile_picture) }}" alt="Profilbild">
+                        <div>Profilbild bearbeiten</div>
                     </button>
                 </form>
             </div>

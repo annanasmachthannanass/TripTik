@@ -10,7 +10,7 @@
 # flask run --reload
 
 import base64
-from flask import Flask, flash, json, render_template, request, redirect, session, url_for
+from flask import Flask, flash, json, jsonify, render_template, request, redirect, session, url_for
 import sqlite3
 from textblob import TextBlob
 from translate import Translator
@@ -440,6 +440,7 @@ def profil_bearbeiten_page():
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return render_template('profil_bearbeiten.html')
+    
 
 @app.route('/profilbilder', methods=['GET'])
 def profilbilder_page():
@@ -472,6 +473,86 @@ def set_profile_picture():
     
     return redirect(url_for('profilbilder_page'))
 
+@app.route('/bucketlist', methods=['GET', 'POST'])
+def bucketlist_clicked():
+    user_id = get_user_id()
+    if not user_id:
+        flash('Bitte logge dich ein, um deine Bucketlist zu sehen.')
+        return redirect(url_for('index'))
+    
+    name = get_user_name(user_id)
+    bio = get_user_bio(user_id)
+    profile_picture = get_user_profile_picture(user_id)
+    trips = get_trip_id_name_list()
+    
+    try:
+        db = get_db()
+        bucketlist_items = db.execute('SELECT id, description, checked FROM bucketlist_items WHERE user_id = ?', (user_id,)).fetchall()
+    except sqlite3.Error as e:
+        flash(f"Datenbankfehler: {e}")
+        bucketlist_items = []
+
+    return render_template('bucketlist.html', 
+                           name=name, 
+                           bio=bio, 
+                           profile_picture=profile_picture, 
+                           trips=trips, 
+                           bucketlist_items=bucketlist_items)
+
+@app.route('/add_bucketlist_item', methods=['POST'])
+def add_bucketlist_item():
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Bitte logge dich ein, um deine Bucketlist zu bearbeiten.')
+        return redirect(url_for('index'))
+    
+    description = request.form.get('description')
+    if not description:
+        flash('Bitte gib eine Beschreibung ein.')
+        return redirect(url_for('bucketlist_clicked'))
+    
+    try:
+        db = get_db()
+        db.execute('INSERT INTO bucketlist_items (user_id, description) VALUES (?, ?)', (user_id, description))
+        db.commit()
+        flash('Bucketlist-Punkt hinzugefügt.')
+    except sqlite3.Error as e:
+        flash(f"Datenbankfehler: {e}")
+    
+    return redirect(url_for('bucketlist_clicked'))
+
+@app.route('/update_bucketlist_item/<int:item_id>', methods=['POST'])
+def update_bucketlist_item(item_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Bitte logge dich ein, um deine Bucketlist zu bearbeiten.')
+        return redirect(url_for('index'))
+    
+    checked = request.form.get('checked') == 'true'
+    try:
+        db = get_db()
+        db.execute('UPDATE bucketlist_items SET checked = ? WHERE id = ? AND user_id = ?', (checked, item_id, user_id))
+        db.commit()
+        return jsonify({'status': 'success'})  # JSON-Antwort zurückgeben
+    except sqlite3.Error as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500  
+    
+@app.route('/delete_bucketlist_item/<int:item_id>', methods=['POST'])
+def delete_bucketlist_item(item_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Bitte logge dich ein, um deine Bucketlist zu bearbeiten.')
+        return redirect(url_for('index'))
+    
+    try:
+        db = get_db()
+        db.execute('DELETE FROM bucketlist_items WHERE id = ? AND user_id = ?', (item_id, user_id))
+        db.commit()
+        flash('Bucketlist-Punkt gelöscht.')
+    except sqlite3.Error as e:
+        flash(f"Datenbankfehler: {e}")
+    
+    return redirect(url_for('bucketlist_clicked'))
 # Error-Handler für 404-Fehler
 
 @app.errorhandler(404)
