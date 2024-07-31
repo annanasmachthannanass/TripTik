@@ -50,14 +50,13 @@ Für zukünftige Projekte würde ich mir wünschen, dass wir von Anfang an einen
 
 ### My observation (Wahrnehmung)
 
-[A specific observation, regarding know-how, effectiveness, team work or from another relevant area]
+Da wir bereits viele Projekte gemeinsam gemeistert haben, waren uns die Stärken und Schwächen der einzelnen Teammitglieder gut bekannt. Dies erleichterte die Aufgabenverteilung erheblich, sodass jeder seine Fähigkeiten optimal einbringen konnte und unsere Stärken sich hervorragend ergänzten.
 
 ### Effect on me (Wirkung)
 
-[What positive or negative effect did this observation have on the reviewer?]
+Die unterschiedlichen Talente im Team haben mich dazu gebracht, mein eigenes Vorgehen zu überdenken. Anfangs war ich darauf fixiert, möglichst viele Funktionen zu implementieren. Doch Rojin zeigte mir die Bedeutung einer klaren Strukturierung, während Eliana regelmäßig den funktionierenden Code optimierte und kürzte, um die Übersichtlichkeit zu wahren. Diese Zusammenarbeit motivierte mich, meine Fähigkeiten weiterzuentwickeln und von meinen Kolleginnen zu lernen. 
 
 ### Tip for the future (Wunsch)
 
-[What should be changed or strengthened for the point of view of the reviewer?]
-
+Für zukünftige Projekte schlage ich vor, unser Zeitmanagement besser zu strukturieren und die Kommunikation zu verbessern. Manchmal arbeiteten wir gleichzeitig am selben Code, was zu Problemen beim Pushen und Pullen führte. Eine klarere Absprache könnte solche Konflikte vermeiden und unsere Effizienz steigern.
 ---
