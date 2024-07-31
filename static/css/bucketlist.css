@@ -8,7 +8,7 @@
     justify-content: center;
 }
 
-/* Form für die Bucketlist-Items */
+
 .bucketlist-form,
 .bucketlist-update-form {
     width: 100%;
@@ -22,40 +22,42 @@
     align-items: center;
 }
 
-/* Jedes einzelne Bucketlist-Item */
+
 .bucketlist-item {
     display: flex;
     align-items: center;
     margin: 5px 0;
     width: 100%;
+    justify-content: space-between;
 }
 
-/* Die Checkbox für die Bucketlist-Items */
+
 .bucketlist-item input[type="checkbox"] {
     margin-right: 10px;
     transform: scale(1.5);
     cursor: pointer;
 }
 
-/* Die Beschriftung für die Bucketlist-Items */
+
 .bucketlist-item label {
     font-size: 18px;
     color: #fbfbfb;
     cursor: pointer;
+    flex: 1;
 }
 
-/* Abschnitt für das Hinzufügen neuer Bucketlist-Items */
+
 .bucketlist-form input[type="text"] {
-    width: calc(100% - 120px); /* Für das Textfeld und den Button zusammen */
+    width: calc(100% - 120px);
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-right: 10px;
-    box-sizing: border-box; /* Stellen sicher, dass Padding in der Breite enthalten ist */
+    box-sizing: border-box; 
 }
 
-.bucketlist-form button {
+.bucketlist-form button, .bucketlist-update-form button, .delete-button {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -64,7 +66,6 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    align-self: center; /* Zentriert den Button */
 }
 
 .bucketlist-form button:hover {
@@ -80,7 +81,8 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    align-self: center; /* Zentriert den Button */
+    flex: 1; /* Zentriert den Button */
+    margin-top: 20px;
 }
 
 .bucketlist-update-form button:hover {
