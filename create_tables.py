@@ -45,20 +45,6 @@ def create_users_table():
                     password TEXT NOT NULL
                 )
             ''')
-            db.execute('''
-                CREATE TABLE reisen (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL UNIQUE,
-                    city TEXT,
-                    country TEXT,
-                    start_date TEXT,
-                    end_date TEXT,
-                    bereich TEXT,
-                    images BLOB,
-                    user_id INTEGER,
-                    FOREIGN KEY(user_id) REFERENCES users(id)
-                )
-            ''')
             db.commit()
             return "Tabelle 'users' wurde erfolgreich erstellt."
         except sqlite3.Error as e:
@@ -84,19 +70,6 @@ def create_trips_table():
             ''')
             db.commit()
             return "Tabelle 'trips' wurde erfolgreich erstellt."
-        except sqlite3.Error as e:
-            return f"Datenbankfehler: {e}"
-
-@app.route('/drop_reisen_table')
-def drop_reisen_table():
-    with db_lock:
-        db = get_db()
-        try:
-            db.execute('''
-                DROP TABLE reisen
-            ''')
-            db.commit()
-            return "Tabelle 'reisen' wurde erfolgreich gelöscht."
         except sqlite3.Error as e:
             return f"Datenbankfehler: {e}"
 

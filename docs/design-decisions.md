@@ -13,7 +13,7 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: Frontend Design Method
+## 01: Frontend Design Methode
 
 ### Meta
 
@@ -47,7 +47,7 @@ Wir haben zwischen CSS und Bootstrap überlegt.
 
 ---
 
-## 02: Verwendung von JavaScript
+## 02: Verwendung von JavaScript zum Anzeigen der ausgewählten Bilder
 
 ### Meta
 
@@ -59,14 +59,14 @@ Updated
 
 ### Problem statement
 
-Wir möchten, dass beim Erstellen der Reise die ausgewählten Bilder direkt angezeigt werden, um das Nutzererlebnis zu verbessern indem der Nutzer sie nochmals kontrollieren kann.
+Wir möchten, dass beim Erstellen der Reise die ausgewählten Bilder direkt angezeigt werden, um das Nutzererlebnis zu verbessern, indem der Nutzer sie nochmals kontrollieren kann.
 
 Entscheidung getroffen von: Eliana Kaping, Rojin Aylin Aslan, Johanna Engels
 
 ### Decision
 
-Wir haben uns dafür entschieden, dafür JavaScript zu verwenden.
-Dies bietet die Möglichkeit, gleich auf der Clientseite die Bilder anzunehmen und sofort wieder anzuzeigen ohne die Notwendigkeit einer sofortigen Verarbeitung im Server.
+Wir haben uns dafür entschieden, JavaScript zu verwenden.
+Dies bietet die Möglichkeit, gleich auf der Clientseite die Bilder anzunehmen und sofort wieder anzuzeigen, ohne die Notwendigkeit einer sofortigen Verarbeitung im Server.
 
 ### Regarded options
 

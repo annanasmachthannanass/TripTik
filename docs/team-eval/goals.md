@@ -1,11 +1,11 @@
 ---
-title: Goals
+title: Ziele
 parent: Team Evaluation
 nav_order: 1
 ---
 
 {: .no_toc }
-# Goals achieved and missed
+# Ziele
 
 <details open markdown="block">
 {: .text-delta }
@@ -14,7 +14,7 @@ nav_order: 1
 {: toc }
 </details>
 
-## 01: Goals achieved
+## 01: Erreichte Ziele
 
 ### Benutzerfreundlichkeit und Zugänglichkeit
 
@@ -33,7 +33,7 @@ Darüber hinaus ist es uns gelungen, die Anwendung fristgerecht fertig zu stelle
 
 ---
 
-## 02: Goals missed
+## 02: Verpasste Ziele
 
 ### Personalisierungsmöglichkeiten
 
@@ -42,7 +42,7 @@ So haben die Nutzer keine Möglichkeit, das Aussehen und die Organisation ihrer 
 
 ### Nice-To-Have Funktionen
 
-Aufgrund zeitlicher Beschränkungen konnten einige geplante Zusatzfunktionen nicht in die Anwendung integriert werden. Dazu gehörten beispielsweise die Erstellung einer Bucketlist, das Hinzufügen von Freunden und die Nutzung von FunFact Quizzes zu den einzelnen Ländern.
+Aufgrund zeitlicher Beschränkungen konnten einige geplante Zusatzfunktionen nicht in die Anwendung integriert werden. Dazu gehörten beispielsweise die Erstellung einer Bucketlist, das Hinzufügen von Freunden und die Nutzung von FunFact Quizzes zu den einzelnen Ländern oder ein Stickerbuch, in dem die Nutzer einen Sticker für jedes besuchte Land sammeln können.
 Diese Funktionen waren Teil des erweiterten Funktionsumfangs, der ursprünglich geplant war, um den Nutzern ein noch reichhaltigeres und interaktiveres Erlebnis zu bieten. 
 
 ---

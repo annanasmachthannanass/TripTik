@@ -114,7 +114,7 @@ def get_user_id():
 def get_user_info(user_id):
     try:
         db = get_db()
-        user = db.execute('SELECT username, bio FROM users WHERE id = ?', (user_id,)).fetchone()
+        user = db.execute('SELECT username, bio, profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
         return user
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
@@ -132,6 +132,13 @@ def get_user_bio(user_id):
         return user['bio']
     else:
         return None
+
+def get_user_profile_picture(user_id):
+    user = get_user_info(user_id)
+    if user and user['profile_picture']:
+        return user['profile_picture']
+    else:
+        return '/static/profile_pictures/profilbild1.PNG'
 
 
 #Reise speichern
@@ -290,10 +297,6 @@ def get_trip_country_list_english():
         uebersetzungen.append({'country': translated_country})
     return uebersetzungen
 
-def get_user_profile_picture(user_id):
-    db = get_db()
-    user = db.execute('SELECT profile_picture FROM users WHERE id = ?', (user_id,)).fetchone()
-    return user['profile_picture'] if user else None
 
 #Prozent der bereisten Ländern berechnen
 
@@ -468,10 +471,12 @@ def set_profile_picture():
         db.execute('UPDATE users SET profile_picture = ? WHERE id = ?', (new_profile_picture, user_id))
         db.commit()
         flash('Profile picture updated successfully.')
+        return redirect(url_for('profil_bearbeiten_page'))
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
+        return redirect(url_for('profilbilder_page'))
     
-    return redirect(url_for('profilbilder_page'))
+    
 
 @app.route('/bucketlist', methods=['GET', 'POST'])
 def bucketlist_clicked():
