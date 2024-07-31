@@ -33,10 +33,21 @@
                     </form>
                 </div>
                 {% endfor %}
-                <button type="submit">Haken speichern</button>
             </form>
         </div>
     </div>
+
+    <div class="flash">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="flash-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
 
     <script>
         document.querySelectorAll('.bucketlist-item input[type="checkbox"]').forEach(checkbox => {

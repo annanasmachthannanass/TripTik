@@ -1,11 +1,11 @@
 ---
-title: Architecture
+title: Architektur
 parent: Technical Docs
 nav_order: 1
 ---
 
 {: .no_toc }
-# Architecture
+# Architektur
 
 <details open markdown="block">
 {: .text-delta }
@@ -20,12 +20,12 @@ TripTik ist ein umfassendes Reise-Tool, das entwickelt wurde, um Nutzern dabei z
 
 ### Kernfunktionalität
 
-Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reisetagebuch-System, in das Benutzer Informationen über ihre Reisen, einschließlich Reiseziele, Daten und persönliche Notizen, eingeben können. 
+Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reisetagebuch-System, in das Benutzer Informationen über ihre Reisen, einschließlich Reisezielen, Daten und persönlichen Notizen, eingeben können. 
 
 > Diese Daten fließen in mehrere zentrale Funktionen ein:
 
 1. **Interaktive Kartenintegration:**
-+ TripTik verwendet Mapbox, um eine interaktive Weltkarte anzuzeigen, auf der die Nutzer die Länder markieren können, die sie besucht haben. Diese Karte bietet eine visuelle Darstellung der Reise und des Reiseverlaufs.
++ TripTik verwendet Mapbox, um eine interaktive Weltkarte anzuzeigen, auf der automatisch die Länder markiert werden, die der Nutzer besucht hat. Diese Karte bietet eine visuelle Darstellung der Reisen und des Reiseverlaufs.
 
 2. **Verfolgung des Reiseverlaufs:**
 + Eine Progress Bar berechnet und zeigt an, wie viel Prozent der Welt der Nutzer bereits bereist hat und motiviert so zu weiteren Abenteuern. Diese Funktion basiert auf der Anzahl der besuchten Länder im Verhältnis zur Gesamtzahl der in der Anwendung verfügbaren Länder.
@@ -51,7 +51,7 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 
 #### Server-Seite: 
 
-> Die Server-Seite wird von einem Python-basierten Back-End verwaltet, das auf dem Flask-Framework aufbaut. Flask bietet eine flexible und leichtgewichtige Basis für die Entwicklung von Webanwendungen.
+> Die Server-Seite wird von einem Python basierten Back-End verwaltet, das auf dem Flask-Framework aufbaut. Flask bietet eine flexible und leichtgewichtige Basis für die Entwicklung von Webanwendungen.
 
 + **Datenverarbeitung:** Der Server ist für die Verarbeitung der Benutzereingaben zuständig. Er validiert die Daten, wendet die Geschäftslogik an und aktualisiert die Datenbank entsprechend.
 + **Datenbank:** Als Datenbanksystem verwenden wir [SQLite](https://annanasmachthannanass.github.io/TripTik/design-decisions.html#03-datenbankl%C3%B6sung), da sich diese leichtgewichtige, relationale Datenbank ideal für die Anforderungen unserer Anwendung eignet, insbesondere für die Speicherung und Verwaltung von Reisedaten und Benutzerinformationen.
@@ -67,22 +67,22 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 
 #### home.py
 
-+ `home.py` ist verantwortlich für die Verwaltung der Routen und der Logik, die die Hauptseiten der Anwendung bedienen. Sie stellt sicher, dass die Benutzer die richtigen Inhalte sehen und dass die Anfragen korrekt verarbeitet werden.
++ `home.py` ist verantwortlich für die Verwaltung der Routen und der Logik, die die Hauptseiten der Anwendung bedienen. Dies enthält auch alle Datenbankabfragen und fast alle Funktionalitäten. Sie stellt sicher, dass die Benutzer die richtigen Inhalte sehen und dass die Anfragen korrekt verarbeitet werden.
 
 **Flask-Anwendung und Konfiguration**
-+ Die Flask-Anwendung wird im ersten Schritt mit `app = Flask(__name__)` initialisiert. Zudem wird eine `secret_key` wird gesetzt, der für die Sitzungsverwaltung und den CSRF-Schutz verwendet wird.
-+ Zudem definiert die Datei Pfade für die Datenbank und andere Ressourcen, wie beispielsweise GeoJSON- und JSON-Dateien, die innerhalb der Anwendung verwendet werden.
++ Die Flask-Anwendung wird im ersten Schritt mit `app = Flask(__name__)` initialisiert. Zudem wird ein `secret_key` wird gesetzt, der für die Sitzungsverwaltung und den CSRF-Schutz verwendet wird.
++ Es werden Pfade für die Datenbank und andere Ressourcen definiert, wie beispielsweise GeoJSON- und JSON-Dateien, die innerhalb der Anwendung verwendet werden.
 
 ![Flask](../assets/images/home_py_Flask_Konfiguration.png "Flask-Anwendung und Konfiguration")
 
 **Datenbankverwaltung**
-+ Die `get_db()` Funktion wird definiert, um eine Verbindung zur SQLite-Datenbank herzustellen. Zudem prüft `check_db_connection()` die die Datenbankverbindung.
++ Die `get_db()` Funktion wird definiert, um eine Verbindung zur SQLite-Datenbank herzustellen. Zudem prüft `check_db_connection()` die Datenbankverbindung.
 
 ![DB](../assets/images/home_py_DB.png "Datenbankverwaltung")
 
 **Benutzerverwaltung**
 + Weiterhin gibt es Endpunkte (`/register` und `/login`), die Benutzereingaben entgegennehmen und in der Datenbank speichern. Hier werden auch das Passwort-Hashing und Sitzungsmanagement implementiert.
-+ Die Datei verwendet außerdem `generate_password_hash` und `check_password_hash`, um Benutzerdaten zu schützen.
++ Die Datei verwendet `generate_password_hash` und `check_password_hash`, um Benutzerdaten zu schützen.
 
 ![Benutzerverwaltung](../assets/images/home_py_register.png "Benutzerverwaltung")
 
@@ -115,15 +115,12 @@ Die Kernfunktionalität unserer Anwendung dreht sich um ein detailliertes Reiset
 + Diese Dateien enthalten die Stylesheets, die das Aussehen und Layout der HTML-Seiten definieren. Sie sorgen für ein konsistentes Design und ermöglichen es, das Erscheinungsbild der Anwendung zentral zu verwalten.
 
 ![CSS](../assets/images/anmeldung_css.png "anmeldung.css")
-
-**JavaScript-Dateien** 
-+ Die JavaScript-Dateien enthalten clientseitige Skripte, die die Interaktivität und Funktionalität der Anwendung verbessern. Sie können für Formvalidierung, AJAX-Anfragen, Animationen und vieles mehr verwendet werden.
     
 **Images**
 + Alle Bilder, die in der Anwendung verwendet werden, werden im `static`-Ordner gespeichert. Dies können Logos, Hintergrundbilder, Icons und andere grafische Elemente sein.
 
 **JSON-Dateien**
-+ Der `geojson`-Ordner enthält GeoJSON-Dateien, die geografische Daten in einem JSON-basierten Format speichern. GeoJSON ist ein offenes Standardformat, das für die Darstellung von geografischen Merkmalen und deren Eigenschaften verwendet wird. Es wird häufig in Webanwendungen verwendet, um Karten und geografische Informationen darzustellen.
++ Der `geojson`-Ordner enthält die GeoJSON-Dateie, die geografische Daten in einem JSON-basierten Format speichert. GeoJSON ist ein offenes Standardformat, das für die Darstellung von geografischen Merkmalen und deren Eigenschaften verwendet wird. Es wird häufig in Webanwendungen verwendet, um Karten und geografische Informationen darzustellen.
 + Eine typische GeoJSON-Datei enthält eine Sammlung von geografischen Merkmalen, die als `FeatureCollection` bezeichnet wird. In unserem Fall enthält die Datei Koordinaten für die Grenzen der einzelnen Länder, um die bereisten Länder der Nutzer farbig darzustellen.
 
 ---

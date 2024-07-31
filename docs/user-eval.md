@@ -35,9 +35,9 @@ An der Evaluation nehmen 10 Nutzer, Freunde und Familie, teil, welche die Anwend
 
 #### Ablauf
 
-> Dabei bekamen alle Nutzer die Aufgabe, sich zuerst zu registrieren und anschließend einzuloggen. Dazu werden sie aufgefordert, einen Nutzernamen und ein Passwort einzugeben, um nachdem den Registrieren-Button zu drücken. Nach der Nachricht, dass das Erstellen, eines Accounts erfolgreich war, kehren die Nutzer zum Login zurück und melden sich mit den erstellten Nutzerdaten an. Somit werden sie direkt zu dem Home-Screen weitergeleitet und können von dort aus in der Seitenleiste eine Reise hinzufügen.
+> Dabei bekamen alle Nutzer die Aufgabe, sich zuerst zu registrieren und anschließend einzuloggen. Dazu werden sie aufgefordert, einen Nutzernamen und ein Passwort einzugeben und den Registrieren-Button zu drücken. Nach der Nachricht, dass das Erstellen eines Accounts erfolgreich war, kehren die Nutzer zum Login zurück und melden sich mit den erstellten Nutzerdaten an. Daraufhin werden sie direkt zum Home-Screen weitergeleitet und können von dort aus in der Seitenleiste oder den Button neben dem Progress-Bar eine Reise hinzufügen.
 
-> Anschließend waren die Nutzer in der Lage dazu, einen Titel für die Reise, das Land, die Stadt, das Start- und das Enddatum, einen Bericht und die entsprechenden Bilder in die dafür vorgesehenen Felder einzufügen. Schlussendlich musste nur noch der Hinzufügen Button am unteren Bildschirmrand betätigt werden und die Reise wurde erfolgreich hinzugefügt.
+> Anschließend waren die Nutzer in der Lage dazu, einen Titel für die Reise, das Land, die Stadt, das Start- und Enddatum, einen Bericht und die entsprechenden Bilder in die dafür vorgesehenen Felder einzufügen. Schlussendlich musste nur noch der Hinzufügen Button am unteren Bildschirmrand betätigt werden und die Reise wurde erfolgreich hinzugefügt.
 
 > Während die Nutzer diese Schritte durchlaufen haben, wurden sie dazu aufgefordert, die Zeit zu stoppen und sämtliche Erfahrungen sowie Schwierigkeiten mitzuteilen.
 
@@ -49,7 +49,7 @@ An der Evaluation nehmen 10 Nutzer, Freunde und Familie, teil, welche die Anwend
 
 ### Implications
 
-Durch diese Evaluation haben wir festgestellt, dass wir die Funktion zum Hochladen der Bilder verbessern müssen, um sie benutzerfreundlicher zu gestalten. Dafür haben wir sichergestellt, dass die ausgewählten Bilder angezeigt werden, statt dem Namen der Datei.
+Durch diese Evaluation haben wir festgestellt, dass wir die Funktion zum Hochladen der Bilder verbessern müssen, um sie benutzerfreundlicher zu gestalten. Dafür haben wir sichergestellt, dass die ausgewählten Bilder, statt dem Namen der Datei, angezeigt werden.
 
 ---
 
@@ -89,7 +89,7 @@ An der Evaluation nehmen erneut 10 Nutzer, Freunde und Familie, teil, welche die
 
 ### Implications
 
-Durch diese Evaluation ist uns aufgefallen, dass wir die Länder aus der Datei übersetzen müssen und einheitlich festlegen müssen, dass die Anwendung auf Deutsch ist, damit keine weitere Verwirrung für die Nutzer entsteht. 
+Durch diese Evaluation ist uns aufgefallen, dass wir die Länder aus der Datei übersetzen müssen und einheitlich festlegen müssen, dass die Anwendung auf Deutsch ist, damit keine weitere Verwirrung für die Nutzer entsteht. Daraufhin haben wir ein Dropdown-Menü für die Länder erstellt, damit auch keine Tippfehler oder verschiedene Schreibweisen zu Problemen führen.
 
 ---
 
@@ -105,7 +105,7 @@ Updated
 
 ### Goal
 
-Die User-Evaluation sollte herausfinden, wie verständlich und motivierend die Nutzer die Progress Bar, die den Prozentsatz der bereisten Länder anzeigt, empfinden. Dabei legen wir den Fokus auf die Verständlichkeit und Klarheit der Progress Bar.
+Die User-Evaluation sollte herausfinden, wie verständlich und motivierend die Nutzer den Progress Bar, der den Prozentsatz der bereisten Länder anzeigt, empfinden. Dabei legen wir den Fokus auf die Verständlichkeit und Klarheit des Progress Bar.
 
 ### Method
 
@@ -115,7 +115,7 @@ An der Evaluation nehmen auch hier die 10 Nutzer, Freunde und Familie, teil, wel
 
 #### Ablauf
 
-> Dabei bekamen die Nutzer erneut die Aufgabe, sich mit dem Account, welcher bereits erstellt wurde, einzuloggen. Nachdem dann der Nutzername und das Passwort eingegeben und der Login-Button betätigt wurden, werden die Nutzer direkt zu dem Home-Screen weitergeleitet und können von dort aus neben der farblichen Markierung der Länder nun auch die Progress Bar sehen.
+> Dabei bekamen die Nutzer erneut die Aufgabe, sich mit dem Account, welcher bereits erstellt wurde, einzuloggen. Nachdem dann der Nutzername und das Passwort eingegeben und der Login-Button betätigt wurden, werden die Nutzer direkt zu dem Home-Screen weitergeleitet und können von dort aus neben der farblichen Markierung der Länder nun auch den Progress Bar sehen.
 
 > Die Nutzer waren nun in der Lage dazu, neben den verschiedenen Ländern, die farblich markiert waren, den Fortschritt visuell dargestellt und den entsprechenden Prozentsatz angezeigt zu bekommen.
 
@@ -129,6 +129,6 @@ An der Evaluation nehmen auch hier die 10 Nutzer, Freunde und Familie, teil, wel
 
 ### Implications
 
-Durch diese Evaluation haben wir festgestellt, dass die Nutzer dieses Feature sehr wertschätzen, dass wir jedoch an der Darstellung nochmal arbeiten müssen. Aus diesem Grund haben wir uns dazu entschieden, eine Leiste hinter die Progress Bar und den Prozentsatz einzufügen, die zu 50% transparent ist. So haben die Nutzer die Möglichkeit, den Prozentsatz sowohl auf einem hellen als auch auf einem dunkelen Hintergrund gut lesbar zu betrachten.
+Durch diese Evaluation haben wir festgestellt, dass die Nutzer dieses Feature sehr wertschätzen, dass wir jedoch an der Darstellung nochmal arbeiten müssen. Aus diesem Grund haben wir uns dazu entschieden, eine Leiste hinter der Progress Bar und dem Prozentsatz einzufügen, die zu 50% transparent ist. So haben die Nutzer die Möglichkeit, den Prozentsatz sowohl auf einem hellen als auch auf einem dunkelen Hintergrund gut lesbar zu betrachten.
 
 ---

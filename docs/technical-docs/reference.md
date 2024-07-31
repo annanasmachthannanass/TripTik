@@ -100,3 +100,11 @@ nav_order: 3
 + **Sample output:** 
 
 ![users](../assets/images/users.png "users-Tabelle")
+
+### `set_profile_picture()`
++ **Route:** `/set_profile_picture`
++ **Methods:** `POST`
++ **Purpose:** Aktualisiert das Profilbild des Benutzers.
++ **Sample output:** 
+
+![users](../assets/images/users.png "users-Tabelle")

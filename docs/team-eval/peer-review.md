@@ -18,15 +18,15 @@ nav_order: 3
 
 ### My observation (Wahrnehmung)
 
-[A specific observation, regarding know-how, effectiveness, team work or from another relevant area]
+Auch ich habe während des Projekts unsere gute Zusammenarbeit beobachtet. Zudem sind mir unsere unterschiedlichen Stärken in verschiednen Bereichen der Projektarbeit aufgefallen. Wir sind vielleicht nicht alle gleich gut im eigentlichen Prgrammieren, dennoch hat jeder definitv seinen Beitrag zu der erfolgreichen Projektarbeit beigetragen.
 
 ### Effect on me (Wirkung)
 
-[What positive or negative effect did this observation have on the reviewer?]
+Dadurch, dass wir alle unterschiedliche Stärkten haben, konnte jeder überwiegend in einem Teil, der ihm Spaß gemacht hat, arbeiten. So konnte ich mehr von den Backend-Funktionalitäten implementieren, während die anderen mehr an der Dokumentation und dem Frontend gearbeitet haben.
 
 ### Tip for the future (Wunsch)
 
-[What should be changed or strengthened for the point of view of the reviewer?]
+Eine Sache die mir immer wieder auffällt, ist das Zeitmanagement während des Semesters. Auch diesmal haben wir zu Beginn des Semesters eher wenig an dem Projekt gearbeitet, da wir andere Projekte mit frühereren Abgabedaten hatten. Wir haben uns immer auf das dringlichste konzentriert, sodass wir am Ende keine Zeit mehr hatten, um die nice-to-have Funktionalitäten in unsere App einzufügen. Für das nächste Mal würde ich darauf achten, gleich zu Beginn einen Zeitplan zu erstellen und auch schon am Anfang des Semesters an dem Projekt zu arbeiten. Bisher haben wir das auch nicht gemacht, da wir immer noch denken, dass wir gerade erst mit dem Studium angefangen haben und noch nicht so viel wissen, aber eigentlich wissen wir schon eine ganze Menge. Obwohl wir vorher noch nicht mit Python gearbeitet haben, lassen sich doch sehr viele Dinge aus anderen Programmiersprachen übertragen, wie wir im Laufe des Projektes gemerkt haben.
 
 ---
 

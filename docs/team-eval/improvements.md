@@ -1,11 +1,11 @@
 ---
-title: Improvements
+title: Verbesserungen
 parent: Team Evaluation
 nav_order: 2
 ---
 
 {: .no_toc }
-# How we would improve next time
+# Wie wir nächstes Mal noch besser arbeiten können
 
 <details open markdown="block">
 {: .text-delta }

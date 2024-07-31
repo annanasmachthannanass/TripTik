@@ -1,5 +1,6 @@
 /* Container für den gesamten Inhalt unterhalb des Headers */
 .bottom-content {
+    background-color: rgba(156, 186, 192, 0.9);
     padding: 20px;
     display: flex;
     flex-direction: column;
