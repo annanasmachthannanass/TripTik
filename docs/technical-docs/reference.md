@@ -108,3 +108,39 @@ nav_order: 3
 + **Sample output:** 
 
 ![users](../assets/images/users.png "users-Tabelle")
+
+---
+
+## Bucketlist Erstellen, Updaten und Löschen
+
+### `bucketlist_clicked()`
++ **Route:** `/bucketlist`
++ **Methods:** `GET`, `POST`
++ **Purpose:** Zeigt die Bucketlist des Benutzers an.
++ **Sample output:** 
+
+![users](../assets/images/users.png "users-Tabelle")
+
+### `add_bucketlist_item()`
++ **Route:** `/add_bucketlist_item`
++ **Methods:** `POST`
++ **Purpose:** Fügt einen neuen Punkt zur Bucketlist des Benutzers hinzu.
++ **Sample output:** 
+
+![users](../assets/images/users.png "users-Tabelle")
+
+### `update_bucketlist_item()`
++ **Route:** `/update_bucketlist_item/<int:item_id>`
++ **Methods:** `POST`
++ **Purpose:** Aktualisiert den Status eines Bucketlist-Punkts.
++ **Sample output:** 
+
+![users](../assets/images/users.png "users-Tabelle")
+
+### `delete_bucketlist_item()`
++ **Route:** `/delete_bucketlist_item/<int:item_id>`
++ **Methods:** `POST`
++ **Purpose:** Löscht einen Punkt von der Bucketlist des Benutzers.
++ **Sample output:** 
+
+![users](../assets/images/users.png "users-Tabelle")
