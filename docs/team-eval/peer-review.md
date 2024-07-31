@@ -59,4 +59,5 @@ Die unterschiedlichen Talente im Team haben mich dazu gebracht, mein eigenes Vor
 ### Tip for the future (Wunsch)
 
 Für zukünftige Projekte schlage ich vor, unser Zeitmanagement besser zu strukturieren und die Kommunikation zu verbessern. Manchmal arbeiteten wir gleichzeitig am selben Code, was zu Problemen beim Pushen und Pullen führte. Eine klarere Absprache könnte solche Konflikte vermeiden und unsere Effizienz steigern.
+
 ---
