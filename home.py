@@ -1,14 +1,3 @@
-# flask run --reload zum starten des Servers
-# mit --reload wird der Server bei Änderungen neu gestartet
-# Ausnahme: bei DB oder Template Änderungen
-
-# falls es nicht funktioniert, kann es sein, dass die Umgebungsvariable FLASK_APP nicht gesetzt ist
-# dafür einfach set FLASK_APP=TirpTik/home.py setzen
-
-# falls es bei rojin nicht funktioniert -> export FLASK_APP=home.py <- in dem Terminal eingeben
-# zum aktualisieren -> git checkout main <- und danach -> git pull origin main <-
-# flask run --reload
-
 import base64
 from flask import Flask, flash, json, jsonify, render_template, request, redirect, session, url_for
 import sqlite3
@@ -100,7 +89,11 @@ def login():
     except sqlite3.Error as e:
         flash(f"Database error: {e}")
         return redirect(url_for('index'))
-    
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    return redirect(url_for('index'))
 
 #User-Infos abrufen
 
@@ -410,6 +403,9 @@ def profil_page():
     trips=get_trip_id_name_list()
     return render_template('profil.html', name=name, bio=bio, profile_picture=profile_picture, trips=trips)
 
+
+# Profil-Funktionalitäten 
+
 @app.route('/profil_bearbeiten', methods=['GET', 'POST'])
 def profil_bearbeiten_page():
     user_id = get_user_id()
@@ -444,7 +440,6 @@ def profil_bearbeiten_page():
         flash(f"Database error: {e}")
         return render_template('profil_bearbeiten.html')
     
-
 @app.route('/profilbilder', methods=['GET'])
 def profilbilder_page():
     user_id = get_user_id()
@@ -476,27 +471,22 @@ def set_profile_picture():
         flash(f"Database error: {e}")
         return redirect(url_for('profilbilder_page'))
     
-    
+
+#Bucketlist-Funktionalitäten    
 
 @app.route('/bucketlist', methods=['GET', 'POST'])
 def bucketlist_clicked():
     user_id = get_user_id()
-    if not user_id:
-        flash('Bitte logge dich ein, um deine Bucketlist zu sehen.')
-        return redirect(url_for('index'))
-    
     name = get_user_name(user_id)
     bio = get_user_bio(user_id)
     profile_picture = get_user_profile_picture(user_id)
     trips = get_trip_id_name_list()
-    
     try:
         db = get_db()
         bucketlist_items = db.execute('SELECT id, description, checked FROM bucketlist_items WHERE user_id = ?', (user_id,)).fetchall()
     except sqlite3.Error as e:
         flash(f"Datenbankfehler: {e}")
         bucketlist_items = []
-
     return render_template('bucketlist.html', 
                            name=name, 
                            bio=bio, 
@@ -506,16 +496,12 @@ def bucketlist_clicked():
 
 @app.route('/add_bucketlist_item', methods=['POST'])
 def add_bucketlist_item():
-    user_id = session.get('user_id')
-    if not user_id:
-        flash('Bitte logge dich ein, um deine Bucketlist zu bearbeiten.')
-        return redirect(url_for('index'))
+    user_id = get_user_id()
     
     description = request.form.get('description')
     if not description:
         flash('Bitte gib eine Beschreibung ein.')
         return redirect(url_for('bucketlist_clicked'))
-    
     try:
         db = get_db()
         db.execute('INSERT INTO bucketlist_items (user_id, description) VALUES (?, ?)', (user_id, description))
@@ -523,16 +509,11 @@ def add_bucketlist_item():
         flash('Bucketlist-Punkt hinzugefügt.')
     except sqlite3.Error as e:
         flash(f"Datenbankfehler: {e}")
-    
     return redirect(url_for('bucketlist_clicked'))
 
 @app.route('/update_bucketlist_item/<int:item_id>', methods=['POST'])
 def update_bucketlist_item(item_id):
-    user_id = session.get('user_id')
-    if not user_id:
-        flash('Bitte logge dich ein, um deine Bucketlist zu bearbeiten.')
-        return redirect(url_for('index'))
-    
+    user_id = get_user_id()
     checked = request.form.get('checked') == 'true'
     try:
         db = get_db()
@@ -544,11 +525,7 @@ def update_bucketlist_item(item_id):
     
 @app.route('/delete_bucketlist_item/<int:item_id>', methods=['POST'])
 def delete_bucketlist_item(item_id):
-    user_id = session.get('user_id')
-    if not user_id:
-        flash('Bitte logge dich ein, um deine Bucketlist zu bearbeiten.')
-        return redirect(url_for('index'))
-    
+    user_id = get_user_id()
     try:
         db = get_db()
         db.execute('DELETE FROM bucketlist_items WHERE id = ? AND user_id = ?', (item_id, user_id))
@@ -556,8 +533,8 @@ def delete_bucketlist_item(item_id):
         flash('Bucketlist-Punkt gelöscht.')
     except sqlite3.Error as e:
         flash(f"Datenbankfehler: {e}")
-    
     return redirect(url_for('bucketlist_clicked'))
+
 
 # Error-Handler für 404-Fehler
 
