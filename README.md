@@ -28,11 +28,11 @@ Link zur Dokumentation: https://annanasmachthannanass.github.io/TripTik/
 > set FLASK_APP=create_tables.py
 > flask run
 - Schreiben Sie nun nacheinander in die URL des Browsers, um die notwendigen Tabellen zu erstellen
-> http://127.0.0.1:5000/create_users_table
-> http://127.0.0.1:5000/create_trips_table
-> http://127.0.0.1:5000/add_profile_picture_column
-> http://127.0.0.1:5000/add_bio_column
-> http://127.0.0.1:5000/add_images_table
+> [http://127.0.0.1:5000/create_users_table]
+> [http://127.0.0.1:5000/create_trips_table]
+> [http://127.0.0.1:5000/add_profile_picture_column]
+> [http://127.0.0.1:5000/add_bio_column]
+> [http://127.0.0.1:5000/add_images_table]
 
 #### Nun können Sie TripTik ausführen.
 - Beenden sie dafür zunächst die aktuelle Anwendung mit CTRL+C
