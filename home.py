@@ -553,6 +553,7 @@ def delete_bucketlist_item(item_id):
         flash(f"Datenbankfehler: {e}")
     
     return redirect(url_for('bucketlist_clicked'))
+
 # Error-Handler für 404-Fehler
 
 @app.errorhandler(404)
