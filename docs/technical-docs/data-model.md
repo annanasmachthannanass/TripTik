@@ -30,6 +30,10 @@ TripTiks Datenbank besteht aus mehreren Entitäten, die die Geschäftslogik und 
 
 ![images](../assets/images/images.png "images-Tabelle")
 
+4. **bucketlist_items**
+
+![images](../assets/images/bucketlist_items.png "bucketlist_items-Tabelle")
+
 ---
 
 ## Entitäten und ihre Attribute
@@ -39,6 +43,7 @@ TripTiks Datenbank besteht aus mehreren Entitäten, die die Geschäftslogik und 
 + `username`: Der Benutzername muss eindeutig sein.
 + `password`: Das Passwort des Benutzers wird als Hash gespeichert, damit es nicht als Klartext, in der Datenbank, lesbar ist.
 + `bio`: Das Hinzufügen einer Biografie ist für jeden Nutzer optional.
++ `profile_picture`: Das Hinzufügen eines Profilbildes ist ebenfalls optional, wobei hier dann der Pfad oder die URL zum Profilbild gespeichert wird.
 
 2. **trips**
 + `id`: Auch hier ist die id der Primärschlüssel und dient hier der eindeutigen Identifikation der Reise.
@@ -55,11 +60,18 @@ TripTiks Datenbank besteht aus mehreren Entitäten, die die Geschäftslogik und 
 + `image`: Hier werden die Binärdaten des Bildes gespeichert.
 + `trip_id`: Dieser Fremdschlüssel, verweist auf die `trips`-Tabelle und ordnet das Bild einer bestimmten Reise zu.
 
+4. **bucketlist_items**
++ `id`: Die id dient auch hier als Primärschlüssel und sorgt für die eindeutige Identifikation des Bucketlist-Items.
++ `user_id`: Der Fremdschlüssel verweist auf die `users`-Tabelle.
++ `description`: Hier wird die Beschreibung des Bucketlist-Items gespeichert.
++ `checked`: Und zuletzt gibt dieses Attribut an, ob das Item abgehakt ist, wobei der Wert standardmäßig FALSE ist.
+
 ---
 
 ## Beziehung zwischen den Entitäten
 
 + **users und trips:** Ein Benutzer kann mehrere Reisen erstellen, wobei jede Reise einem Benutzer eindeutig zugeordnet ist. Die `user_id` in `trips` verweist dabei auf `id` in `users`.
++ **users und bucketlist_items:** Jeder Benutzer kann mehrere Bucketlist-Items haben, die durch `user_id` in `bucketlist_items` mit dem Benutzer verknüpft sind.
 + **trips und images:** Eine Reise kann mehrere Bilder enthalten, wobei jedes Bild einer Reise eindeutig zugeordnet ist. Dabei verweist `trip_id` in `images` auf `id` in `trips`.
 
 ---
