@@ -16,69 +16,68 @@
        {% include 'navigation.html' %}
 
        <div class="bottom-content">
-    <div class="zwischen-text">
-        Ich will die Welt sehen und das muss ich noch erleben:
-    </div>
-    <form class="bucketlist-form" id="bucketlist-form" method="post" action="{{ url_for('add_bucketlist_item') }}">
-        <input type="text" id="new-item" name="description" placeholder="Neuen Bucketlist-Punkt hinzufügen" required>
-        <button type="submit">Hinzufügen</button>
-    </form>
-    
-    <form class="bucketlist-update-form" id="bucketlist-update-form" method="post" action="{{ url_for('bucketlist_clicked') }}">
-    {% for item in bucketlist_items %}
-    <div class="bucketlist-item">
-        <input type="checkbox" id="item_{{ item.id }}" name="checked_{{ item.id }}" value="true" {% if item.checked %}checked{% endif %}>
-        <label for="item_{{ item.id }}">{{ item.description }}</label>
-        <form method="post" action="{{ url_for('delete_bucketlist_item', item_id=item.id) }}" style="display:inline;">
-            <button type="submit" class="delete-button">Löschen</button>
-        </form>
-    </div>
-    {% endfor %}
-    <button type="submit">Haken speichern</button>
-</form>
+           <div class="zwischen-text">
+               Ich will die Welt sehen und das muss ich noch erleben:
+           </div>
+           <form class="bucketlist-form" id="bucketlist-form" method="post" action="{{ url_for('add_bucketlist_item') }}">
+               <input type="text" id="new-item" name="description" placeholder="Neuen Bucketlist-Punkt hinzufügen" required>
+               <button type="submit">Hinzufügen</button>
+           </form>
+           
+           <form class="bucketlist-update-form" id="bucketlist-update-form" method="post" action="{{ url_for('bucketlist_clicked') }}">
+               {% for item in bucketlist_items %}
+               <div class="bucketlist-item">
+                   <input type="checkbox" id="item_{{ item.id }}" name="checked_{{ item.id }}" value="true" {% if item.checked %}checked{% endif %}>
+                   <label for="item_{{ item.id }}">{{ item.description }}</label>
+                   <button type="submit" formaction="{{ url_for('delete_bucketlist_item', item_id=item.id) }}" class="delete-button">Löschen</button>
+               </div>
+               {% endfor %}
+               <button type="submit">Haken speichern</button>
+           </form>
 
-    <div class="flash">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="flash-message">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-            </div>
+           <div class="flash">
+               {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                       {% for message in messages %}
+                           <div class="flash-message">
+                               {{ message }}
+                           </div>
+                       {% endfor %}
+                   {% endif %}
+               {% endwith %}
+           </div>
+       </div>
+    </div>
 
     <script>
        document.querySelectorAll('.bucketlist-item input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            const itemId = this.id.split('_')[1];  // Die ID aus dem `id` Attribut extrahieren
-            console.log('Item ID:', itemId);  // Debugging-Ausgabe
-            const checked = this.checked;
+           checkbox.addEventListener('change', function() {
+               const itemId = this.id.split('_')[1];  // Die ID aus dem `id` Attribut extrahieren
+               console.log('Item ID:', itemId);  // Debugging-Ausgabe
+               const checked = this.checked;
 
-            fetch(`/update_bucketlist_item/${itemId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({ checked: checked.toString() })
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();  // Nur wenn der Status OK ist, JSON zurückgeben
-                } else {
-                    throw new Error('Netzwerkantwort war nicht okay.');
-                }
-            })
-            .then(data => {
-                console.log('Erfolg:', data);
-            })
-            .catch(error => {
-                console.error('Fehler:', error);
-            });
-        });
-    });
-
+               fetch(`/update_bucketlist_item/${itemId}`, {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/x-www-form-urlencoded',
+                   },
+                   body: new URLSearchParams({ checked: checked.toString() })
+               })
+               .then(response => {
+                   if (response.ok) {
+                       return response.json();  // Nur wenn der Status OK ist, JSON zurückgeben
+                   } else {
+                       throw new Error('Netzwerkantwort war nicht okay.');
+                   }
+               })
+               .then(data => {
+                   console.log('Erfolg:', data);
+               })
+               .catch(error => {
+                   console.error('Fehler:', error);
+               });
+           });
+       });
     </script>
 </body>
 </html>
