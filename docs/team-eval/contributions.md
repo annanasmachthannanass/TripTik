@@ -24,6 +24,7 @@ Contributions
 : **Reisen:** Implemtierung der Anzeigefunktionen, erstellung von `reise.html`, `reise_berabeiten.html`
 : **Profil:** Unterstützung beim Feinschliff des Designs
 : **Bucketlist:** Kontrolle der Funktionen
+: **Erklärung:** In den Insights sind bei mir viele Additions verzeichnet, da ich die GeoJSON-Datei `world-administrative_boundaries.geojson` hinzugefügt habe.
 
 ---
 
@@ -32,8 +33,11 @@ Contributions
 Contributions
 : **Home:** Implementierung von Mapbox, Anzeigen von Mapbox auf der `home.html`
 : **Reisen:** Erstellung der `reisen.html`, Design
-: **Dokumentation:** Erstellung aller Dokumentationsinhalte (die nicht personenbezogen sind) inklusive Ablaufdiagramme etc.
 : **Bucketlist:** Unterstützung bei der Formatierung der Buttons
+: **Dokumentation:** Erstellung aller Dokumentationsinhalte (die nicht personenbezogen sind) inklusive Ablaufdiagramm etc.
+: **Erklärung:** Die Anzahl der Additions in den Insights ist in meinem Fall so niedrig, da ich mich nach den oben genannten Aufgaben auf die Anfertigung und Vervollständigung der Dokumentation konzentriert habe.
+
+
 
 ---
 
