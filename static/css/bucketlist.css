@@ -8,7 +8,6 @@
     justify-content: center;
 }
 
-
 .bucketlist-form,
 .bucketlist-update-form {
     width: 100%;
@@ -22,7 +21,6 @@
     align-items: center;
 }
 
-
 .bucketlist-item {
     display: flex;
     align-items: center;
@@ -31,13 +29,11 @@
     justify-content: space-between;
 }
 
-
 .bucketlist-item input[type="checkbox"] {
     margin-right: 10px;
     transform: scale(1.5);
     cursor: pointer;
 }
-
 
 .bucketlist-item label {
     font-size: 18px;
@@ -45,7 +41,6 @@
     cursor: pointer;
     flex: 1;
 }
-
 
 .bucketlist-form input[type="text"] {
     width: calc(100% - 120px);
@@ -57,7 +52,7 @@
     box-sizing: border-box; 
 }
 
-.bucketlist-form button, .bucketlist-update-form button, .delete-button {
+.bucketlist-form button, .delete-button {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -69,23 +64,6 @@
 }
 
 .bucketlist-form button:hover {
-    background-color: #555;
-}
-
-.bucketlist-update-form button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #333;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex: 1; /* Zentriert den Button */
-    margin-top: 20px;
-}
-
-.bucketlist-update-form button:hover {
     background-color: #555;
 }
 

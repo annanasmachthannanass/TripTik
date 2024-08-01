@@ -47,4 +47,4 @@ Insight
 
 ## Ablaufdiagramm
 
-![Ablaufdiagramm TripTik](assets/images/Ablaufdiagramm.jpg "Ablaufdiagramm")
+![Ablaufdiagramm TripTik](assets/images/Ablaufdiagramm.jpg "Ablaufdiagramm TripTik")

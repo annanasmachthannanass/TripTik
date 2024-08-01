@@ -15,7 +15,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Anmeldeseite an.
 + **Sample output:**
 
-![users](../assets/images/users.png "users-Tabelle")
+![route1](../assets/images/route1.png "Anmeldeseite")
 
 ### `register_page()`
 + **Route:** `/register-page`
@@ -23,7 +23,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Registrierungsseite an.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route2](../assets/images/route2.png "Registrierungsseite")
 
 ---
 
@@ -35,7 +35,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Startseite des Benutzers an, sowie Benutzerinformationen, Fortschritt und Reisen.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route3](../assets/images/route3.png "Startseite")
 
 ---
 
@@ -47,7 +47,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Seite mit den allen Reisen des Benutzers an.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route4](../assets/images/route4.png "Reisen")
 
 ### `reise_page()`
 + **Route:** `/reise`
@@ -55,7 +55,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Details einer bestimmten Reise an. Wenn keine `trip_id` angegeben ist, wird eine Fehlermeldung angezeigt.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route5](../assets/images/route5.png "Reise")
 
 ### `reise_bearbeiten_page()`
 + **Route:** `/reise_bearbeiten`
@@ -63,7 +63,7 @@ nav_order: 3
 + **Purpose:** Ermöglicht das Bearbeiten einer bestimmten Reise. Wenn keine `trip_id` angegeben ist, wird eine Fehlermeldung angezeigt.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route6](../assets/images/route6.png "Reise Bearbeiten")
 
 ### `reise_hinzufuegen_page()`
 + **Route:** `/reise_hinzufuegen`
@@ -71,7 +71,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Seite zum Hinzufügen einer neuen Reise an.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route7](../assets/images/route7.png "Reise Hinzufügen")
 
 ---
 
@@ -83,7 +83,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Profilseite des Benutzers an.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route8](../assets/images/route8.png "Profilseite")
 
 ### `profil_bearbeiten_page()`
 + **Route:** `/profil_bearbeiten`
@@ -91,7 +91,7 @@ nav_order: 3
 + **Purpose:** Ermöglicht das Bearbeiten des Profils. Bei Fehlern wird eine entsprechende Fehlermeldung angezeigt.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route9](../assets/images/route9.png "Profil Bearbeiten")
 
 ### `profilbilder_page()`
 + **Route:** `/profilbilder`
@@ -99,7 +99,7 @@ nav_order: 3
 + **Purpose:** Zeigt die Profilbilderseite des Benutzers an.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+![route10](../assets/images/route10.png "Profilbilderseite")
 
 ### `set_profile_picture()`
 + **Route:** `/set_profile_picture`
@@ -107,4 +107,32 @@ nav_order: 3
 + **Purpose:** Aktualisiert das Profilbild des Benutzers.
 + **Sample output:** 
 
-![users](../assets/images/users.png "users-Tabelle")
+---
+
+## Bucketlist Erstellen, Updaten und Löschen
+
+### `bucketlist_clicked()`
++ **Route:** `/bucketlist`
++ **Methods:** `GET`, `POST`
++ **Purpose:** Zeigt die Bucketlist des Benutzers an.
++ **Sample output:** 
+
+![route12](../assets/images/route12.png "Bucketlist")
+
+### `add_bucketlist_item()`
++ **Route:** `/add_bucketlist_item`
++ **Methods:** `POST`
++ **Purpose:** Fügt einen neuen Punkt zur Bucketlist des Benutzers hinzu.
++ **Sample output:** 
+
+### `update_bucketlist_item()`
++ **Route:** `/update_bucketlist_item/<int:item_id>`
++ **Methods:** `POST`
++ **Purpose:** Aktualisiert den Status eines Bucketlist-Punkts.
++ **Sample output:** 
+
+### `delete_bucketlist_item()`
++ **Route:** `/delete_bucketlist_item/<int:item_id>`
++ **Methods:** `POST`
++ **Purpose:** Löscht einen Punkt von der Bucketlist des Benutzers.
++ **Sample output:** 
