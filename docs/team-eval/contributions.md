@@ -32,6 +32,7 @@ Contributions
 : Dokumentation: Erstellung aller Dokumentationsinhalte (die nicht personen bezogen sind)inklusive Ablaufdiagramme etc.
 : Bucketlist: unterstützung bei der Formatierung der Buttons
 
+
 ## Johanna Engels
 
 Contributions
@@ -39,3 +40,6 @@ Contributions
 : Sidebar: Auslagerung der Sidebar in eine seperate html, implementierung der Datenbankfunktionen um Profilbild, Name, Bio, Reisen aus der Datenbank zu laden
 : Profil: Profil.html, profilbilder.html, profilbearbeiten.html
 : Bucketlist: Erstellung der Funktionalitäten, Disign
+
+## Alle
+Testen, unterstützung der anderen bei Problem
