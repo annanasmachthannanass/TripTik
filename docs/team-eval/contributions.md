@@ -47,6 +47,6 @@ Contributions
 
 ---
 
-## Alle
+## Alle Teammitglieder
 
 Testen der Anwendung, Unterstützung bei Problemen
