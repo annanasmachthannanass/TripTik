@@ -17,29 +17,36 @@ nav_order: 4
 ## Eliana Kaping
 
 Contributions
-: implementierung der Datenbank im Projekt und Erstellung der wichtigsten Tabellen
-: Anmeldung : Aufteilung der Anmeldungs.html in Registrierungs und Anmeldungs.html
-: Home : Erstellung der grundlegenden home.html, implementierung der makier Funktion
-: Sidebar : Erstellung der Sidebar in den einzelnen Seiten, kürzung des Codes für die Datenbankimplementierung
-: Reisen: implemtierung der anzeigefunktionen, erstellung von Reise.html, reise_berabeiten.html
-: Profil: unterstützung beim feinschliff des disigns
-:Bucketlist: Kontrolle der Funktionen
+: Implementierung der Datenbank im Projekt und Erstellung der wichtigsten Tabellen
+: Anmeldung: Aufteilung der `anmeldung.html` in `registrierung.html` und `anmeldung.html`
+: Home: Erstellung der grundlegenden `home.html`, Implementierung der Markier-Funktion
+: Sidebar: Erstellung der Sidebar in den einzelnen Seiten, Kürzung des Codes für die Datenbankimplementierung
+: Reisen: Implemtierung der Anzeigefunktionen, erstellung von `reise.html`, `reise_berabeiten.html`
+: Profil: Unterstützung beim Feinschliff des Designs
+: Bucketlist: Kontrolle der Funktionen
+
+---
+
 ## Rojin Aylin Aslan
 
 Contributions
-: Home : implementierung von Mapbox, anzeigen von Mapbox auf der Home.html
-: Reisen :erstellung der Reisen.html, design
-: Dokumentation: Erstellung aller Dokumentationsinhalte (die nicht personen bezogen sind)inklusive Ablaufdiagramme etc.
-: Bucketlist: unterstützung bei der Formatierung der Buttons
+: Home: Implementierung von Mapbox, Anzeigen von Mapbox auf der `home.html`
+: Reisen: Erstellung der `reisen.html`, Design
+: Dokumentation: Erstellung aller Dokumentationsinhalte (die nicht personenbezogen sind) inklusive Ablaufdiagramme etc.
+: Bucketlist: Unterstützung bei der Formatierung der Buttons
 
+---
 
 ## Johanna Engels
 
 Contributions
-: Anmeldung: Erstellung der Anmeldungs.html mit notwendigen Buttons, Aussehen und Textfeldern
-: Sidebar: Auslagerung der Sidebar in eine seperate html, implementierung der Datenbankfunktionen um Profilbild, Name, Bio, Reisen aus der Datenbank zu laden
-: Profil: Profil.html, profilbilder.html, profilbearbeiten.html
-: Bucketlist: Erstellung der Funktionalitäten, Disign
+: Anmeldung: Erstellung der `anmeldung.html` mit notwendigen Buttons, Aussehen und Textfeldern
+: Sidebar: Auslagerung der Sidebar in eine seperate HTML, Implementierung der Datenbankfunktionen, um Profilbild, Name, Bio, Reisen aus der Datenbank zu laden
+: Profil: `profil.html`, `profilbilder.html`, `profilbearbeiten.html`
+: Bucketlist: Erstellung der Funktionalitäten, Design
+
+---
 
 ## Alle
-Testen, unterstützung der anderen bei Problem
+
+Testen der Anwendung, Unterstützung bei Problemen
