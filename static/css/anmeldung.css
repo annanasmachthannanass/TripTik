@@ -27,9 +27,9 @@ body {
     height: 100px;
 }
 .bottom-content {
-    position: absolute; /* Absolutes Positionieren */
-    bottom: 60px;; /* Am unteren Rand der Seite positionieren */
-    width: 100%; /* Breite auf 100% setzen */
+    position: absolute; 
+    bottom: 60px; 
+    width: 100%; 
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -58,11 +58,11 @@ input[type="text"], input[type="password"] {
 
 .anmeldung-button {
     background-color: #0f4155;
-    color: white; /* Textfarbe des Buttons */
+    color: white; 
     border: none;
-    padding: 15px 30px; /* Innenabstand des Buttons */
-    font-size: 18px; /* Schriftgröße des Buttons */
-    border-radius: 5px; /* Abrundung des Buttons */
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px; 
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
