@@ -33,6 +33,7 @@ Link zur Dokumentation: https://annanasmachthannanass.github.io/TripTik/
 > - http://127.0.0.1:5000/add_profile_picture_column
 > - http://127.0.0.1:5000/add_bio_column
 > - http://127.0.0.1:5000/add_images_table
+> - http://127.0.0.1:5000/create_bucketlist_table
 
 #### Nun können Sie TripTik ausführen.
 - Beenden sie dafür zunächst die aktuelle Anwendung mit CTRL+C
