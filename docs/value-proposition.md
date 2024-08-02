@@ -29,7 +29,7 @@ User
 : Arman, 26 Jahre, begeisterter Reisender, der alle 195 Länder erkunden möchte. Er ist als Freelance-Fotograf fast dauerhaft auf Reisen.
 
 Need
-: Er möchte seine Reisen lebendig erhalten, um sie später seiner Familie zu präsentieren. Zudem hat er so die Möglichkeit, all seine vergangenen Reisen und Abenteuer strukturiert dargestellt zu haben. Da er auf Social-Media immer alles auch potenziellen neuen Kunden präsentiert und eine große REichweite hat, möchte er seine Reisen für sich privat reflektieren können.
+: Er möchte seine Reisen lebendig erhalten, um sie später seiner Familie zu präsentieren. Zudem hat er so die Möglichkeit, all seine vergangenen Reisen und Abenteuer strukturiert dargestellt zu haben. Da er auf Social-Media immer alles auch potenziellen neuen Kunden präsentiert und eine große Reichweite hat, möchte er seine Reisen für sich privat reflektieren können.
 
 Insight
 : Er möchte in einer Anwendung auf einen Blick eine Übersicht über seine Reisen haben, seine Erinnerungen organisieren und sehen, wie nah er seinem Ziel, alle Länder zu bereisen, ist.

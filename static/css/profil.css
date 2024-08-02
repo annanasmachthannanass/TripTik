@@ -46,8 +46,8 @@
 }
 
 .profil_profilbild img {
-    width: 200px; /* Breite des Profilbilds */
-    height: 200px; /* Höhe des Profilbilds */
+    width: 200px; 
+    height: 200px; 
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #000;
@@ -55,11 +55,11 @@
 
 .profile-button {
     
-    color: white; /* Textfarbe des Buttons */
+    color: white; 
     border: none;
-    padding: 15px 30px; /* Innenabstand des Buttons */
-    font-size: 18px; /* Schriftgröße des Buttons */
-    border-radius: 10px; /* Abrundung des Buttons */
+    padding: 15px 30px; 
+    font-size: 18px; 
+    border-radius: 10px; 
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
@@ -72,22 +72,22 @@
 }
 
 .profile_bio-content textarea {
-    width: 100%; /* Vollständige Breite des Textbereichs */
-    height: 150px; /* Höhe des Textbereichs */
-    font-size: 16px; /* Schriftgröße des Textbereichs */
-    padding: 10px; /* Innenabstand des Textbereichs */
-    border: 1px solid #ccc; /* Rahmen um den Textbereich */
-    border-radius: 5px; /* Abrundung des Rahmens */
-    resize: vertical; /* Vertikales Vergrößern des Textbereichs erlauben */
+    width: 100%; 
+    height: 150px; 
+    font-size: 16px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    resize: vertical; /
 }
 
 .profile-edit-button {
     background-color: #0d3040;
-    color: white; /* Textfarbe des Buttons */
+    color: white;
     border: none;
-    padding: 10px 20px; /* Innenabstand des Buttons */
-    font-size: 16px; /* Schriftgröße des Buttons */
-    border-radius: 5px; /* Abrundung des Buttons */
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
@@ -106,11 +106,8 @@
 
 .reise-button.small {
     width: 100px;
-    /* adjust as needed */
     height: 100px;
-    /* display: inline-block; /* makes the buttons sit side by side */
     margin: 7,5px;
-    /* provides some space between the buttons */
 }
 
 .reisen-button-img {
